@@ -1,7 +1,7 @@
 # TANKATS
 Documento de Diseño
 
-- Schair Álvarez Maniega - s.alvarezma.2018@alumnos.urjc.es
+- Schair Álvarez Maniega - s.alvarezma.2018@alumnos.urjc.es 
 - Andrea María Hodas Tortosa - am.hodas.2018@alumnos.urjc.es
 - Jose Márquez García - j.marquezg.2018@alumnos.urjc.es
 - Alberto Sánchez Romero - a.sanchezr.2018@alumnos.urjc.es
@@ -18,25 +18,28 @@ Este es el documento de diseño de Tankats. Este juego estará desarrollado para
 En Tankats, controlaremos a un gatito que va montado en un tanque con el objetivo de vencer a nuestro rival, que también es un gatito que va montado en un tanque. 
 Para conseguir esto, tendremos que usar nuestro ingenio para evadir los ataques del rival y conseguir golpearle y vencerle así.
 
-### 1.2. Caracterısticas principales: 
+### 1.2. Historia
+> *Cuando cae la noche, en las horas más oscuras, un grupo de gatos se montan en sus tanques para mantener encarnizadas luchas clandestinas. Durante el día, ninguno habla de ello, tienen amos a los que odian para alimentarse de comida que no necesitan. Solo viven por  y para la adrenalina del fragor de la batalla y saborear el dulce manjar de la victoria.*
+
+### 1.3. Caracterısticas principales: 
 - **Sencillo pero entretenido:** Tankats se trata de un juego no muy complejo, ni visual ni mecánicamente hablando, pero que sea llamativo para el espectador y que éste pueda pasar un buen rato.
 - **Rápido de jugar:** Que las partidas no sean excesivamente largas y aburridas, sino que el dinamismo y el “pensar rápido” caractericen las sesiones de juego.
 - **Partidas únicas:** Por medio de power-ups y diferentes niveles que harán única la experiencia de juego.
 - **Apto para todos los públicos:** Que cualquier persona sea capaz de pasarlo bien jugando un par de partidas.
 
-### 1.3. Género 
+### 1.4. Género 
 Tankats es un juego cuyo género principal es el de acción, siendo un juego dinámico, en el que el jugador experimenta una descarga de adrenalina. Concretamente se trata de un TPS, es decir, Third Person Shooter o juego de disparos en tercera persona. En este tipo de juegos se ve desde la perspectiva del jugador, permitiendo una vista total del personaje y parte del entorno. En Tankats cada jugador tratará de derribar a su oponente con un variado arsenal de armas de fuego.
 
-### 1.4. Propósito y público objetivo
-Sería un juego para todos los públicos, ya que el propósito de este es pasarlo bien.
+### 1.5. Propósito y público objetivo
+A pesar de tratarse de un juego de apariencia cartoon y de dibujos animados, se trata de un juego de peleas con tanques de juguete controlados por gatos, esta violencia no realista provoca que no sea un título apto para todos los públicos, y sea para mayores de 7 años.
 
-### 1.5. Jugabilidad 
+### 1.6. Jugabilidad 
 - **Jugador contra Jugador:** Dos jugadores entran en una arena en la que controlan unos tanques.
 - **Disparos**: Tienen que acabar con el tanque rival, usando para ello el disparo del tanque.
 - **Mejoras**: Este disparo puede ser modificado por power ups. 
 - **Escenario destructible:** Se podrá romper parte del escenario para obtener ventaja en algunas situaciones.
 
-### 1.6. Estilo visual
+### 1.7. Estilo visual
 Tankats tendrá un estilo sencillo, sin ser demasiado detallista, para encajar en la idea de amigable y mona de los  gatitos en tanques, por eso el estilo visual más apropiado es el cartoon o de dibujo animado. Tanto los personajes jugables, los tanques y el entorno serán exagerados con colores vivos y de texturas simples.
 
 
@@ -74,22 +77,16 @@ Los personajes principales de Tanks serían gatos montados en tanques que tienen
 
 ### 2.4. Power ups y Power Downs
 - **Power ups:**
-    - **Disparo de dispersión:** se disparan varias balas en un rango de 180º
-    - **Mina:** se coloca en el suelo y permanece invisible hasta que explota al entrar en contacto con uno de los jugadores.
-    - **Rayo laser:** disparo continuo con rebote hasta en 2 paredes.
-    - **Disparo triple:** Cada disparo lanza 3 balas en línea, una detrás de otra.
+    - **Disparo de dispersión:**  dispara 3 balas en cono (60º).
     - **Lanzacohetes:** se lanzan cohetes que explotan al entrar en contacto con el contrincante o con  cualquier objeto.
-    - **Escudo:** Se añade una barra de escudo que se va agotando al recibir ataques.
+    - **Escudo:** se añade una barra de escudo que se va agotando al recibir ataques.
     - **Velocidad:** aumenta la velocidad de movimiento del tanque.
     - **Disparo rápido:** Aumenta la cadencia de disparo del jugador.
 
 - **Power downs:**
-    - **Bloqueo de disparo:** El tanque rival  no podrá disparar durante un breve periodo de tiempo.
-    - **Velocidad reducida:** Se reduce la velocidad de movimiento del contrincante.
-    - **Visión reducida:** Se reduce el área de visión del rival.
-    - **Confusión:** Se invierten los controles de movimiento del rival.
-    - **Imán:** Laws bals disparadas, serán atraídas hacia el contrincante.
-    - **Charco de slime:**  La zona del mapa cubierta de slime es deslizante.
+    - **Mina:** se coloca en el suelo y permanece invisible hasta que explota al entrar en contacto con uno de los jugadores.
+    - **Velocidad reducida:** se reduce la velocidad de movimiento del contrincante.
+    - **Confusión:** se invierten los controles de movimiento del rival.
     
 ### 2.5. Movimiento y fısicas
 #### 2.5.1. Interacción entre elementos
@@ -113,22 +110,72 @@ Lista de colisiones que se producirán:
 
 
 ## Interfaz 
+- **Menú principal:** 
+    - Buscar partida
+    - Configuración.
+    - Salir del juego
+- **Selección de personajes:** 
+    - Seleccionar gato.
+    - Flechas para visualizar a todos los gatos.
+    - Comenzar partida.
+    - Volver al menú principal.
+- **Pantalla de juego:** 
+    - Vida del jugador.
+    - Power ups activos.
+- **Pausa:**
+    - Ajustes de sonido.
+    - Ajustes de idioma.
+    - Rendirse.
+    - Cerrar el menú de pausa.
+- **Pantalla de victoria.**
+    - Volver al menú principal.
+    - Revancha.
+- **Pantalla de derrota.**
+    - Volver al menú principal.
+    - Revancha.
+- **Configuración:**
+    - Ajustes de sonido: 
+        - Ajustar el volumen de la música.
+        - Ajustar el volumen de los efectos de sonido.
+        - Mutear la música.
+        - Mutear los efectos de sonido.
+    - Cambiar de idioma.
+        - Español.
+        - Inglés.
+    - Créditos.
+    - Tutorial.
+
 
 ### 3.1. Diagrama de flujo
-- **Menú principal:** Habrá un botón para buscar partida y otro de opciones.
-- **Selección de personajes:** En esta pantalla se podrá escoger el gatito y su tanque.
-- **Selección del mapa:** En esta pantalla se podrá escoger el mapa que se jugará.
-- **Pantalla de juego:** Empieza la partida y en la interfaz saldrá el número de vidas, la puntuación y power ups activos.
+
 
 ### 3.2. Menu principal
-En el menú principal habría un botón de buscar partida y otro de opciones.
+En el menú principal hay un botón de buscar partida, el cual inicia una partida con todo lo que ello conlleva (elegir personaje, comenzar la partida, jugar etc),  otro de ajustes y un último botón con una confirmación necesaria para salir del juego.
+
 ### 3.3. Créditos
-### 3.4. Selección de personaje
-### 3.5. Selección de nivel
+Animada pantalla en la que se pueden ver los créditos del juego, así como información adicional.
+
+### 3.4. Selección de partida
+En la pantalla de selección de personaje se podrá elegir modo de partida, emparejado con gente aleatoria que esté buscando partida o creando una partida o buscándola con un código.
+
+### 3.5. Selección de personaje
+En la pantalla de selección de personaje se podrá elegir el gatito con el que se va a jugar para diferenciarse de forma gráfica del rival y que no haya lugar a equivocaciones.
 
 
 
 ## Arte
 ### 4.1. Arte 2D
 ### 4.2. Audio 
-Durante la partida sonaría una musiquilla y al disparar, los tanques harían un sonido.
+- Música ambiente: 
+    - Un único tema para los menús.
+    - Tema mapa 1.
+    - Tema mapa 2.
+    - Tema mapa 3.
+- Efectos de sonido:
+    - Varios sonidos de disparo de bala.
+    - Sonido de impacto de bala con un personaje.
+    - Sonido de impacto de bala con un objeto/pared.
+    - Sonido cuando se hiere a un personaje.
+    - Sonido cuando se pulsa un botón en los menús.
+    - Sonido cuando se coge un power up o power down.
+
