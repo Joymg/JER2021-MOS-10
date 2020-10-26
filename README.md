@@ -63,17 +63,21 @@ No se podrá poner pausa en medio de una partida.
 El jugador no puede conocer los power-ups/power-downs con los que cuenta el rival.
 
 ### 2.3. Personajes 
+#### 2.3.1. Personajes jugables
 Los personajes principales de Tanks serían gatos montados en tanques que tienen diferente estética.
 
 - **4RI-Cat-0:** Es un gato robot de combate, tras gastar seis de sus siete vidas sacrificó su cuerpo físico e introdujo su cuerpo en un exoesqueleto felino. Por desgracia, tras su metamorfosis no encontró hueco en el mundo laboral, así que decidió dedicarse profesionalmente al combate de tanques.
 
 - **Catsudon:** Es un gato cocinero de nacionalidad japonesa. Quiere ser el mejor cocinero de todo Japón, y lo quiere conseguir por la fuerza y encima de un tanque.
 
-- **Tankitty:** Es un gato veterano de guerra. Desde que volvió de la guerra vive una vida desmotivada y triste, los atracones a pienso húmedo y el combate de tanques le devolvieron parte de la felicidad y autorrealización que tanto anhelaba.
+- **Tankitty:** : Es un tanque veterano de guerra que conduce a su gato excesivamente grande. Desde que volvió de la guerra vive una vida desmotivada y triste, los atracones de aceite de motor y el combate de tanques le devolvieron parte de la felicidad y autorrealización que tanto anhelaba.
 
 - **Catígula:** Es un gato emperador que da mala espina y parece que está loco. Tiene una corona de laurel y toga virilis. Le encanta asesinar gatos, y más si lo hace subido a un tanque de combate.
 
 - **Catótico:** Es un gato gótico al que le gusta mucho provocar el caos, tanto caos ha provocado que trasciendió tornándose su pelaje morado. Su único objetivo en la vida es provocar el caos allá donde vaya, es por eso que el combate con tanques es su profesión soñada.
+
+#### 2.3.2. Personajes jugables.
+- Sombra, el gato: solía ser un gato que participaba en las batallas. Tal fue su dedicación a estas que, aunque ahora ya no pueda participar en ellas, se dedica a ser el muñeco de pruebas cuando el resto de gatos quiere probar sus armas.
 
 ### 2.4. Power ups y Power Downs
 - **Power ups:**
@@ -147,6 +151,7 @@ Lista de colisiones que se producirán:
 
 
 ### 3.1. Diagrama de flujo
+El siguiente diagrama de flujo muestra las pantallas posibles y los accesos entre ellas en Tankats:
 
 
 ### 3.2. Menu principal
@@ -164,7 +169,15 @@ En la pantalla de selección de personaje se podrá elegir el gatito con el que 
 
 
 ## Arte
-### 4.1. Arte 2D
+### 4.1. Arte
+- Sprites de los diferentes personajes montados en sus tanques.
+- Sprite de muro.
+- Sprite de muro destruido.
+- Sprite de agujero.
+- Sprites de los diferentes power ups y power downs.
+- Sprite de bala.
+- Sprite de muñeco de prueba.
+
 ### 4.2. Audio 
 - Música ambiente: 
     - Un único tema para los menús.
