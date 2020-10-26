@@ -25,10 +25,9 @@ Para conseguir esto, tendremos que usar nuestro ingenio para evadir los ataques 
 - **Sencillo pero entretenido:** Tankats se trata de un juego no muy complejo, ni visual ni mecánicamente hablando, pero que sea llamativo para el espectador y que éste pueda pasar un buen rato.
 - **Rápido de jugar:** Que las partidas no sean excesivamente largas y aburridas, sino que el dinamismo y el “pensar rápido” caractericen las sesiones de juego.
 - **Partidas únicas:** Por medio de power-ups y diferentes niveles que harán única la experiencia de juego.
-- **Apto para todos los públicos:** Que cualquier persona sea capaz de pasarlo bien jugando un par de partidas.
 
 ### 1.4. Género 
-Tankats es un juego cuyo género principal es el de acción, siendo un juego dinámico, en el que el jugador experimenta una descarga de adrenalina. Concretamente se trata de un TPS, es decir, Third Person Shooter o juego de disparos en tercera persona. En este tipo de juegos se ve desde la perspectiva del jugador, permitiendo una vista total del personaje y parte del entorno. En Tankats cada jugador tratará de derribar a su oponente con un variado arsenal de armas de fuego.
+Tankats es un juego cuyo género principal es el de acción, siendo un juego dinámico, en el que el jugador experimenta una descarga de adrenalina. Concretamente se trata de un TPS, es decir, Third Person Shooter o juego de disparos en tercera persona. En este tipo de juegos se ve desde la perspectiva del jugador, permitiendo una vista total del personaje y parte del entorno. En Tankats la cámara es cenital, dando al jugador el conocimiento del mapa, la localización de los objetos y de su enemigo, con esta información tratará de derribar a su oponente con un variado arsenal de armas de fuego.
 
 ### 1.5. Propósito y público objetivo
 A pesar de tratarse de un juego de apariencia cartoon y de dibujos animados, se trata de un juego de peleas con tanques de juguete controlados por gatos, esta violencia no realista provoca que no sea un título apto para todos los públicos, y sea para mayores de 7 años.
@@ -58,9 +57,9 @@ En esta sección se detallarán las mecánicas de Tankats. Se comentarán los pi
 
 ### 2.2. Flujo de juego 
 Tankats es un juego de disparos con vista cenital, en el que los gatos, montados en tanques se enfrentarán en batallas 1v1. Con el disparo principal de sus tanques y las siguientes mejoras de armas los felinos tratan de acabar con la vida de su oponente. 
-Se comenzará en esquinas opuestas del nivel, con el mismo acceso a los diferentes power-ups/power-downs para cada uno de los jugadores. Con ingenio, se deberá aprovechar las herramientas que se puedan tener a favor para vencer al rival, y saber cómo evitar los desastres que puedan ser causados por el rival. Para que la partida finalice, se tendrá que acabar con las tres vidas del rival, provocando la pérdida de cada vida volver al punto de aparición y un pequeño tiempo de invencibilidad. Cuando estas 3 vidas se acaben, para quien se hayan acabado, habrá perdido, y viceversa.
+Se comenzará en esquinas opuestas del nivel, con el mismo acceso a los diferentes *power-ups/power-downs* para cada uno de los jugadores. Con ingenio, se deberá aprovechar las herramientas que se puedan tener a favor para vencer al rival, y saber cómo evitar los desastres que puedan ser causados por el rival. Para que la partida finalice, se tendrá que acabar con las tres vidas del rival, provocando la pérdida de cada vida volver al punto de aparición y un pequeño tiempo de invencibilidad. Cuando estas 3 vidas se acaben, para quien se hayan acabado, habrá perdido, y viceversa.
 No se podrá poner pausa en medio de una partida.
-El jugador no puede conocer los power-ups/power-downs con los que cuenta el rival.
+El jugador no puede conocer los *power-ups/power-downs* con los que cuenta el rival.
 
 ### 2.3. Personajes 
 #### 2.3.1. Personajes jugables
@@ -70,7 +69,7 @@ Los personajes principales de Tanks serían gatos montados en tanques que tienen
 
 - **Catsudon:** Es un gato cocinero de nacionalidad japonesa. Quiere ser el mejor cocinero de todo Japón, y lo quiere conseguir por la fuerza y encima de un tanque.
 
-- **Tankitty:** : Es un tanque veterano de guerra que conduce a su gato excesivamente grande. Desde que volvió de la guerra vive una vida desmotivada y triste, los atracones de aceite de motor y el combate de tanques le devolvieron parte de la felicidad y autorrealización que tanto anhelaba.
+- **Tankitty:** : Es un tanque veterano de guerra que conduce a su gato excesivamente gordo. Desde que volvió de la guerra vive una vida desmotivada y triste, los atracones de aceite de motor y el combate de tanques le devolvieron parte de la felicidad y autorrealización que tanto anhelaba.
 
 - **Catígula:** Es un gato emperador que da mala espina y parece que está loco. Tiene una corona de laurel y toga virilis. Le encanta asesinar gatos, y más si lo hace subido a un tanque de combate.
 
@@ -79,15 +78,15 @@ Los personajes principales de Tanks serían gatos montados en tanques que tienen
 #### 2.3.2. Personajes jugables.
 - Sombra, el gato: solía ser un gato que participaba en las batallas. Tal fue su dedicación a estas que, aunque ahora ya no pueda participar en ellas, se dedica a ser el muñeco de pruebas cuando el resto de gatos quiere probar sus armas.
 
-### 2.4. Power ups y Power Downs
-- **Power ups:**
+### 2.4. Objetos
+- ***Power ups:***
     - **Disparo de dispersión:**  dispara 3 balas en cono (60º).
     - **Lanzacohetes:** se lanzan cohetes que explotan al entrar en contacto con el contrincante o con  cualquier objeto.
     - **Escudo:** se añade una barra de escudo que se va agotando al recibir ataques.
     - **Velocidad:** aumenta la velocidad de movimiento del tanque.
     - **Disparo rápido:** Aumenta la cadencia de disparo del jugador.
 
-- **Power downs:**
+- ***Power downs:***
     - **Mina:** se coloca en el suelo y permanece invisible hasta que explota al entrar en contacto con uno de los jugadores.
     - **Velocidad reducida:** se reduce la velocidad de movimiento del contrincante.
     - **Confusión:** se invierten los controles de movimiento del rival.
@@ -101,9 +100,11 @@ Ambos jugadores atacan a distancia y no habrá daño por contacto entre personaj
 Lista de colisiones que se producirán:
 - Personaje - Personaje
 - Personaje - Escenario
+- Personaje - Objeto
 - Bala - Personaje
 - Bala - Escenario
 - Bala - Bala
+
 
 #### 2.5.2. Controles 
 - Teclado: teclas “WASD” para el movimiento del tanque.
@@ -147,34 +148,47 @@ Lista de colisiones que se producirán:
         - Español.
         - Inglés.
     - Créditos.
+        - Cerrar créditos.
     - Tutorial.
+        - Salir del tutorial.
 
 
 ### 3.1. Diagrama de flujo
 El siguiente diagrama de flujo muestra las pantallas posibles y los accesos entre ellas en Tankats:
-
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Flowchat.png?raw=true)
 
 ### 3.2. Menu principal
 En el menú principal hay un botón de buscar partida, el cual inicia una partida con todo lo que ello conlleva (elegir personaje, comenzar la partida, jugar etc),  otro de ajustes y un último botón con una confirmación necesaria para salir del juego.
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Mainscreen.png?raw=true)
 
 ### 3.3. Créditos
 Animada pantalla en la que se pueden ver los créditos del juego, así como información adicional.
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Credits.png?raw=true)
 
 ### 3.4. Selección de partida
 En la pantalla de selección de personaje se podrá elegir modo de partida, emparejado con gente aleatoria que esté buscando partida o creando una partida o buscándola con un código.
 
 ### 3.5. Selección de personaje
 En la pantalla de selección de personaje se podrá elegir el gatito con el que se va a jugar para diferenciarse de forma gráfica del rival y que no haya lugar a equivocaciones.
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/CharacterSelect.png?raw=true)
+
+### 3.6. Pantalla de juego
+En la partida, aparecen representadas en la zona superior la vida del personaje escogido por el jugador y el personaje escogido por el rival junto con el power up que estemos utilizando y el tiempo restante de utilización.
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Gameplay.png?raw=true)
+
+### 3.7. Pantalla de “Pausa”
+Durante la partida se podrá acceder a una pantalla de pausa. En ella se podrá modificar los diferentes aspectos de sonido y el idioma, aunque el juego no se detiene, se sigue ejecutando por debajo del *pop-up* de configuraciones.
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/PauseScreen.png?raw=true)
 
 
 
 ## Arte
 ### 4.1. Arte
-- Sprites de los diferentes personajes montados en sus tanques.
+- Sprites de los diferentes personajes.
 - Sprite de muro.
 - Sprite de muro destruido.
 - Sprite de agujero.
-- Sprites de los diferentes power ups y power downs.
+- Sprites de los diferentes objetos.
 - Sprite de bala.
 - Sprite de muñeco de prueba.
 
