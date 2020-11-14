@@ -11,6 +11,7 @@ class SettingsMenu extends Phaser.Scene{
       preload() {
         this.load.image("sky", "../assets/sky.png");
         this.load.image("back", "../assets/star.png");
+        
       }
     
       create() {
