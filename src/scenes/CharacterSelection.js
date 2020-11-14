@@ -2,6 +2,7 @@ class CharacterSelection extends Phaser.Scene {
   constructor() {
     super({ key: "CharacterSelection" });
     console.log("CharacterSelection#constructor");
+    this.ready = false;
   }
 
   init() {
@@ -10,6 +11,7 @@ class CharacterSelection extends Phaser.Scene {
 
   preload() {
     this.load.image("sky", "../assets/sky.png");
+    this.load.image("ready", "../assets/platform.png");
     this.load.image("back", "../assets/star.png");
     this.load.image("Aricato", "/assets/card.png");
     this.load.image("Catsudon", "/assets/card.png");
@@ -68,8 +70,6 @@ class CharacterSelection extends Phaser.Scene {
     );
 
     const scaleRange = 0.6 / (maxY - minY);
-
-    // Todo: se necesita un tileSet que incluya los sprites de los personajes que se mostraran en la seleccion de personaje
 
     const Aricato = this.add.image(
       poly.points[0].x,
@@ -141,12 +141,13 @@ class CharacterSelection extends Phaser.Scene {
                 ease: "Linear",
                 duration: 150,
               });
-            else this.tweens.add({
-              targets: sprite,
-              scale: (1 + scaleRange * (target.y - minY)),
-              ease: "Linear",
-              duration: 100,
-            });
+            else
+              this.tweens.add({
+                targets: sprite,
+                scale: 1 + scaleRange * (target.y - minY),
+                ease: "Linear",
+                duration: 100,
+              });
 
             sprite.setDepth(target.y);
           },
@@ -185,7 +186,7 @@ class CharacterSelection extends Phaser.Scene {
           x,
           y,
           ease: "Cubic",
-          duration:300,
+          duration: 300,
           onUpdate: (tween, target) => {
             if (point.x == 400)
               this.tweens.add({
@@ -194,18 +195,37 @@ class CharacterSelection extends Phaser.Scene {
                 ease: "Linear",
                 duration: 150,
               });
-            else this.tweens.add({
-              targets: sprite,
-              scale: (1 + scaleRange * (target.y - minY)),
-              ease: "Linear",
-              duration: 100,
-            });
+            else
+              this.tweens.add({
+                targets: sprite,
+                scale: 1 + scaleRange * (target.y - minY),
+                ease: "Linear",
+                duration: 100,
+              });
 
             sprite.setDepth(target.y);
           },
         });
       });
       Phaser.Utils.Array.RotateLeft(poly.points);
+    });
+
+    let lockCharac = this.add.image(
+      this.game.renderer.width / 2,
+      (this.game.renderer.height * 8.5) / 10,
+      "ready"
+    );
+    lockCharac.setDepth(1000);
+
+    lockCharac.setInteractive();
+    lockCharac.on("pointerover", () => {
+      lockCharac.setTint(0x00a0af);
+    });
+    lockCharac.on("pointerout", () => {
+      lockCharac.setTint();
+    });
+    lockCharac.on("pointerdown", () => {
+      this.scene.start("GameplayScene");
     });
   }
 
