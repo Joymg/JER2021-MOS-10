@@ -20,12 +20,19 @@ class GameplayScene extends Phaser.Scene {
     this.load.image("sky", "../assets/sky.png");
     this.load.image("bottomSprite", "../assets/star.png");
     this.load.image("topSprite", "../assets/platform.png");
+    this.load.image("bulletSprite","../assets/bomb.png");
   }
 
   create() {
     this.add.image(400, 300, "sky").setAngle(180).setTint(0x0ff00f);
 
     this.createCharacters();
+
+    // this.bulletGroup = new BulletGroup(this);
+    // this.input.on("pointerdown",pointer =>{
+    //   this.character.shoot();
+    // })
+    
     this.cursors = this.input.keyboard.createCursorKeys();
     this.cursors2 = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
