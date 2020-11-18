@@ -9,7 +9,8 @@ var config = {
         gravity: { y: 10 },
       },
     },
-    scene: [MainMenu,CharacterSelection,SettingsMenu,PauseMenu]
+    //el qeu va primero es el qeu se ve al iniciar, bueno para testeat
+    scene: [CharacterSelection,MainMenu,SettingsMenu,PauseMenu]
   };
 
   var game = new Phaser.Game(config);

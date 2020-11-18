@@ -38,7 +38,7 @@ class MainMenu extends Phaser.Scene {
       this.scene.pause("MainMenu");
     });
 
-    //Boton de buscar partida
+    //Boton de configuracion
     let configButton = this.add.image(
       this.game.renderer.width / 10,
       this.game.renderer.height *8.5/ 10,
