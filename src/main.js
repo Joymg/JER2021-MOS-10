@@ -6,11 +6,14 @@ var config = {
     physics: {
       default: "arcade",
       arcade: {
-        gravity: { y: 10 },
+        gravity: { y: 0 },
+        //ddebug :true
       },
     },
+
     //el qeu va primero es el qeu se ve al iniciar, bueno para testeat
-    scene: [CharacterSelection,MainMenu,SettingsMenu,PauseMenu]
+    scene: [GameplayScene,CharacterSelection,MainMenu,SettingsMenu,PauseMenu]
+
   };
 
   var game = new Phaser.Game(config);
