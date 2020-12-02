@@ -59,7 +59,7 @@ En esta sección se detallarán las mecánicas de Tankats. Se comentarán los pi
 Tankats es un juego de disparos con vista cenital, en el que los gatos, montados en tanques se enfrentarán en batallas 1v1. Con el disparo principal de sus tanques y las siguientes mejoras de armas los felinos tratan de acabar con la vida de su oponente. 
 Se comenzará en esquinas opuestas del nivel, con el mismo acceso a los diferentes *power-ups/power-downs* para cada uno de los jugadores. Con ingenio, se deberá aprovechar las herramientas que se puedan tener a favor para vencer al rival, y saber cómo evitar los desastres que puedan ser causados por el rival. Para que la partida finalice, se tendrá que acabar con las tres vidas del rival, provocando la pérdida de cada vida volver al punto de aparición y un pequeño tiempo de invencibilidad. Cuando estas 3 vidas se acaben, para quien se hayan acabado, habrá perdido, y viceversa.
 No se podrá poner pausa en medio de una partida.
-El jugador no puede conocer los *power-ups/power-downs* con los que cuenta el rival.
+El jugador, cuando juega online, no puede conocer los *power-ups/power-downs* con los que cuenta el rival.
 
 ### 2.3. Personajes 
 #### 2.3.1. Personajes jugables
@@ -107,16 +107,29 @@ Lista de colisiones que se producirán:
 
 
 #### 2.5.2. Controles 
-- Teclado: teclas “WASD” para el movimiento del tanque.
-- Ratón: 
-    - Movimiento para apuntar el cañón.
-    - Botón izquierdo para disparar.
+Online:
+-	Teclado: teclas “WASD” para el movimiento del tanque.
+-	Ratón: 
+-	Movimiento para apuntar el cañón.
+-	Botón izquierdo para disparar.
 
+Pantalla dividida:
+-	Teclado: 
+Jugador 1:
+Teclas “WASD” para el movimiento del tanque
+Teclas “F” y “G” para girar el cañon en sentido antihorario y horario respectivamente
+ESPACIO para disparar
+
+Jugador 2:
+Flechas de dirección para el movimiento del tanque
+Teclas “I” y “P” para girar el cañon en sentido antihorario y horario respectivamente
+“O” para disparar
 
 
 ## Interfaz 
 - **Menú principal:** 
     - Buscar partida
+    - Partida local
     - Configuración.
     - Salir del juego
 - **Selección de personajes:** 
@@ -158,7 +171,7 @@ El siguiente diagrama de flujo muestra las pantallas posibles y los accesos entr
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Flowchat.png?raw=true)
 
 ### 3.2. Menu principal
-En el menú principal hay un botón de buscar partida, el cual inicia una partida con todo lo que ello conlleva (elegir personaje, comenzar la partida, jugar etc),  otro de ajustes y un último botón con una confirmación necesaria para salir del juego.
+En el menú principal hay un botón de buscar partida, el cual inicia una partida con todo lo que ello conlleva (elegir personaje, comenzar la partida, jugar etc), uno de partida local, otro de ajustes y un último botón con una confirmación necesaria para salir del juego.
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Mainscreen.png?raw=true)
 
 ### 3.3. Créditos
@@ -166,7 +179,7 @@ Animada pantalla en la que se pueden ver los créditos del juego, así como info
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Credits.png?raw=true)
 
 ### 3.4. Selección de partida
-En la pantalla de selección de personaje se podrá elegir modo de partida, emparejado con gente aleatoria que esté buscando partida o creando una partida o buscándola con un código.
+En la pantalla de selección de personaje se podrá elegir modo de partida, emparejado con gente aleatoria que esté buscando partida o creando una partida o buscándola con un código. En el caso de que sea una partida local, saltará directamente la pantalla de selección de personajes.
 
 ### 3.5. Selección de personaje
 En la pantalla de selección de personaje se podrá elegir el gatito con el que se va a jugar para diferenciarse de forma gráfica del rival y que no haya lugar a equivocaciones.
