@@ -8,6 +8,8 @@ class GameplayScene extends Phaser.Scene {
 
     this.char2;
     this.cursors2;
+
+    this.bulletGroup;
     console.log("GameplayScene#constructor");
   }
 
@@ -20,30 +22,106 @@ class GameplayScene extends Phaser.Scene {
     this.load.image("sky", "../assets/sky.png");
     this.load.image("bottomSprite", "../assets/star.png");
     this.load.image("topSprite", "../assets/platform.png");
-    this.load.image("bulletSprite","../assets/bomb.png");
+    this.load.image("bulletSprite", "../assets/bomb.png");
   }
 
   create() {
     this.add.image(400, 300, "sky").setAngle(180).setTint(0x0ff00f);
+    this.bulletGroup = this.add.group({
+       classType: Bullet,
+       runChildUpdate:true
+    });
 
     this.createCharacters();
 
-    // this.bulletGroup = new BulletGroup(this);
-    // this.input.on("pointerdown",pointer =>{
-    //   this.character.shoot();
-    // })
-    
-    this.cursors = this.input.keyboard.createCursorKeys();
-    this.cursors2 = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    });
+
+    /* this.bulletGroup = new BulletGroup(this);
+    this.input.on("pointerdown", (pointer) => {
+      this.character.shoot();
+    }); */
+
+    this.createInputs(game.config.localMode);
   }
 
   update() {
-    var alpha = Phaser.Math.Angle.Between(
+    this.handleInputs();
+  }
+
+  //* Funciones de creado
+  createCharacters(map) {
+    var bot = this.physics.add.image(600, 300, "bottomSprite").setScale(4);
+    var top = this.physics.add
+      .image(600, 300, "topSprite")
+      .setScale(0.3)
+      .setOrigin(0.1, 0.5);
+    this.character = new Character("Aricato", 600, 300, 0, top, bot,this.bulletGroup);
+
+    /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
+    cam.startFollow(bot);*/
+
+    var bot2 = this.physics.add
+      .image(200, 300, "bottomSprite")
+      .setScale(4)
+      .setTint(0xfedcba);
+    var top2 = this.physics.add
+      .image(200, 300, "topSprite")
+      .setScale(0.3)
+      .setOrigin(0.1, 0.5)
+      .setTint(0xff0000);
+    this.char2 = new Character("Tankitty", 200, 300, 0, top2, bot2);
+
+    /*var cam2= this.cameras.add(this.game.renderer.width/2,0,this.game.renderer.width/2,this.game.renderer.height);
+    cam2.startFollow(bot2);*/
+
+    this.physics.add.collider(
+      this.character.bottomSprite,
+      this.char2.bottomSprite
+    );
+  }
+
+  createInputs(localMode) {
+    if (localMode) {
+      this.cursors = this.input.keyboard.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.UP,
+        down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+        left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+        right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+        shoot: Phaser.Input.Keyboard.KeyCodes.O,
+        //
+        aimLeft: Phaser.Input.Keyboard.KeyCodes.I,
+        aimRight: Phaser.Input.Keyboard.KeyCodes.P,
+      });
+      this.cursors2 = this.input.keyboard.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.W,
+        down: Phaser.Input.Keyboard.KeyCodes.S,
+        left: Phaser.Input.Keyboard.KeyCodes.A,
+        right: Phaser.Input.Keyboard.KeyCodes.D,
+        shoot: Phaser.Input.Keyboard.KeyCodes.SPACE,
+        //
+        aimLeft: Phaser.Input.Keyboard.KeyCodes.F,
+        aimRight: Phaser.Input.Keyboard.KeyCodes.G,
+      });
+    } else {
+      this.cursors = this.input.keyboard.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.UP,
+        down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+        left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+        right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+        shoot: Phaser.Input.Keyboard.KeyCodes.O,
+      });
+      this.cursors2 = this.input.keyboard.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.W,
+        down: Phaser.Input.Keyboard.KeyCodes.S,
+        left: Phaser.Input.Keyboard.KeyCodes.A,
+        right: Phaser.Input.Keyboard.KeyCodes.D,
+        shoot: Phaser.Input.Keyboard.KeyCodes.SPACE,
+      });
+    }
+  }
+
+  //*Funciones de actualizacion
+  handleInputs() {
+    /* var alpha = Phaser.Math.Angle.Between(
       this.character.bottomSprite.x,
       this.character.bottomSprite.y,
       this.input.mousePointer.x,
@@ -67,7 +145,9 @@ class GameplayScene extends Phaser.Scene {
       targets: this.char2.topSprite,
       rotation: beta,
       duration: 0,
-    });
+    }); */
+
+    //* Character 1
     if (this.cursors.left.isDown) {
       this.character.moveLeft();
     } else if (this.cursors.right.isDown) {
@@ -84,6 +164,17 @@ class GameplayScene extends Phaser.Scene {
     }
     this.character.updateTopSide();
 
+    if (this.cursors.aimLeft.isDown) {
+      this.character.aimLeft();
+    }
+    if (this.cursors.aimRight.isDown) {
+      this.character.aimRight();
+    }
+    if (this.cursors.shoot.isDown) {
+      this.character.shoot();
+    }
+
+    //* Character 2
     if (this.cursors2.left.isDown) {
       this.char2.moveLeft();
     } else if (this.cursors2.right.isDown) {
@@ -99,31 +190,12 @@ class GameplayScene extends Phaser.Scene {
       this.char2.stopY();
     }
     this.char2.updateTopSide();
-  }
 
-  createCharacters(map) {
-    var bot = this.physics.add.image(600, 300, "bottomSprite").setScale(4);
-    var top = this.physics.add
-      .image(600, 300, "topSprite")
-      .setScale(0.3)
-      .setOrigin(0.1,0.5);
-    this.character = new Character("Aricato", 600, 300, 0, top, bot);
-
-    var bot2 = this.physics.add
-      .image(200, 300, "bottomSprite")
-      .setScale(4)
-      .setTint(0xfedcba);
-    var top2 = this.physics.add
-      .image(200, 300, "topSprite")
-      .setScale(0.3)
-      .setOrigin(0.1,0.5)
-      .setTint(0xff0000);
-    this.char2 = new Character("Tankitty", 200, 300, 0, top2, bot2);
-
-
-    this.physics.add.collider(
-      this.character.bottomSprite,
-      this.char2.bottomSprite
-    );
+    if (this.cursors2.aimLeft.isDown) {
+      this.char2.aimLeft();
+    }
+    if (this.cursors2.aimRight.isDown) {
+      this.char2.aimRight();
+    }
   }
 }

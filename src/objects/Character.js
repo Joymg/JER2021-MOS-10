@@ -1,5 +1,5 @@
 class Character {
-  constructor(name, xPos, yPos, startAngle, topSprite, bottomSprite) {
+  constructor(name, xPos, yPos, startAngle, topSprite, bottomSprite, bullets) {
     this.pos = {
       x: xPos,
       y: yPos,
@@ -8,32 +8,40 @@ class Character {
       x: 0,
       y: 0,
     };
+
     this.movementDir;
     this.aim = startAngle;
     this.name = name;
+
     this.topSprite = topSprite;
     this.bottomSprite = bottomSprite;
+
+    this.fireRate = 100;
+    this.nextFire = 0;
+    this.healthPoints = 3;
+    this.bullets = bullets;
   }
 
   moveUp() {
-    console.log("character move up");
+
     this.topSprite.setVelocityY(-200);
     this.bottomSprite.setVelocityY(-200);
   }
   moveDown() {
-    console.log("character move down");
+
     this.topSprite.setVelocityY(200);
     this.bottomSprite.setVelocityY(200);
   }
   moveLeft() {
-    console.log("character move left");
+
     this.topSprite.setVelocityX(-200);
     this.bottomSprite.setVelocityX(-200);
   }
   moveRight() {
-    console.log("character move right");
+
     this.topSprite.setVelocityX(200);
     this.bottomSprite.setVelocityX(200);
+
   }
   stopX() {
     this.topSprite.setVelocityX(0);
@@ -47,5 +55,27 @@ class Character {
     this.topSprite.setVelocityY(0);
     this.bottomSprite.setVelocityY(0);
   }
-  aiming() {}
+  aimLeft() {
+    this.aim = this.topSprite.angle -5
+    this.topSprite.setAngle(this.aim);
+
+  }
+  aimRight() {
+    this.aim = this.topSprite.angle +5
+    this.topSprite.setAngle(this.aim);
+  }
+  shoot(){
+
+    if (game.getTime() > this.nextFire)
+    {
+        this.nextFire = game.getTime() + this.fireRate;
+
+        var bullet = this.bullets.get();
+
+        if (bullet) {
+          bullet.fire(this.topSprite.x,this.topSprite.y,this.aim);
+          this.nextFire =game.getTime() +50;
+        }
+    }
+  }
 }

@@ -38,6 +38,26 @@ class MainMenu extends Phaser.Scene {
       this.scene.pause("MainMenu");
     });
 
+
+    //Boton de buscar partida
+    let credits = this.add.image(
+      this.game.renderer.width / 2,
+      this.game.renderer.height *3.5/ 5,
+      "platform"
+    );
+    credits.scale = 0.5;
+
+    credits.setInteractive();
+    credits.on("pointerover", () => {
+      credits.setTint(0x00a0af);
+    });
+    credits.on("pointerout", () => {
+      credits.setTint();
+    });
+    credits.on("pointerdown", () => {
+      //TODO: hacer credits scene
+    });
+
     //Boton de configuracion
     let configButton = this.add.image(
       this.game.renderer.width / 10,
@@ -54,7 +74,7 @@ class MainMenu extends Phaser.Scene {
       configButton.setTint();
     });
     configButton.on("pointerdown", () => {
-      // Todo: llevar a escena de seleccion de personaje
+
       this.scene.start("ConfigMenu");
     });
   }
