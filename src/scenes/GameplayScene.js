@@ -9,7 +9,9 @@ class GameplayScene extends Phaser.Scene {
     this.char2;
     this.cursors2;
 
-    this.bulletGroup;
+    this.bulletGroup1;
+    this.bulletGroup2;
+
     console.log("GameplayScene#constructor");
   }
 
@@ -27,20 +29,21 @@ class GameplayScene extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, "sky").setAngle(180).setTint(0x0ff00f);
-    this.bulletGroup = this.add.group({
-       classType: Bullet,
-       runChildUpdate:true
+
+    this.bulletGroup1 = this.physics.add.group({
+      classType: Bullet,
+      maxSize: 50,
+      runChildUpdate: true,
+    });
+    this.bulletGroup2 = this.physics.add.group({
+      classType: Bullet,
+      maxSize: 50,
+      runChildUpdate: true,
     });
 
     this.createCharacters();
-
-
-    /* this.bulletGroup = new BulletGroup(this);
-    this.input.on("pointerdown", (pointer) => {
-      this.character.shoot();
-    }); */
-
     this.createInputs(game.config.localMode);
+    this.setCollider();
   }
 
   update() {
@@ -49,34 +52,45 @@ class GameplayScene extends Phaser.Scene {
 
   //* Funciones de creado
   createCharacters(map) {
-    var bot = this.physics.add.image(600, 300, "bottomSprite").setScale(4);
+    var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(4);
     var top = this.physics.add
-      .image(600, 300, "topSprite")
+      .sprite(600, 300, "topSprite")
       .setScale(0.3)
       .setOrigin(0.1, 0.5);
-    this.character = new Character("Aricato", 600, 300, 0, top, bot,this.bulletGroup);
+    this.character = new Character(
+      "Aricato",
+      600,
+      300,
+      0,
+      top,
+      bot,
+      this.bulletGroup1
+    );
 
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
 
     var bot2 = this.physics.add
-      .image(200, 300, "bottomSprite")
+      .sprite(200, 300, "bottomSprite")
       .setScale(4)
       .setTint(0xfedcba);
     var top2 = this.physics.add
-      .image(200, 300, "topSprite")
+      .sprite(200, 300, "topSprite")
       .setScale(0.3)
       .setOrigin(0.1, 0.5)
       .setTint(0xff0000);
-    this.char2 = new Character("Tankitty", 200, 300, 0, top2, bot2);
+    this.char2 = new Character(
+      "Tankitty",
+      200,
+      300,
+      0,
+      top2,
+      bot2,
+      this.bulletGroup2
+    );
 
     /*var cam2= this.cameras.add(this.game.renderer.width/2,0,this.game.renderer.width/2,this.game.renderer.height);
     cam2.startFollow(bot2);*/
-
-    this.physics.add.collider(
-      this.character.bottomSprite,
-      this.char2.bottomSprite
-    );
   }
 
   createInputs(localMode) {
@@ -117,6 +131,28 @@ class GameplayScene extends Phaser.Scene {
         shoot: Phaser.Input.Keyboard.KeyCodes.SPACE,
       });
     }
+  }
+
+  setCollider() {
+    this.physics.add.overlap(
+      this.character.bottomSprite,
+      this.bulletGroup2,
+      this.tankHit
+    );
+    this.physics.add.overlap(
+      this.char2.bottomSprite,
+      this.bulletGroup1,
+      this.tankHit
+    );
+    this.physics.add.overlap(
+      this.bulletGroup1,
+      this.bulletGroup2,
+      this.bulletsHit
+    );
+    this.physics.add.collider(
+      this.character.bottomSprite,
+      this.char2.bottomSprite
+    );
   }
 
   //*Funciones de actualizacion
@@ -197,5 +233,17 @@ class GameplayScene extends Phaser.Scene {
     if (this.cursors2.aimRight.isDown) {
       this.char2.aimRight();
     }
+    if (this.cursors2.shoot.isDown) {
+      this.char2.shoot();
+    }
+  }
+
+  tankHit(tank, bullet) {
+    bullet.destroy();
+  }
+
+  bulletsHit(bullet1, bullet2) {
+    bullet1.destroy();
+    bullet2.destroy();
   }
 }

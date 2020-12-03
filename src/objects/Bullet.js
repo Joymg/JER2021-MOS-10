@@ -1,11 +1,14 @@
-class Bullet extends Phaser.Physics.Arcade.Sprite{
-  constructor(scene,xPos, yPos, angle) {
-    super(scene,xPos,yPos,"bulletSprite")
-    this.pos = {
-      x: xPos,
-      y: yPos,
-    };
+class Bullet extends Phaser.Physics.Arcade.Sprite {
+  constructor(scene, xPos, yPos, angle) {
+    super(scene, xPos, yPos, "bulletSprite");
     this.angle = angle;
+  
+    this.inicialX = 0;
+    this.inicialY = 0;
+    this.lifespan = 0;
+
+    this.speed =100;
+
   }
 
   fire(x, y, angle) {
@@ -16,12 +19,15 @@ class Bullet extends Phaser.Physics.Arcade.Sprite{
     this.setPosition(x, y);
 
     this.setRotation(angle);
-
-    this.pos.x = Math.cos(angle);
-    this.pos.y = Math.sin(angle);
+    console.log(this.angle,this.rotation);
+    
+    this.inicialX = Math.cos(angle*Math.PI/180);
+    this.inicialY = Math.sin(angle*Math.PI/180);
   }
-  update(){
-    this.x -= this.pos.x * (this.speed );
-    this.y -= this.pos.y * (this.speed );
+
+  update() {
+
+    this.setVelocityX(this.speed*this.inicialX);
+    this.setVelocityY(this.speed*this.inicialY);
   }
 }
