@@ -5,8 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tankats</title>
     <script src="..\node_modules\phaser\dist\phaser.js"></script>
+    <style>
+      body{
+        background-image: url('../assets/Background.jpg');
+      }
+      .centro{
+        background-color: white; 
+        border: 5px solid rgba(0, 195, 255, 0.486);  
+        border-radius: 8px; 
+        width: 710px;
+        height: 900px;
+        margin: 0 auto;            
+      } 
+      .titulo{
+        text-align: center;
+        margin: 0 auto;
+        background-color: #FFCA7A; 
+        border: 5px solid #5b020059; 
+        border-radius: 3px;  
+        width: 700px;
+        height: 140px;
+      }
+      .titulo img{    
+        margin-top: -8%;
+        object-fit: cover; 
+        width: 70%;         
+      }
+      canvas{
+        display: block;        
+        margin: -755px auto;
+        border: 5px solid rgba(30, 149, 185, 0.678); 
+        border-radius: 3px; 
+        width: 700px
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="centro">
+      <div class="titulo"><img src="../assets/TANKATS.png"></div>
+    </div>
+  </body>
   <script src="./objects/BulletsGroup.js"></script>
   <script src="./objects/Bullet.js"></script>
   <script src="./scenes/MainMenu.js"></script>
