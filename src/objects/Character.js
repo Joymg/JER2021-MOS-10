@@ -1,4 +1,4 @@
-class Character {
+class Character{
   constructor(name, xPos, yPos, startAngle, topSprite, bottomSprite, bullets) {
     this.pos = {
       x: xPos,
@@ -16,32 +16,28 @@ class Character {
     this.topSprite = topSprite;
     this.bottomSprite = bottomSprite;
 
-    this.fireRate = 100;
-    this.nextFire = 0;
-    this.healthPoints = 3;
+    this.fireRate = 300;
+    this.lastShot = 0;
+    this.healthPoints = 100;
     this.bullets = bullets;
   }
 
+  //Movimiento
   moveUp() {
-
     this.topSprite.setVelocityY(-200);
     this.bottomSprite.setVelocityY(-200);
   }
   moveDown() {
-
     this.topSprite.setVelocityY(200);
     this.bottomSprite.setVelocityY(200);
   }
   moveLeft() {
-
     this.topSprite.setVelocityX(-200);
     this.bottomSprite.setVelocityX(-200);
   }
   moveRight() {
-
     this.topSprite.setVelocityX(200);
     this.bottomSprite.setVelocityX(200);
-
   }
   stopX() {
     this.topSprite.setVelocityX(0);
@@ -55,27 +51,30 @@ class Character {
     this.topSprite.setVelocityY(0);
     this.bottomSprite.setVelocityY(0);
   }
-  aimLeft() {
-    this.aim = this.topSprite.angle -5
-    this.topSprite.setAngle(this.aim);
 
+  //Movimiento del cañon
+  aimLeft() {
+    this.aim = this.topSprite.angle - 5;
+    this.topSprite.setAngle(this.aim);
   }
   aimRight() {
-    this.aim = this.topSprite.angle +5
+    this.aim = this.topSprite.angle + 5;
     this.topSprite.setAngle(this.aim);
   }
-  shoot(){
+  shoot() {
+    if (game.getTime() >= this.lastShot + this.fireRate) {
+      this.lastShot = game.getTime();
 
-    if (game.getTime() > this.nextFire)
-    {
-        this.nextFire = game.getTime() + this.fireRate;
+      var bullet = this.bullets.get();
 
-        var bullet = this.bullets.get();
-
-        if (bullet) {
-          bullet.fire(this.topSprite.x,this.topSprite.y,this.aim);
-          this.nextFire =game.getTime() +50;
-        }
+      if (bullet) {
+        bullet.fire(this.topSprite.width*0.3*Math.cos(this.aim*Math.PI/180)+this.topSprite.x, this.topSprite.width*0.3*Math.sin(this.aim*Math.PI/180)+this.topSprite.y, this.aim);
+      }
     }
+  }
+
+  getHit(){
+    this.healthPoints -=17;
+    console.log(this.healthPoints);
   }
 }

@@ -1,6 +1,6 @@
 class Pit extends Obstacle{
-    constructor(obstacleModel,xPos,yPos){
-        super(obstacleModel,xPos,yPos)
+    constructor(scene,xPos,yPos){
+        super(scene,xPos,yPos,"pitSprite")
         this.isDestructible = false;
         this.bulletsGoThrough = true;
     }

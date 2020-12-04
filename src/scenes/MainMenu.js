@@ -13,11 +13,13 @@ class MainMenu extends Phaser.Scene {
     this.load.image("platform", "../assets/platform.png");
     this.load.image("bomb", "../assets/bomb.png");
     this.load.image("star", "../assets/star.png");
+    this.load.image("title","../assets/TANKATS.png")
   }
 
   create() {
     this.add.image(400, 300, "sky");
-    let title = this.add.text(90,this.game.renderer.height *1.5/ 5,"TANKATS",{font: "150px"});
+    let title = this.add.image(this.game.renderer.width /2,this.game.renderer.height *2/ 5,"title");
+    title.setScale(0.4);
 
     //Boton de buscar partida
     let findGameButton = this.add.image(
