@@ -16,8 +16,8 @@ class Character{
     this.topSprite = topSprite;
     this.bottomSprite = bottomSprite;
 
-    this.fireRate = 100;
-    this.nextFire = 0;
+    this.fireRate = 300;
+    this.lastShot = 0;
     this.healthPoints = 100;
     this.bullets = bullets;
   }
@@ -62,20 +62,19 @@ class Character{
     this.topSprite.setAngle(this.aim);
   }
   shoot() {
-    if (game.getTime() > this.nextFire) {
-      this.nextFire = game.getTime() + this.fireRate;
+    if (game.getTime() >= this.lastShot + this.fireRate) {
+      this.lastShot = game.getTime();
 
       var bullet = this.bullets.get();
 
       if (bullet) {
-        bullet.fire(this.topSprite.x, this.topSprite.y, this.aim);
-        this.nextFire = game.getTime() + 50;
+        bullet.fire(this.topSprite.width*0.3*Math.cos(this.aim*Math.PI/180)+this.topSprite.x, this.topSprite.width*0.3*Math.sin(this.aim*Math.PI/180)+this.topSprite.y, this.aim);
       }
-      console.log(this.aim);
     }
   }
 
   getHit(){
     this.healthPoints -=17;
+    console.log(this.healthPoints);
   }
 }
