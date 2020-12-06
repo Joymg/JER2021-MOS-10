@@ -91,8 +91,7 @@ class GameplayScene extends Phaser.Scene {
 
     GameManager.character = new Character(
       "Aricato",
-      600,
-      300,
+      1,
       0,
       top,
       bot,
@@ -111,8 +110,7 @@ class GameplayScene extends Phaser.Scene {
 
     GameManager.character2 = new Character(
       "Tankitty",
-      200,
-      300,
+      2,
       0,
       top2,
       bot2,
@@ -303,12 +301,16 @@ class GameplayScene extends Phaser.Scene {
     }
   }
 
-  checkGameOver() {
+  checkGameOver(localMode) {
     if (GameManager.character.healthPoints <= 0) {
-      //Todo: añadir pantallas de derrota o victoria
+      var winner = GameManager.character;
+      this.scene.pause();
+      this.scene.launch("VictoryScene",{winner});
     }
     if (GameManager.character2.healthPoints <= 0) {
-      //Todo: añadir pantallas de derrota o victoria
+      var winner = GameManager.character2;
+      this.scene.pause();
+      this.scene.launch("VictoryScene",{winner});
     }
   }
 

@@ -4,10 +4,6 @@ class MainMenu extends Phaser.Scene {
     console.log("MainMenu#constructor");
   }
 
-  init() {
-    console.log("MainMenu#init");
-  }
-
   preload() {
     this.load.image("sky", "../assets/sky.png");
     this.load.image("platform", "../assets/platform.png");
@@ -17,7 +13,7 @@ class MainMenu extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, "sky");
+    var background = this.add.image(400, 300, "sky"); 
     let title = this.add.image(this.game.renderer.width /2,this.game.renderer.height *2/ 5,"title");
     title.setScale(0.4);
 
@@ -29,15 +25,18 @@ class MainMenu extends Phaser.Scene {
     );
 
     findGameButton.setInteractive();
+
+    //efectos al pasar el raton por encima
     findGameButton.on("pointerover", () => {
       findGameButton.setTint(0x00a0af);
     });
     findGameButton.on("pointerout", () => {
       findGameButton.setTint();
     });
+
+    //al pulsar el boton carga la escena de seleccion de personaje
     findGameButton.on("pointerdown", () => {
       this.scene.start("CharacterSelection");
-      this.scene.pause("MainMenu");
     });
 
 
@@ -50,6 +49,7 @@ class MainMenu extends Phaser.Scene {
     credits.scale = 0.5;
 
     credits.setInteractive();
+    //efectos al pasar el raton por encima
     credits.on("pointerover", () => {
       credits.setTint(0x00a0af);
     });
@@ -57,7 +57,7 @@ class MainMenu extends Phaser.Scene {
       credits.setTint();
     });
     credits.on("pointerdown", () => {
-      //TODO: hacer credits scene
+      this.scene.start("CreditsScene");
     });
 
     //Boton de configuracion
@@ -69,19 +69,21 @@ class MainMenu extends Phaser.Scene {
     configButton.scale =6;
 
     configButton.setInteractive();
+    //efectos al pasar el raton por encima
     configButton.on("pointerover", () => {
       configButton.setTint(0x00a0af);
     });
     configButton.on("pointerout", () => {
       configButton.setTint();
     });
+  //al pulsar el boton carga la escena de configuracion
     configButton.on("pointerdown", () => {
 
       this.scene.start("ConfigMenu");
     });
   }
+  update(){
 
-  update() {
-    console.log("SimpleScene#update");
   }
+
 }

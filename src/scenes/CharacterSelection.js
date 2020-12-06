@@ -23,35 +23,12 @@ class CharacterSelection extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, "sky").setTint(0xf23456);
-    let backButton = this.add.image(
-      (this.game.renderer.width * 9) / 10,
-      this.game.renderer.height / 10,
-      "back"
-    );
-    backButton.scale = 3;
-
-    backButton.setInteractive();
-    backButton.on("pointerover", () => {
-      backButton.setTint(0x00a0af);
-    });
-    backButton.on("pointerout", () => {
-      backButton.setTint();
-    });
-    backButton.on("pointerdown", () => {
-      this.scene.start("MainMenu");
-    });
 
     //Carousel
     const graphics = this.add.graphics({
       lineStyle: { width: 2, color: 0x0f0f0f },
     });
-    const ellipse = new Phaser.Curves.Ellipse({
-      x: 400,
-      y: 300,
-      xRadius: 240,
-      yRadius: 100,
-    });
-
+ 
     var poly = new Phaser.Geom.Polygon([
       new Phaser.Geom.Point(125, 250),
       new Phaser.Geom.Point(175, 325),
@@ -59,6 +36,7 @@ class CharacterSelection extends Phaser.Scene {
       new Phaser.Geom.Point(625, 325),
       new Phaser.Geom.Point(675, 250),
     ]);
+    
 
     let minY = poly.points.reduce(
       (prev, current) => (current.y <= prev ? current.y : prev),
@@ -99,6 +77,9 @@ class CharacterSelection extends Phaser.Scene {
     graphics.strokePoints(poly.points);
 
     //End of carrousel
+
+    //botones
+    //boton de mover a la izda
     let rightCharacButton = this.add.image(
       this.game.renderer.width / 10,
       (this.game.renderer.height * 8.5) / 10,
@@ -109,12 +90,14 @@ class CharacterSelection extends Phaser.Scene {
     rightCharacButton.scale = 5;
 
     rightCharacButton.setInteractive();
+    //efectos al pasar el raton por encima
     rightCharacButton.on("pointerover", () => {
       rightCharacButton.setTint(0x00a0af);
     });
     rightCharacButton.on("pointerout", () => {
       rightCharacButton.setTint();
     });
+    //al pulsar el boton rota el carrousel hacia la derecha
     rightCharacButton.on("pointerdown", () => {
       poly.points.forEach((p, index) => {
         const firstPoint = index === 0;
@@ -156,6 +139,7 @@ class CharacterSelection extends Phaser.Scene {
       Phaser.Utils.Array.RotateRight(poly.points);
     });
 
+    //boton de mover a la izda
     let leftCharacButton = this.add.image(
       (this.game.renderer.width * 9) / 10,
       (this.game.renderer.height * 8.5) / 10,
@@ -210,6 +194,26 @@ class CharacterSelection extends Phaser.Scene {
       Phaser.Utils.Array.RotateLeft(poly.points);
     });
 
+    //Boton de atras
+    let backButton = this.add.image(
+      (this.game.renderer.width * 9) / 10,
+      this.game.renderer.height / 10,
+      "back"
+    );
+    backButton.scale = 3;
+
+    backButton.setInteractive();
+    backButton.on("pointerover", () => {
+      backButton.setTint(0x00a0af);
+    });
+    backButton.on("pointerout", () => {
+      backButton.setTint();
+    });
+    backButton.on("pointerdown", () => {
+      this.scene.start("MainMenu");
+    });
+
+    //boton de bloquear
     let lockCharac = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 8.5) / 10,
@@ -227,9 +231,5 @@ class CharacterSelection extends Phaser.Scene {
     lockCharac.on("pointerdown", () => {
       this.scene.start("GameplayScene");
     });
-  }
-
-  update() {
-    console.log("CharacterSelection#update");
   }
 }

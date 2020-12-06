@@ -16,15 +16,13 @@ class SettingsMenu extends Phaser.Scene {
   }
 
   create() {
+    var background = this.add.image(400, 300, "sky").setTint(0x654321);
     var title = this.add.text(
       (this.game.renderer.width * 0.7) / 2,
       (this.game.renderer.height * 0.5) / 5,
       "Settings",
       { font: "50px" }
     );
-    title.depth = 1;
-
-    var background = this.add.image(400, 300, "sky").setTint(0x654321);
 
     let muteMusicButton = this.add
       .image(
@@ -50,8 +48,6 @@ class SettingsMenu extends Phaser.Scene {
       { font: "40px" }
     );
     muteMusicText.depth = 1;
-
-
 
     /*let muteSEButton = this.add.image(
       (this.game.renderer.width * 1.6) / 2,
@@ -94,13 +90,16 @@ class SettingsMenu extends Phaser.Scene {
     backButton.scale = 3;
 
     backButton.setInteractive();
+    //efectos al pasar el raton por encima
     backButton.on("pointerover", () => {
       backButton.setTint(0x00a0af);
     });
     backButton.on("pointerout", () => {
       backButton.setTint();
     });
+    //al pulsar el boton te devuelve al menu pricipal
     backButton.on("pointerdown", () => {
+
       this.scene.start("MainMenu");
     });
   }

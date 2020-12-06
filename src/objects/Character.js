@@ -1,14 +1,6 @@
 class Character{
-  constructor(name, xPos, yPos, startAngle, topSprite, bottomSprite, bullets) {
-    this.pos = {
-      x: xPos,
-      y: yPos,
-    };
-    this.vel = {
-      x: 0,
-      y: 0,
-    };
-
+  constructor(name, id, startAngle, topSprite, bottomSprite, bullets) {
+    this.id=id;
     this.movementDir;
     this.aim = startAngle;
     this.name = name;
