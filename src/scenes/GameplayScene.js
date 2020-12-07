@@ -25,13 +25,7 @@ class GameplayScene extends Phaser.Scene {
 
   preload() {
     console.log("GameplayScene#preload");
-    this.load.image("sky", "../assets/sky.png");
-    this.load.image("bottomSprite", "../assets/star.png");
-    this.load.image("topSprite", "../assets/platform.png");
-    this.load.image("bulletSprite", "../assets/bullet.png");
-    this.load.image("woodenCrateSprite", "../assets/crate.png");
-    this.load.image("ironCrateSprite", "../assets/ironCrate.png");
-    this.load.image("pitSprite", "../assets/pit.png");
+
   }
 
   create() {

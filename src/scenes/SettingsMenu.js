@@ -9,10 +9,7 @@ class SettingsMenu extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("sky", "../assets/sky.png");
-    this.load.image("back", "../assets/star.png");
-    this.load.image("muteUp", "../assets/muteUp.png");
-    this.load.image("muteDown", "../assets/muteDown.png");
+
   }
 
   create() {
