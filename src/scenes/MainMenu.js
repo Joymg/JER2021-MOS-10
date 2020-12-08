@@ -1,16 +1,8 @@
 class MainMenu extends Phaser.Scene {
   constructor() {
     super({ key: "MainMenu" });
-    console.log("MainMenu#constructor");
   }
 
-  preload() {
-    this.load.image("sky", "../assets/sky.png");
-    this.load.image("platform", "../assets/platform.png");
-    this.load.image("bomb", "../assets/bomb.png");
-    this.load.image("star", "../assets/star.png");
-    this.load.image("title","../assets/TANKATS.png")
-  }
 
   create() {
     var background = this.add.image(400, 300, "sky"); 
@@ -36,7 +28,9 @@ class MainMenu extends Phaser.Scene {
 
     //al pulsar el boton carga la escena de seleccion de personaje
     findGameButton.on("pointerdown", () => {
-      this.scene.start("CharacterSelection");
+      var player2Turn = false;
+      var p1Char =null;
+      this.scene.start("CharacterSelection",{player2Turn,p1Char});
     });
 
 

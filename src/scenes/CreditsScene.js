@@ -1,16 +1,18 @@
 class CreditsScene extends Phaser.Scene {
   constructor() {
     super({ key: "CreditsScene" });
+    this.text
   }
 
   create() {
     var background = this.add.image(400, 300, "sky");
+
     var title = this.add.text(
-      (this.game.renderer.width * 0.76) / 2,
+      (this.game.renderer.width ) / 2,
       (this.game.renderer.height * 0.5) / 5,
       "Credits",
       { font: "50px" }
-    );
+    ).setOrigin(0.5);
 
     var schair = this.add.text(50, (game.renderer.height*1.5)/5, "Schair Álvarez \n    Maniega", {
       font: "20px",

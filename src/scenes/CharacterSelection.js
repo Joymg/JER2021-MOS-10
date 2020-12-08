@@ -2,33 +2,31 @@ class CharacterSelection extends Phaser.Scene {
   constructor() {
     super({ key: "CharacterSelection" });
     console.log("CharacterSelection#constructor");
+
     this.ready = false;
+    this.player1locked = false;
+    this.player1Character;
+    this.player2Character;
   }
 
-  init() {
-    console.log("CharacterSelection#init");
-  }
-
-  preload() {
-    this.load.image("sky", "../assets/sky.png");
-    this.load.image("ready", "../assets/platform.png");
-    this.load.image("back", "../assets/star.png");
-    this.load.image("Aricato", "/assets/card.png");
-    this.load.image("Catsudon", "/assets/card.png");
-    this.load.image("Tankitty", "/assets/card.png");
-    this.load.image("Catígula", "/assets/card.png");
-    this.load.image("Catótico", "/assets/card.png");
-    this.load.image("arrow", "/assets/bomb.png");
+  init(data) {
+    this.player1locked = data.player2Turn;
+    this.player1Character = data.p1Char;
   }
 
   create() {
-    this.add.image(400, 300, "sky").setTint(0xf23456);
+    var background;
+    if (!this.player1locked) {
+      background = this.add.image(400, 300, "sky").setTint(0xf23456);
+    } else {
+      background = this.add.image(400, 300, "sky").setTint(0x65432f);
+    }
 
     //Carousel
     const graphics = this.add.graphics({
       lineStyle: { width: 2, color: 0x0f0f0f },
     });
- 
+
     var poly = new Phaser.Geom.Polygon([
       new Phaser.Geom.Point(125, 250),
       new Phaser.Geom.Point(175, 325),
@@ -36,45 +34,72 @@ class CharacterSelection extends Phaser.Scene {
       new Phaser.Geom.Point(625, 325),
       new Phaser.Geom.Point(675, 250),
     ]);
-    
 
+    //punto con la y mas pequeña de los puntos del poligono
     let minY = poly.points.reduce(
       (prev, current) => (current.y <= prev ? current.y : prev),
       poly.points[0].y
     );
+    //punto con la y mas grande de los puntos del poligono
     let maxY = poly.points.reduce(
       (prev, current) => (current.y >= prev ? current.y : prev),
       poly.points[0].y
     );
 
+    //constante que calcula el tamaño basado en la la y maxima y minima
     const scaleRange = 0.6 / (maxY - minY);
 
-    const Aricato = this.add.image(
-      poly.points[0].x,
-      poly.points[0].y,
-      "Aricato"
-    );
+    const Aricato = this.add.image(poly.points[0].x, poly.points[0].y, "Aricato");
+    //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
+    if (this.player1Character != null && Aricato.texture.key == this.player1Character.texture.key) {
+      Aricato.setTint(0x00ff00);
+      Aricato.setActive(false);
+    }
+
     const Catsudon = this.add
       .image(poly.points[1].x, poly.points[1].y, "Catsudon")
-      .setTint(0x76ab10);
+      .setTint(0xaa9930);
+    //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
+    if (this.player1Character && Catsudon.texture.key == this.player1Character.texture.key) {
+      Catsudon.setTint(0x00ff00);
+      Catsudon.setActive(false);
+    }
+
     const Tankitty = this.add
       .image(poly.points[2].x, poly.points[2].y, "Tankitty")
       .setTint(0x1b5c82);
-    const Catígula = this.add
+    //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
+    if (this.player1Character && Tankitty.texture.key == this.player1Character.texture.key) {
+      Tankitty.setTint(0x00ff00);
+      Tankitty.setActive(false);
+    }
+
+    const Catigula = this.add
       .image(poly.points[3].x, poly.points[3].y, "Catígula")
-      .setTint(0x000000);
-    const Catótico = this.add
+      .setTint(0x555555);
+    //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
+    if (this.player1Character && Catigula.texture.key == this.player1Character.texture.key) {
+      Catigula.setTint(0x00ff00);
+      Catigula.setActive(false);
+    }
+
+    const Catotico = this.add
       .image(poly.points[4].x, poly.points[4].y, "Catótico")
       .setTint(0x00aaff);
-    var CharacterSprites = [Aricato, Catsudon, Tankitty, Catígula, Catótico];
+    //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
+    if (this.player1Character && Catotico.texture.key == this.player1Character.texture.key) {
+      Catotico.setTint(0x00ff00);
+      Catotico.setActive(false);
+    }
 
+    var CharacterSprites = [Aricato, Catsudon, Tankitty, Catigula, Catotico];
+
+    //coloca los elementos en posicion para ser representados en el carrusel
     CharacterSprites.forEach((element) => {
-      element.setAngle(90);
-      element.setScale(1 + scaleRange * (element.y - minY));
-      element.setDepth(element.y);
+      element.setAngle(90); //los gira
+      element.setScale(1 + scaleRange * (element.y - minY)); //los hace mas grande cuanto mas adelante esten
+      element.setDepth(element.y); //y les pone por encima de las cosas cuya y sea menor
     });
-
-    graphics.strokePoints(poly.points);
 
     //End of carrousel
 
@@ -103,9 +128,7 @@ class CharacterSelection extends Phaser.Scene {
         const firstPoint = index === 0;
 
         const sprite = CharacterSprites[index];
-        const point = firstPoint
-          ? poly.points[poly.points.length - 1]
-          : poly.points[index - 1];
+        const point = firstPoint ? poly.points[poly.points.length - 1] : poly.points[index - 1];
 
         const x = point.x;
         const y = point.y;
@@ -210,7 +233,13 @@ class CharacterSelection extends Phaser.Scene {
       backButton.setTint();
     });
     backButton.on("pointerdown", () => {
-      this.scene.start("MainMenu");
+      if (!this.player1locked) {
+        this.scene.start("MainMenu");
+      } else {
+        var player2Turn = false;
+        var p1Char = null;
+        this.scene.start("CharacterSelection", { player2Turn, p1Char });
+      }
     });
 
     //boton de bloquear
@@ -229,7 +258,41 @@ class CharacterSelection extends Phaser.Scene {
       lockCharac.setTint();
     });
     lockCharac.on("pointerdown", () => {
-      this.scene.start("GameplayScene");
+      if (!this.player1locked) {
+        this.player1Character = this.getSelectedCharacter(CharacterSprites);
+      } else {
+        this.player2Character = this.getSelectedCharacter(CharacterSprites);
+      }
+
+      if (game.config.localMode) {
+        if (!this.player1locked) {
+          var player2Turn = true;
+          var p1Char = this.player1Character;
+          this.scene.start("CharacterSelection", { player2Turn, p1Char });
+        } else {
+          if (this.player2Character) {
+            this.scene.start("GameplayScene");
+          }
+        }
+      } else {
+        //Todo: modo en linea. al elegir un solo jugador carga la partida
+      }
     });
+  }
+
+  transitionOut(progress) {
+    this.logo.y = 600 * progress;
+  }
+
+  getSelectedCharacter(array) {
+    var player;
+    array.forEach((element) => {
+      if (element.active == true) {
+        if (element.y == 350) {
+          player = element;
+        }
+      }
+    });
+    return player;
   }
 }
