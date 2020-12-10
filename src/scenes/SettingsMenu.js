@@ -13,13 +13,12 @@ class SettingsMenu extends Phaser.Scene {
   }
 
   create() {
-    var background = this.add.image(400, 300, "sky").setTint(0x654321);
+    var background = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setTint(0x654321).setScale(1.3);
     var title = this.add.text(
-      (this.game.renderer.width * 0.7) / 2,
-      (this.game.renderer.height * 0.5) / 5,
+      this.game.renderer.width / 2, (this.game.renderer.height * 0.5) / 5,
       "Settings",
       { font: "50px" }
-    );
+    ).setOrigin(0.5);
 
     let muteMusicButton = this.add
       .image(

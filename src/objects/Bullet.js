@@ -1,6 +1,7 @@
 class Bullet extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, xPos, yPos, angle) {
-    super(scene, xPos, yPos, "bulletSprite");
+    super(scene, xPos, yPos, "bulletPlayer1");
+    this.setScale(0.05);
     this.angle = angle;
   
     this.inicialX = 0;
@@ -24,6 +25,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.inicialY = Math.sin(angle*Math.PI/180);
     this.setVelocityX(this.speed*this.inicialX);
     this.setVelocityY(this.speed*this.inicialY);
+    
   }
 
   bounce(){

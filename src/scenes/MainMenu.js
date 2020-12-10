@@ -3,16 +3,21 @@ class MainMenu extends Phaser.Scene {
     super({ key: "MainMenu" });
   }
 
-
   create() {
-    var background = this.add.image(400, 300, "sky"); 
-    let title = this.add.image(this.game.renderer.width /2,this.game.renderer.height *2/ 5,"title");
+    var background = this.add
+      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
+      .setScale(1.3);
+    let title = this.add.image(
+      this.game.renderer.width / 2,
+      (this.game.renderer.height * 2) / 5,
+      "title"
+    );
     title.setScale(0.4);
 
     //Boton de buscar partida
     let findGameButton = this.add.image(
       this.game.renderer.width / 2,
-      this.game.renderer.height *3/ 5,
+      (this.game.renderer.height * 3) / 5,
       "platform"
     );
 
@@ -29,15 +34,14 @@ class MainMenu extends Phaser.Scene {
     //al pulsar el boton carga la escena de seleccion de personaje
     findGameButton.on("pointerdown", () => {
       var player2Turn = false;
-      var p1Char =null;
-      this.scene.start("CharacterSelection",{player2Turn,p1Char});
+      var p1Char = null;
+      this.scene.start("CharacterSelection", { player2Turn, p1Char });
     });
-
 
     //Boton de buscar partida
     let credits = this.add.image(
       this.game.renderer.width / 2,
-      this.game.renderer.height *3.5/ 5,
+      (this.game.renderer.height * 3.5) / 5,
       "platform"
     );
     credits.scale = 0.5;
@@ -56,11 +60,12 @@ class MainMenu extends Phaser.Scene {
 
     //Boton de configuracion
     let configButton = this.add.image(
-      this.game.renderer.width / 10,
-      this.game.renderer.height *8.5/ 10,
-      "bomb"
+      (this.game.renderer.width * 1.2) / 10,
+      (this.game.renderer.height * 8.5) / 10,
+      "Button_Config"
     );
-    configButton.scale =6;
+
+    configButton.setScale(0.3);
 
     configButton.setInteractive();
     //efectos al pasar el raton por encima
@@ -70,14 +75,10 @@ class MainMenu extends Phaser.Scene {
     configButton.on("pointerout", () => {
       configButton.setTint();
     });
-  //al pulsar el boton carga la escena de configuracion
+    //al pulsar el boton carga la escena de configuracion
     configButton.on("pointerdown", () => {
-
       this.scene.start("ConfigMenu");
     });
   }
-  update(){
-
-  }
-
+  update() {}
 }
