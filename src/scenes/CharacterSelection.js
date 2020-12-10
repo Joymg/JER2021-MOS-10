@@ -17,9 +17,15 @@ class CharacterSelection extends Phaser.Scene {
   create() {
     var background;
     if (!this.player1locked) {
-      background = this.add.image(400, 300, "sky").setTint(0xf23456);
+      background = this.add
+        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
+        .setTint(0xf23456)
+        .setScale(1.3);
     } else {
-      background = this.add.image(400, 300, "sky").setTint(0x65432f);
+      background = this.add
+        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
+        .setTint(0x65432f)
+        .setScale(1.3);
     }
 
     //Carousel
@@ -28,11 +34,26 @@ class CharacterSelection extends Phaser.Scene {
     });
 
     var poly = new Phaser.Geom.Polygon([
-      new Phaser.Geom.Point(125, 250),
-      new Phaser.Geom.Point(175, 325),
-      new Phaser.Geom.Point(400, 350),
-      new Phaser.Geom.Point(625, 325),
-      new Phaser.Geom.Point(675, 250),
+      new Phaser.Geom.Point(
+        this.game.renderer.width / 2 - this.game.renderer.width / 2.5,
+        this.game.renderer.height / 2 - this.game.renderer.height / 8
+      ),
+      new Phaser.Geom.Point(
+        this.game.renderer.width / 2 - this.game.renderer.width / 3.5,
+        this.game.renderer.height / 2
+      ),
+      new Phaser.Geom.Point(
+        this.game.renderer.width / 2,
+        this.game.renderer.height / 2 + this.game.renderer.height / 8
+      ),
+      new Phaser.Geom.Point(
+        this.game.renderer.width / 2 + this.game.renderer.width / 3.5,
+        this.game.renderer.height / 2
+      ),
+      new Phaser.Geom.Point(
+        this.game.renderer.width / 2 + this.game.renderer.width / 2.5,
+        this.game.renderer.height / 2 - this.game.renderer.height / 8
+      ),
     ]);
 
     //punto con la y mas pequeña de los puntos del poligono
@@ -47,7 +68,7 @@ class CharacterSelection extends Phaser.Scene {
     );
 
     //constante que calcula el tamaño basado en la la y maxima y minima
-    const scaleRange = 0.6 / (maxY - minY);
+    const scaleRange = 1.8 / (maxY - minY);
 
     const Aricato = this.add.image(poly.points[0].x, poly.points[0].y, "Aricato");
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
@@ -106,13 +127,12 @@ class CharacterSelection extends Phaser.Scene {
     //botones
     //boton de mover a la izda
     let rightCharacButton = this.add.image(
-      this.game.renderer.width / 10,
+      (this.game.renderer.width * 9) / 10,
       (this.game.renderer.height * 8.5) / 10,
-      "arrow"
+      "Button_Right"
     );
     rightCharacButton.setDepth(1000);
-    rightCharacButton.setAngle(90);
-    rightCharacButton.scale = 5;
+    rightCharacButton.setScale(0.3);
 
     rightCharacButton.setInteractive();
     //efectos al pasar el raton por encima
@@ -140,10 +160,10 @@ class CharacterSelection extends Phaser.Scene {
           duration: 300,
 
           onUpdate: (tween, target) => {
-            if (point.x == 400)
+            if (point.x == this.game.renderer.width / 2)
               this.tweens.add({
                 targets: sprite,
-                scale: 3,
+                scale: 3.5,
                 ease: "Linear",
                 duration: 150,
               });
@@ -152,7 +172,7 @@ class CharacterSelection extends Phaser.Scene {
                 targets: sprite,
                 scale: 1 + scaleRange * (target.y - minY),
                 ease: "Linear",
-                duration: 100,
+                duration: 150,
               });
 
             sprite.setDepth(target.y);
@@ -164,13 +184,12 @@ class CharacterSelection extends Phaser.Scene {
 
     //boton de mover a la izda
     let leftCharacButton = this.add.image(
-      (this.game.renderer.width * 9) / 10,
+      this.game.renderer.width / 10,
       (this.game.renderer.height * 8.5) / 10,
-      "arrow"
+      "Button_Left"
     );
     leftCharacButton.setDepth(1000);
-    leftCharacButton.setAngle(-90);
-    leftCharacButton.scale = 5;
+    leftCharacButton.setScale(0.3);
 
     leftCharacButton.setInteractive();
     leftCharacButton.on("pointerover", () => {
@@ -195,10 +214,10 @@ class CharacterSelection extends Phaser.Scene {
           ease: "Cubic",
           duration: 300,
           onUpdate: (tween, target) => {
-            if (point.x == 400)
+            if (point.x == this.game.renderer.width / 2)
               this.tweens.add({
                 targets: sprite,
-                scale: 3,
+                scale: 3.5,
                 ease: "Linear",
                 duration: 150,
               });
@@ -220,10 +239,10 @@ class CharacterSelection extends Phaser.Scene {
     //Boton de atras
     let backButton = this.add.image(
       (this.game.renderer.width * 9) / 10,
-      this.game.renderer.height / 10,
-      "back"
+      (this.game.renderer.height * 1.2) / 10,
+      "Button_Back"
     );
-    backButton.scale = 3;
+    backButton.setScale(0.3);
 
     backButton.setInteractive();
     backButton.on("pointerover", () => {
@@ -288,7 +307,7 @@ class CharacterSelection extends Phaser.Scene {
     var player;
     array.forEach((element) => {
       if (element.active == true) {
-        if (element.y == 350) {
+        if (element.y == this.game.renderer.height / 2 + this.game.renderer.height / 8) {
           player = element;
         }
       }

@@ -29,7 +29,10 @@ class GameplayScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, "sky").setAngle(180).setTint(0x0ff00f);
+    //this.cameras.main.setBounds(0, 0, 1024, 2048);
+    //this.cameras.main.setZoom(0.5);
+
+    var backgroud = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setAngle(180).setTint(0x0ff00f).setScale(1.3);
 
     GameManager.bulletGroup1 = this.physics.add.group({
       classType: Bullet,
@@ -61,12 +64,12 @@ class GameplayScene extends Phaser.Scene {
       immovable: true,
     });
 
-    GameManager.woodenCrates.create(Math.random() * 700 + 50, Math.random() * 500 + 50);
-    GameManager.woodenCrates.create(Math.random() * 700 + 50, Math.random() * 500 + 50);
-    GameManager.ironCrates.create(Math.random() * 700 + 50, Math.random() * 500 + 50);
-    GameManager.ironCrates.create(Math.random() * 700 + 50, Math.random() * 500 + 50);
-    GameManager.pits.create(Math.random() * 700 + 50, Math.random() * 500 + 50);
-    GameManager.pits.create(Math.random() * 700 + 50, Math.random() * 500 + 50);
+    GameManager.woodenCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    GameManager.woodenCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    GameManager.ironCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    GameManager.ironCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    GameManager.pits.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    GameManager.pits.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
 
     this.createCharacters();
     this.createInputs(game.config.localMode);
@@ -80,13 +83,13 @@ class GameplayScene extends Phaser.Scene {
 
   //* Funciones de creado
   createCharacters(map) {
-    var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(4);
-    var top = this.physics.add.sprite(600, 300, "topSprite").setScale(0.3).setOrigin(0.1, 0.5);
+    var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
+    var top = this.physics.add.sprite(600, 300, "topSprite").setScale(0.05).setOrigin(0.3,0.5);
 
     GameManager.character = new Character(
       "Aricato",
       1,
-      0,
+      180,
       top,
       bot,
       GameManager.bulletGroup1
@@ -95,12 +98,10 @@ class GameplayScene extends Phaser.Scene {
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
 
-    var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(4).setTint(0xfedcba);
+    var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
     var top2 = this.physics.add
       .sprite(200, 300, "topSprite")
-      .setScale(0.3)
-      .setOrigin(0.1, 0.5)
-      .setTint(0xff0000);
+      .setScale(0.05).setOrigin(0.3,0.5);
 
     GameManager.character2 = new Character(
       "Tankitty",
@@ -134,18 +135,11 @@ class GameplayScene extends Phaser.Scene {
         right: Phaser.Input.Keyboard.KeyCodes.D,
         shoot: Phaser.Input.Keyboard.KeyCodes.SPACE,
         //
-        aimLeft: Phaser.Input.Keyboard.KeyCodes.F,
-        aimRight: Phaser.Input.Keyboard.KeyCodes.G,
+        aimLeft: Phaser.Input.Keyboard.KeyCodes.C,
+        aimRight: Phaser.Input.Keyboard.KeyCodes.V,
       });
     } else {
       this.cursors = this.input.keyboard.addKeys({
-        up: Phaser.Input.Keyboard.KeyCodes.UP,
-        down: Phaser.Input.Keyboard.KeyCodes.DOWN,
-        left: Phaser.Input.Keyboard.KeyCodes.LEFT,
-        right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
-        shoot: Phaser.Input.Keyboard.KeyCodes.O,
-      });
-      this.cursors2 = this.input.keyboard.addKeys({
         up: Phaser.Input.Keyboard.KeyCodes.W,
         down: Phaser.Input.Keyboard.KeyCodes.S,
         left: Phaser.Input.Keyboard.KeyCodes.A,

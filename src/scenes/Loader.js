@@ -7,7 +7,7 @@ class Loader extends Phaser.Scene {
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(240, 270, 320, 50);
+    progressBox.fillRect(240, 270, 540, 50);
 
     var loadingText = this.make.text({
       x: game.renderer.width / 2,
@@ -34,7 +34,7 @@ class Loader extends Phaser.Scene {
       console.log(value);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(250, 280, 300 * value, 30);
+      progressBar.fillRect(250, 280, 520 * value, 30);
 
       percentText.setText(parseInt(value * 100) + "%");
     });
@@ -47,10 +47,25 @@ class Loader extends Phaser.Scene {
     this.load.image("star", "../assets/star.png");
     this.load.image("title", "../assets/TANKATS.png");
 
+    //Botones 
+    this.load.image("Button_Back", "../assets/Botones/Button_Back.png");
+    this.load.image("Button_Config", "../assets/Botones/Button_Config.png");
+    this.load.image("Button_Left", "../assets/Botones/Button_Left.png");
+    this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
+
+    //Personajes
+    this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
+    this.load.image("bottomSprite", "../assets/characters/1_Tanque_ParteAbajo.png");
+
+    //Balas
+    this.load.image("bulletPlayer1", "../assets/Balas/Bala_Jugador1.png");
+    this.load.image("bulletPlayer2", "../assets/Balas/Bala_Jugador2.png");
+
     //elementos de la pantalal de configuracion
     this.load.image("back", "../assets/star.png");
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
+    
 
     //elementos de la seleccion de personaje
     this.load.image("sky", "../assets/sky.png");
@@ -64,11 +79,11 @@ class Loader extends Phaser.Scene {
     this.load.image("arrow", "/assets/bomb.png");
 
     //elementos del gameplay
-    this.load.image("bottomSprite", "../assets/star.png");
+    /* this.load.image("bottomSprite", "../assets/star.png");
     this.load.image("topSprite", "../assets/platform.png");
-    this.load.image("bulletSprite", "../assets/bullet.png");
-    this.load.image("woodenCrateSprite", "../assets/crate.png");
-    this.load.image("ironCrateSprite", "../assets/ironCrate.png");
+    this.load.image("bulletSprite", "../assets/bullet.png"); */
+    this.load.image("woodenCrateSprite", "../assets/WoodenObstacle.png");
+    this.load.image("ironCrateSprite", "../assets/IronObstacle.png");
     this.load.image("pitSprite", "../assets/pit.png");
 
     this.load.image("floorTiles", "../assets/tilesetsuelo.png");
@@ -82,7 +97,7 @@ class Loader extends Phaser.Scene {
   }
 
   create() {
-    this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000);
+    this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(1.3);
 
     var timedActivation = this.time.delayedCall(1000,()=>{
       this.scene.transition({
@@ -106,6 +121,6 @@ class Loader extends Phaser.Scene {
   }
 
   transitionOut(progress) {
-    this.logo.y = 600 * progress;
+    this.logo.y = this.game.renderer.height * progress;
   }
 }

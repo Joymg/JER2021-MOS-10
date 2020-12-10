@@ -4,6 +4,7 @@ class WoodenCrate extends Obstacle {
     this.isDestructible = true;
     this.bulletsGoThrough = false;
     this.hitPoints = 2;
+    this.setScale(0.05);
   }
 
   getHit() {
