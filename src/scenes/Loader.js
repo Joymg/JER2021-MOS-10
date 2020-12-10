@@ -97,7 +97,7 @@ class Loader extends Phaser.Scene {
   }
 
   create() {
-    this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(1.3);
+    this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(2.3);
 
     var timedActivation = this.time.delayedCall(1000,()=>{
       this.scene.transition({

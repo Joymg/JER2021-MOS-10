@@ -32,7 +32,7 @@ class GameplayScene extends Phaser.Scene {
     //this.cameras.main.setBounds(0, 0, 1024, 2048);
     //this.cameras.main.setZoom(0.5);
 
-    var backgroud = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setAngle(180).setTint(0x0ff00f).setScale(1.3);
+    var backgroud = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setAngle(180).setTint(0x0ff00f).setScale(1.5);
 
     GameManager.bulletGroup1 = this.physics.add.group({
       classType: Bullet,

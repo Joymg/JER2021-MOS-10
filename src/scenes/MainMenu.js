@@ -6,7 +6,7 @@ class MainMenu extends Phaser.Scene {
   create() {
     var background = this.add
       .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
-      .setScale(1.3);
+      .setScale(1.6);
     let title = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 2) / 5,

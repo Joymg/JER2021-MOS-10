@@ -20,12 +20,12 @@ class CharacterSelection extends Phaser.Scene {
       background = this.add
         .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
         .setTint(0xf23456)
-        .setScale(1.3);
+        .setScale(1.4);
     } else {
       background = this.add
         .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
         .setTint(0x65432f)
-        .setScale(1.3);
+        .setScale(1.4);
     }
 
     //Carousel

@@ -1,8 +1,8 @@
 var config = {
     type: Phaser.AUTO,
     parent: 'centro', //"centro" es el div del html que contiene el canvas del juego
-    width: 1024,      //tamaño canvas
-    height: 768,
+    width: 1128,      //tamaño canvas
+    height: 846,
     physics: {
       default: "arcade",
       arcade: {
