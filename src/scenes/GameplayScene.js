@@ -18,7 +18,7 @@ class GameplayScene extends Phaser.Scene {
 
     console.log("GameplayScene#constructor");
   }
-
+  
   init() {
     console.log("GameplayScene#init");
   }
@@ -31,8 +31,7 @@ class GameplayScene extends Phaser.Scene {
   create() {
     //this.cameras.main.setBounds(0, 0, 1024, 2048);
     //this.cameras.main.setZoom(0.5);
-
-    var backgroud = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setAngle(180).setTint(0x0ff00f).setScale(1.5);
+    //var backgroud = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setAngle(180).setTint(0x0ff00f).setScale(1.5);
 
     GameManager.bulletGroup1 = this.physics.add.group({
       classType: Bullet,
@@ -64,14 +63,78 @@ class GameplayScene extends Phaser.Scene {
       immovable: true,
     });
 
-    GameManager.woodenCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
-    GameManager.woodenCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
-    GameManager.ironCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
-    GameManager.ironCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
-    GameManager.pits.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
-    GameManager.pits.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    //Suelo
+    var floorArray = [];
+    var tilesLevel1 = [];
+    for (var i = 0; i < 9; i++){
+      floorArray[i] = "Floor" + i.toString();
+    }
+    var posXFloor = -47;
+    var posYFloor = -47;
+    var posXplayer1;
+    var posYplayer1;
+    var posXplayer2;
+    var posYplayer2;
+    var string = this.cache.text.get('Level1');
+    var lines = string.split(";");
+    
 
-    this.createCharacters();
+    for(var i=0; i < 9; i++) {        
+        tilesLevel1[i] = [];
+        posYFloor += 94;
+        posXFloor = -47;
+        for(var j=0; j < 12; j++) {
+            tilesLevel1[i][j] = lines[i].split(",")[j];
+            posXFloor += 94;
+            var tileIndex;
+            var random = Math.random();
+            if(random < 0.03){
+              tileIndex = 0;
+            }else if (random >= 0.03 && random < 0.06){
+              tileIndex = 1;
+            }else if (random >= 0.06 && random < 0.4){
+              tileIndex = 8;
+            }else {
+              tileIndex = Math.round(Math.random()*(7-2)+2);
+            }
+            var name = floorArray[tileIndex];            
+            switch (tilesLevel1[i][j]){
+              case "0":
+                this.add.sprite(posXFloor, posYFloor, name);
+                break;
+              case "1":
+                this.add.sprite(posXFloor, posYFloor, name);
+                posXplayer1 = posXFloor;
+                posYplayer1 = posYFloor;
+                break;
+              case "2":
+                this.add.sprite(posXFloor, posYFloor, name);
+                posXplayer2 = posXFloor;
+                posYplayer2 = posYFloor;
+                break;
+              case "3":
+                this.add.sprite(posXFloor, posYFloor, name);
+                break;
+              case "4":
+                this.add.sprite(posXFloor, posYFloor, name);
+                GameManager.ironCrates.create(posXFloor, posYFloor);
+                break;
+              case "5":
+                this.add.sprite(posXFloor, posYFloor, name);
+                GameManager.woodenCrates.create(posXFloor, posYFloor);
+                break;
+            }
+        }
+    }
+
+    //GameManager.woodenCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    //GameManager.woodenCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    //GameManager.ironCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    //GameManager.ironCrates.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    //GameManager.pits.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+    //GameManager.pits.create(Math.random() * this.game.renderer.width - 50, Math.random() * this.game.renderer.height - 50);
+
+    this.createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2);
     this.createInputs(game.config.localMode);
     this.setColliders();
   }
@@ -82,10 +145,23 @@ class GameplayScene extends Phaser.Scene {
   }
 
   //* Funciones de creado
-  createCharacters(map) {
-    var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
-    var top = this.physics.add.sprite(600, 300, "topSprite").setScale(0.05).setOrigin(0.3,0.5);
+  createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2) {
+    //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
+    var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.05);
+    var top = this.physics.add.sprite(posXplayer1, posYplayer1, "topSprite").setScale(0.05).setOrigin(0.3,0.5);
 
+    this.anims.create({
+      key: "tank1_animation",
+      frames: this.anims.generateFrameNumbers("animationTank1", {
+        start: 0,
+        end: 5
+      }),
+      repeat: -1,
+      frameRate: 10
+    });
+
+    bot.anims.play("tank1_animation");
+  
     GameManager.character = new Character(
       "Aricato",
       1,
@@ -98,10 +174,11 @@ class GameplayScene extends Phaser.Scene {
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
 
-    var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
-    var top2 = this.physics.add
-      .sprite(200, 300, "topSprite")
-      .setScale(0.05).setOrigin(0.3,0.5);
+    //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
+    var bot2 = this.physics.add.sprite(posXplayer2, posYplayer2, "animationTank1").setScale(0.05);
+    var top2 = this.physics.add.sprite(posXplayer2, posYplayer2, "topSprite").setScale(0.05).setOrigin(0.3,0.5);
+
+    bot2.anims.play("tank1_animation");
 
     GameManager.character2 = new Character(
       "Tankitty",
@@ -208,6 +285,7 @@ class GameplayScene extends Phaser.Scene {
 
   //*Funciones de actualizacion
   handleInputs() {
+    
     /* var alpha = Phaser.Math.Angle.Between(
       this.character.bottomSprite.x,
       this.character.bottomSprite.y,

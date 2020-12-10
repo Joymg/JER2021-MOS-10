@@ -20,7 +20,7 @@ class Character {
   moveUp() {
     this.topSprite.setVelocityY(-200);
     this.bottomSprite.setVelocityY(-200);
-
+    
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveDown() {
