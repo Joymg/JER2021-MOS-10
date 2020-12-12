@@ -26,7 +26,7 @@ class SettingsMenu extends Phaser.Scene {
         (this.game.renderer.height * 1.5) / 5 + 10,
         "muteUp"
       );
-      muteMusicButton.scale = 0.3;
+      muteMusicButton.scale = 0.15;
       muteMusicButton.setInteractive();
       muteMusicButton.on("pointerdown", () => {
         this.game.sound.mute = !this.game.sound.mute;
