@@ -46,6 +46,7 @@ class Loader extends Phaser.Scene {
     this.load.image("bomb", "../assets/bomb.png");
     this.load.image("star", "../assets/star.png");
     this.load.image("title", "../assets/TANKATS.png");
+    this.load.image("play", "../assets/text/Play.png");
 
     //Botones 
     this.load.image("Button_Back", "../assets/Botones/Button_Back.png");

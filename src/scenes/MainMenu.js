@@ -18,9 +18,9 @@ class MainMenu extends Phaser.Scene {
     let findGameButton = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 3) / 5,
-      "platform"
+      "play"
     );
-
+      findGameButton.setScale(0.3);
     findGameButton.setInteractive();
 
     //efectos al pasar el raton por encima
@@ -38,15 +38,15 @@ class MainMenu extends Phaser.Scene {
       this.scene.start("CharacterSelection", { player2Turn, p1Char });
     });
 
-    //Boton de buscar partida
+    //Boton de ver creditos
     let credits = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 3.5) / 5,
       "platform"
     );
     credits.scale = 0.5;
-
     credits.setInteractive();
+
     //efectos al pasar el raton por encima
     credits.on("pointerover", () => {
       credits.setTint(0x00a0af);
@@ -60,12 +60,12 @@ class MainMenu extends Phaser.Scene {
 
     //Boton de configuracion
     let configButton = this.add.image(
-      (this.game.renderer.width * 1.2) / 10,
-      (this.game.renderer.height * 8.5) / 10,
+      (this.game.renderer.width * 0.8) / 10,
+      (this.game.renderer.height * 9) / 10,
       "Button_Config"
     );
 
-    configButton.setScale(0.3);
+    configButton.setScale(0.25);
 
     configButton.setInteractive();
     //efectos al pasar el raton por encima
