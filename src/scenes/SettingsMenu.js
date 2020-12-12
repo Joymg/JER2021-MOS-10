@@ -80,10 +80,10 @@ class SettingsMenu extends Phaser.Scene {
     //Boton de atras
     let backButton = this.add.image(
       (this.game.renderer.width * 9) / 10,
-      this.game.renderer.height / 10,
+      this.game.renderer.height / 8,
       "back"
     );
-    backButton.scale = 3;
+    backButton.scale = 0.09;
 
     backButton.setInteractive();
     //efectos al pasar el raton por encima
