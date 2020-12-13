@@ -102,6 +102,7 @@ class Loader extends Phaser.Scene {
     this.load.image("Floor1", "../assets/Floor/TileFloor_7.png");
     this.load.image("Floor7", "../assets/Floor/TileFloor_8.png");
     this.load.image("Floor8", "../assets/Floor/TileFloor_9.png");
+    this.load.image("Particle", "../assets/Polvo.png");
 
     //Sonidos
     this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");

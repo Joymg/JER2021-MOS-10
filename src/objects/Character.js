@@ -1,5 +1,5 @@
 class Character {
-  constructor(name, id, startAngle, topSprite, bottomSprite, bullets) {
+  constructor(name, id, startAngle, topSprite, bottomSprite, bullets, emitter) {
     this.id = id;
     this.aim = startAngle;
     this.movementDir = this.aim + 90;
@@ -14,6 +14,8 @@ class Character {
     this.lastShot = 0;
     this.healthPoints = 100;
     this.bullets = bullets;
+
+    this.emitter = emitter;
   }
 
   //Movimiento
@@ -47,6 +49,7 @@ class Character {
   updateTopSide() {
     this.topSprite.setX(this.bottomSprite.x);
     this.topSprite.setY(this.bottomSprite.y);
+    this.emitter.setPosition(this.bottomSprite.x, this.bottomSprite.y);
   }
   stopY() {
     this.topSprite.setVelocityY(0);
@@ -86,4 +89,5 @@ class Character {
     GameManager.scene.sound.play("catDamage"+ this.id)
     console.log(this.healthPoints);
   }
+
 }

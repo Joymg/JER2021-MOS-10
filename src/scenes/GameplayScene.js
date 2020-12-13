@@ -145,6 +145,21 @@ class GameplayScene extends Phaser.Scene {
 
   //* Funciones de creado
   createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2) {
+
+    //Partículas tanque 1.
+    var particles1 = this.add.particles('Particle');
+
+    var emitter1 = particles1.createEmitter({
+        x: posXplayer1,
+        y: posYplayer1,
+        angle: { min: -80, max: 80 },
+        speed: 50,
+        lifespan: { min: 1000, max: 2000 },
+        frequency: 100,
+        scale: {min: 0.3, max: 1 },
+        alpha: {min: 0.3, max: 1}
+    });
+
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
     var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.05);
     var top = this.physics.add
@@ -152,6 +167,7 @@ class GameplayScene extends Phaser.Scene {
       .setScale(0.05)
       .setOrigin(0.3, 0.5);
 
+    //Animación tanque 1
     this.anims.create({
       key: "tank1_animation",
       frames: this.anims.generateFrameNumbers("animationTank1", {
@@ -163,13 +179,29 @@ class GameplayScene extends Phaser.Scene {
     });
 
     bot.anims.play("tank1_animation");
+
+
     bot.setCollideWorldBounds(true);
 
-    GameManager.character = new Character("Aricato", 1, 180, top, bot, GameManager.bulletGroup1);
+    GameManager.character = new Character("Aricato", 1, 180, top, bot, GameManager.bulletGroup1, emitter1);
 
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
 
+    //Partículas tanque 2.
+    var particles2 = this.add.particles('Particle');
+
+    var emitter2 = particles2.createEmitter({
+        x: posXplayer2,
+        y: posYplayer2,
+        angle: { min: 100, max: 260 },
+        speed: 50,
+        lifespan: { min: 1000, max: 2000 },
+        frequency: 100,
+        scale: {min: 0.3, max: 1 },
+        alpha: {min: 0.3, max: 1}
+    });
+    
     //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
     var bot2 = this.physics.add.sprite(posXplayer2, posYplayer2, "animationTank1").setScale(0.05);
     var top2 = this.physics.add
@@ -180,7 +212,7 @@ class GameplayScene extends Phaser.Scene {
     bot2.anims.play("tank1_animation");
     bot2.setCollideWorldBounds(true);
 
-    GameManager.character2 = new Character("Tankitty", 2, 0, top2, bot2, GameManager.bulletGroup2);
+    GameManager.character2 = new Character("Tankitty", 2, 0, top2, bot2, GameManager.bulletGroup2, emitter2);
 
     /*var cam2= this.cameras.add(this.game.renderer.width/2,0,this.game.renderer.width/2,this.game.renderer.height);
     cam2.startFollow(bot2);*/

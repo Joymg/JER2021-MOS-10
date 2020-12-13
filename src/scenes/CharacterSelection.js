@@ -36,15 +36,15 @@ class CharacterSelection extends Phaser.Scene {
     var poly = new Phaser.Geom.Polygon([
       new Phaser.Geom.Point(
         this.game.renderer.width / 2 - this.game.renderer.width / 2.5,
-        this.game.renderer.height / 2.1 - this.game.renderer.height / 8
+        this.game.renderer.height / 2 - this.game.renderer.height / 8
       ),
       new Phaser.Geom.Point(
         this.game.renderer.width / 2 - this.game.renderer.width / 3.5,
-        this.game.renderer.height / 2.1
+        this.game.renderer.height / 2
       ),
       new Phaser.Geom.Point(
         this.game.renderer.width / 2,
-        this.game.renderer.height / 2 + this.game.renderer.height / 8
+        this.game.renderer.height / 2 + this.game.renderer.height / 23
       ),
       new Phaser.Geom.Point(
         this.game.renderer.width / 2 + this.game.renderer.width / 3.5,
@@ -308,7 +308,7 @@ class CharacterSelection extends Phaser.Scene {
     var player;
     array.forEach((element) => {
       if (element.active == true) {
-        if (element.y == this.game.renderer.height / 2 + this.game.renderer.height / 8) {
+        if (element.y == this.game.renderer.height / 2 + this.game.renderer.height / 23) {
           player = element;
         }
       }
