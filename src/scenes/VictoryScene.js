@@ -21,10 +21,10 @@ class VictoryScene extends Phaser.Scene {
 
     //boton de rematch
     let rematchButton = this.add
-      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "platform")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "Purple_TextBox")
+      .setScale(0)
       .setActive(false)
-      .setVisible(false)
-      .setScale(0.01);
+      .setVisible(false);
 
     rematchButton.setInteractive();
 
@@ -43,11 +43,13 @@ class VictoryScene extends Phaser.Scene {
     });
 
     //boton de vuleta la menu principal
-    let mainMenuButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "platform")
+    let mainMenuButton = this.add.image(
+      this.game.renderer.width / 2,
+      (this.game.renderer.height * 4) / 5,
+      "Pink_TextBox")
+      .setScale(0)
       .setActive(false)
-      .setVisible(false)
-      .setScale(0.01);
+      .setVisible(false);
 
     mainMenuButton.setInteractive();
     //efectos al pasar el raton por encima
@@ -82,7 +84,7 @@ class VictoryScene extends Phaser.Scene {
         //animacion de entrada
         this.tweens.add({
           targets: [rematchButton, mainMenuButton],
-          scale: 1,
+          scale: 0.2,
           ease: "elastic",
           duration: 100,
         });

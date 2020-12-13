@@ -68,48 +68,48 @@ class CharacterSelection extends Phaser.Scene {
     );
 
     //constante que calcula el tamaño basado en la la y maxima y minima
-    const scaleRange = 1.8 / (maxY - minY);
+    const scaleRange = 0.05 / (maxY - minY);
 
     const Aricato = this.add.image(poly.points[0].x, poly.points[0].y, "Aricato");
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character != null && Aricato.texture.key == this.player1Character.texture.key) {
-      Aricato.setTint(0x00ff00);
+      Aricato.setTint(0x202020);
       Aricato.setActive(false);
     }
 
     const Catsudon = this.add
       .image(poly.points[1].x, poly.points[1].y, "Catsudon")
-      .setTint(0xaa9930);
+      .setTint(0xaa0000);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catsudon.texture.key == this.player1Character.texture.key) {
-      Catsudon.setTint(0x00ff00);
+      Catsudon.setTint(0x202020);
       Catsudon.setActive(false);
     }
 
     const Tankitty = this.add
       .image(poly.points[2].x, poly.points[2].y, "Tankitty")
-      .setTint(0x1b5c82);
+      .setTint(0x00aa00);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Tankitty.texture.key == this.player1Character.texture.key) {
-      Tankitty.setTint(0x00ff00);
+      Tankitty.setTint(0x202020);
       Tankitty.setActive(false);
     }
 
     const Catigula = this.add
       .image(poly.points[3].x, poly.points[3].y, "Catígula")
-      .setTint(0x555555);
+      .setTint(0x0000aa);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catigula.texture.key == this.player1Character.texture.key) {
-      Catigula.setTint(0x00ff00);
+      Catigula.setTint(0x202020);
       Catigula.setActive(false);
     }
 
     const Catotico = this.add
       .image(poly.points[4].x, poly.points[4].y, "Catótico")
-      .setTint(0x00aaff);
+      .setTint(0xaaaa00);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catotico.texture.key == this.player1Character.texture.key) {
-      Catotico.setTint(0x00ff00);
+      Catotico.setTint(0x606060);
       Catotico.setActive(false);
     }
 
@@ -117,8 +117,7 @@ class CharacterSelection extends Phaser.Scene {
 
     //coloca los elementos en posicion para ser representados en el carrusel
     CharacterSprites.forEach((element) => {
-      element.setAngle(90); //los gira
-      element.setScale(1 + scaleRange * (element.y - minY)); //los hace mas grande cuanto mas adelante esten
+      element.setScale(0.08 + scaleRange * (element.y - minY)); //los hace mas grande cuanto mas adelante esten
       element.setDepth(element.y); //y les pone por encima de las cosas cuya y sea menor
     });
 
@@ -163,14 +162,14 @@ class CharacterSelection extends Phaser.Scene {
             if (point.x == this.game.renderer.width / 2)
               this.tweens.add({
                 targets: sprite,
-                scale: 3.5,
+                scale: 0.2,
                 ease: "Linear",
                 duration: 150,
               });
             else
               this.tweens.add({
                 targets: sprite,
-                scale: 1 + scaleRange * (target.y - minY),
+                scale: 0.08 + scaleRange * (target.y - minY),
                 ease: "Linear",
                 duration: 150,
               });
@@ -217,14 +216,14 @@ class CharacterSelection extends Phaser.Scene {
             if (point.x == this.game.renderer.width / 2)
               this.tweens.add({
                 targets: sprite,
-                scale: 3.5,
+                scale: 0.2,
                 ease: "Linear",
                 duration: 150,
               });
             else
               this.tweens.add({
                 targets: sprite,
-                scale: 1 + scaleRange * (target.y - minY),
+                scale: 0.08 + scaleRange * (target.y - minY),
                 ease: "Linear",
                 duration: 100,
               });
@@ -246,10 +245,12 @@ class CharacterSelection extends Phaser.Scene {
 
     backButton.setInteractive();
     backButton.on("pointerover", () => {
-      backButton.setTint(0x00a0af);
+      backButton.setTint(0x909090);
+      backButton.setScale(0.32);
     });
     backButton.on("pointerout", () => {
       backButton.setTint();
+      backButton.setScale(0.3);
     });
     backButton.on("pointerdown", () => {
       if (!this.player1locked) {
@@ -265,8 +266,8 @@ class CharacterSelection extends Phaser.Scene {
     let lockCharac = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 8.5) / 10,
-      "ready"
-    );
+      "Button_Play"
+    ).setScale(.3);
     lockCharac.setDepth(1000);
 
     lockCharac.setInteractive();

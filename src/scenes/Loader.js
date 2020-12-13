@@ -53,6 +53,11 @@ class Loader extends Phaser.Scene {
     this.load.image("Button_Config", "../assets/Botones/Button_Config.png");
     this.load.image("Button_Left", "../assets/Botones/Button_Left.png");
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
+    this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
+    
+    this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
+    this.load.image("Button_Play", "../assets/text/Play.png");
+    this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
 
     //Personajes
     this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
@@ -68,22 +73,18 @@ class Loader extends Phaser.Scene {
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
     
-
     //elementos de la seleccion de personaje
     this.load.image("sky", "../assets/sky.png");
     this.load.image("ready", "../assets/platform.png");
     this.load.image("back", "../assets/star.png");
-    this.load.image("Aricato", "/assets/card.png");
-    this.load.image("Catsudon", "/assets/card.png");
-    this.load.image("Tankitty", "/assets/card.png");
-    this.load.image("Catígula", "/assets/card.png");
-    this.load.image("Catótico", "/assets/card.png");
+    this.load.image("Aricato", "/assets/characters/CatsudonPortrait.png");
+    this.load.image("Catsudon", "/assets/characters/CatsudonPortrait.png");
+    this.load.image("Tankitty", "/assets/characters/CatsudonPortrait.png");
+    this.load.image("Catígula", "/assets/characters/CatsudonPortrait.png");
+    this.load.image("Catótico", "/assets/characters/CatsudonPortrait.png");
     this.load.image("arrow", "/assets/bomb.png");
 
     //elementos del gameplay
-    /* this.load.image("bottomSprite", "../assets/star.png");
-    this.load.image("topSprite", "../assets/platform.png");
-    this.load.image("bulletSprite", "../assets/bullet.png"); */
     this.load.image("woodenCrateSprite", "../assets/WoodenObstacle.png");
     this.load.image("ironCrateSprite", "../assets/IronObstacle.png");
     this.load.image("pitSprite", "../assets/pit.png");
