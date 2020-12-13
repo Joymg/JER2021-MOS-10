@@ -52,21 +52,27 @@ class GameplayScene extends Phaser.Scene {
       immovable: true,
     });
 
-    //Suelo
+    //---- Generación de la escena por tiles ----
     var floorArray = [];
     var tilesLevel1 = [];
     for (var i = 0; i < 9; i++) {
       floorArray[i] = "Floor" + i.toString();
     }
+
     var posXFloor = -47;
     var posYFloor = -47;
+
+    //Posición de los jugadores
     var posXplayer1;
     var posYplayer1;
     var posXplayer2;
     var posYplayer2;
+
+    //Lee el fichero de texto con la disposición de las tiles.
     var string = this.cache.text.get("Level1");
     var lines = string.split(";");
 
+    //Genera la escena a partir del fichero.
     for (var i = 0; i < 9; i++) {
       tilesLevel1[i] = [];
       posYFloor += 94;
@@ -75,6 +81,8 @@ class GameplayScene extends Phaser.Scene {
         tilesLevel1[i][j] = lines[i].split(",")[j];
         posXFloor += 94;
         var tileIndex;
+
+        //Probabilidad de tiles de suelo.
         var random = Math.random();
         if (random < 0.03) {
           tileIndex = 0;
@@ -85,32 +93,42 @@ class GameplayScene extends Phaser.Scene {
         } else {
           tileIndex = Math.round(Math.random() * (7 - 2) + 2);
         }
+
         var name = floorArray[tileIndex];
         switch (tilesLevel1[i][j]) {
+          //Solo suelo.
           case "0":
             this.add.sprite(posXFloor, posYFloor, name);
             break;
+          //Jugador 1.
           case "1":
             this.add.sprite(posXFloor, posYFloor, name);
             posXplayer1 = posXFloor;
             posYplayer1 = posYFloor;
             break;
+          //Jugador 2.
           case "2":
             this.add.sprite(posXFloor, posYFloor, name);
             posXplayer2 = posXFloor;
             posYplayer2 = posYFloor;
             break;
+          //PowerUp.
           case "3":
             this.add.sprite(posXFloor, posYFloor, name);
             break;
+          //Obstáculos de hierro.
           case "4":
             this.add.sprite(posXFloor, posYFloor, name);
             GameManager.ironCrates.create(posXFloor, posYFloor);
             break;
+          //Cajas de madera.
           case "5":
             this.add.sprite(posXFloor, posYFloor, name);
             GameManager.woodenCrates.create(posXFloor, posYFloor);
             break;
+          //Agujeros [Sin implementar todavía].
+          case "6":
+            this.add.sprite(posXFloor, posYFloor, name);
         }
       }
     }

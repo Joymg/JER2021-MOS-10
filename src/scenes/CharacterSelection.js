@@ -36,11 +36,11 @@ class CharacterSelection extends Phaser.Scene {
     var poly = new Phaser.Geom.Polygon([
       new Phaser.Geom.Point(
         this.game.renderer.width / 2 - this.game.renderer.width / 2.5,
-        this.game.renderer.height / 2 - this.game.renderer.height / 8
+        this.game.renderer.height / 2.1 - this.game.renderer.height / 8
       ),
       new Phaser.Geom.Point(
         this.game.renderer.width / 2 - this.game.renderer.width / 3.5,
-        this.game.renderer.height / 2
+        this.game.renderer.height / 2.1
       ),
       new Phaser.Geom.Point(
         this.game.renderer.width / 2,
@@ -79,7 +79,7 @@ class CharacterSelection extends Phaser.Scene {
 
     const Catsudon = this.add
       .image(poly.points[1].x, poly.points[1].y, "Catsudon")
-      .setTint(0xaa0000);
+      .setTint(0xFF97AD);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catsudon.texture.key == this.player1Character.texture.key) {
       Catsudon.setTint(0x202020);
@@ -88,7 +88,7 @@ class CharacterSelection extends Phaser.Scene {
 
     const Tankitty = this.add
       .image(poly.points[2].x, poly.points[2].y, "Tankitty")
-      .setTint(0x00aa00);
+      .setTint(0xBAFF97);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Tankitty.texture.key == this.player1Character.texture.key) {
       Tankitty.setTint(0x202020);
@@ -97,7 +97,7 @@ class CharacterSelection extends Phaser.Scene {
 
     const Catigula = this.add
       .image(poly.points[3].x, poly.points[3].y, "Catígula")
-      .setTint(0x0000aa);
+      .setTint(0xB797FF);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catigula.texture.key == this.player1Character.texture.key) {
       Catigula.setTint(0x202020);
@@ -106,10 +106,10 @@ class CharacterSelection extends Phaser.Scene {
 
     const Catotico = this.add
       .image(poly.points[4].x, poly.points[4].y, "Catótico")
-      .setTint(0xaaaa00);
+      .setTint(0xFFF297);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catotico.texture.key == this.player1Character.texture.key) {
-      Catotico.setTint(0x606060);
+      Catotico.setTint(0x202020);
       Catotico.setActive(false);
     }
 
