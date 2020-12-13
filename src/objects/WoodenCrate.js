@@ -7,13 +7,7 @@ class WoodenCrate extends Obstacle {
     this.setScale(0.05);
   }
 
-  getHit() {
-    if (this.isDestructible) {
-      this.hitPoints -= 1;
-      this.setTint(0xcccc99);
-      if (this.hitPoints == 0) {
-        this.destroy();
-      }
-    }
+  getHit(sound) {
+    super.getHit("woodImpact"+sound);
   }
 }

@@ -1,6 +1,8 @@
 class Loader extends Phaser.Scene {
   constructor() {
-    super({ key: "Loader" });
+    super({
+      key: "Loader"
+    });
     this.logo;
   }
   preload() {
@@ -54,7 +56,7 @@ class Loader extends Phaser.Scene {
     this.load.image("Button_Left", "../assets/Botones/Button_Left.png");
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
-    
+
     this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
     this.load.image("Button_Play", "../assets/text/Play.png");
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
@@ -62,7 +64,10 @@ class Loader extends Phaser.Scene {
     //Personajes
     this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
     this.load.image("bottomSprite", "../assets/characters/1_Tanque_ParteAbajo.png");
-    this.load.spritesheet("animationTank1", "../assets/spritesheet_tank1.png", {frameWidth: 1721, frameHeight: 1844});
+    this.load.spritesheet("animationTank1", "../assets/spritesheet_tank1.png", {
+      frameWidth: 1721,
+      frameHeight: 1844
+    });
 
     //Balas
     this.load.image("bulletPlayer1", "../assets/Balas/Bala_Jugador1.png");
@@ -72,7 +77,7 @@ class Loader extends Phaser.Scene {
     this.load.image("back", "../assets/star.png");
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
-    
+
     //elementos de la seleccion de personaje
     this.load.image("sky", "../assets/sky.png");
     this.load.image("ready", "../assets/platform.png");
@@ -88,15 +93,33 @@ class Loader extends Phaser.Scene {
     this.load.image("woodenCrateSprite", "../assets/WoodenObstacle.png");
     this.load.image("ironCrateSprite", "../assets/IronObstacle.png");
     this.load.image("pitSprite", "../assets/pit.png");
-    this.load.image("Floor0", "../assets/Floor/TileFloor_1.png" );
-    this.load.image("Floor6", "../assets/Floor/TileFloor_2.png" );
-    this.load.image("Floor2", "../assets/Floor/TileFloor_3.png" );
-    this.load.image("Floor3", "../assets/Floor/TileFloor_4.png" );
-    this.load.image("Floor4", "../assets/Floor/TileFloor_5.png" );
-    this.load.image("Floor5", "../assets/Floor/TileFloor_6.png" );
-    this.load.image("Floor1", "../assets/Floor/TileFloor_7.png" );
-    this.load.image("Floor7", "../assets/Floor/TileFloor_8.png" );
-    this.load.image("Floor8", "../assets/Floor/TileFloor_9.png" );
+    this.load.image("Floor0", "../assets/Floor/TileFloor_1.png");
+    this.load.image("Floor6", "../assets/Floor/TileFloor_2.png");
+    this.load.image("Floor2", "../assets/Floor/TileFloor_3.png");
+    this.load.image("Floor3", "../assets/Floor/TileFloor_4.png");
+    this.load.image("Floor4", "../assets/Floor/TileFloor_5.png");
+    this.load.image("Floor5", "../assets/Floor/TileFloor_6.png");
+    this.load.image("Floor1", "../assets/Floor/TileFloor_7.png");
+    this.load.image("Floor7", "../assets/Floor/TileFloor_8.png");
+    this.load.image("Floor8", "../assets/Floor/TileFloor_9.png");
+
+    //Sonidos
+    this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");
+    this.load.audio("catDamage2", "../assets/sounds/catDamege2.mp3");
+    this.load.audio("GetPowerUp", "../assets/sounds/GetPowerUp.mp3");
+    this.load.audio("PowerUpEnd", "../assets/sounds/PowerUpEnd.mp3");
+    this.load.audio("metalImpact1", "../assets/sounds/metalImpact1.mp3");
+    this.load.audio("metalImpact2", "../assets/sounds/metalImpact2.mp3");
+    this.load.audio("shot1", "../assets/sounds/shot1.mp3");
+    this.load.audio("shot2", "../assets/sounds/shot2.mp3");
+    this.load.audio("shot3", "../assets/sounds/shot3.mp3");
+    this.load.audio("shot4", "../assets/sounds/shot4.mp3");
+    this.load.audio("tankMovement", "../assets/sounds/tankMovement.mp3");
+    this.load.audio("woodImpact1", "../assets/sounds/woodImpact1.mp3");
+    this.load.audio("woodImpact2", "../assets/sounds/woodImpact2.mp3");
+
+
+
 
     this.load.text('Level1', '../src/json/Tiles_Level1.txt');
 
@@ -113,7 +136,7 @@ class Loader extends Phaser.Scene {
   create() {
     this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(1.5);
 
-    var timedActivation = this.time.delayedCall(1000,()=>{
+    var timedActivation = this.time.delayedCall(1000, () => {
       this.scene.transition({
         target: "MainMenu",
         moveBelow: true,

@@ -76,12 +76,14 @@ class Character {
           this.topSprite.width * 0.03 * Math.sin((this.aim * Math.PI) / 180) + this.topSprite.y,
           this.aim
         );
+        GameManager.scene.sound.play("shot" + Math.floor(Math.random()*3+1));
       }
     }
   }
 
   getHit() {
     this.healthPoints -= 17;
+    GameManager.scene.sound.play("catDamage"+ this.id)
     console.log(this.healthPoints);
   }
 }

@@ -4,4 +4,5 @@ class Pit extends Obstacle{
         this.isDestructible = false;
         this.bulletsGoThrough = true;
     }
+
 }

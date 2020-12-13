@@ -21,10 +21,7 @@ class GameplayScene extends Phaser.Scene {
   }
 
   create() {
-    //this.cameras.main.setBounds(0, 0, 1024, 2048);
-    //this.cameras.main.setZoom(0.5);
-    //var backgroud = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setAngle(180).setTint(0x0ff00f).setScale(1.5);
-
+    
     GameManager.bulletGroup1 = this.physics.add.group({
       classType: Bullet,
       maxSize: 5,
@@ -262,6 +259,7 @@ class GameplayScene extends Phaser.Scene {
 
   }
 
+
   //*Funciones de actualizacion
   handleInputs() {
     /* var alpha = Phaser.Math.Angle.Between(
@@ -293,15 +291,19 @@ class GameplayScene extends Phaser.Scene {
     //* Character 1
     if (this.cursors.left.isDown) {
       GameManager.character.moveLeft();
+      this.sound.play("tankMovement");
     } else if (this.cursors.right.isDown) {
       GameManager.character.moveRight();
+      this.sound.play("tankMovement");
     } else {
       GameManager.character.stopX();
     }
     if (this.cursors.up.isDown) {
       GameManager.character.moveUp();
+      this.sound.play("tankMovement");
     } else if (this.cursors.down.isDown) {
       GameManager.character.moveDown();
+      this.sound.play("tankMovement");
     } else {
       GameManager.character.stopY();
     }
@@ -320,15 +322,19 @@ class GameplayScene extends Phaser.Scene {
     //* Character 2
     if (this.cursors2.left.isDown) {
       GameManager.character2.moveLeft();
+      this.sound.play("tankMovement");
     } else if (this.cursors2.right.isDown) {
       GameManager.character2.moveRight();
+      this.sound.play("tankMovement");
     } else {
       GameManager.character2.stopX();
     }
     if (this.cursors2.up.isDown) {
       GameManager.character2.moveUp();
+      this.sound.play("tankMovement");
     } else if (this.cursors2.down.isDown) {
       GameManager.character2.moveDown();
+      this.sound.play("tankMovement");
     } else {
       GameManager.character2.stopY();
     }
@@ -374,7 +380,7 @@ class GameplayScene extends Phaser.Scene {
   }
 
   obstacleHit(obstacle, bullet) {
-    obstacle.getHit();
+    obstacle.getHit(Math.floor(Math.random()*2+1));
     bullet.bounce();
   }
 }
