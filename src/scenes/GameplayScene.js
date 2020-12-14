@@ -108,6 +108,9 @@ class GameplayScene extends Phaser.Scene {
     this.createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2);
     this.createInputs(game.config.localMode);
     this.setColliders();
+
+    this.scene.pause("GameplayScene");
+    this.scene.launch("CountDownScene");
   }
 
   update() {
