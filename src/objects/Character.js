@@ -12,7 +12,11 @@ class Character {
 
     this.fireRate = 300;
     this.lastShot = 0;
-    this.healthPoints = 100;
+
+
+    this.maxHP = 100;
+    this.healthPoints = this.maxHP;
+    this.dmgTakenOnHit =17;
     this.bullets = bullets;
 
     this.emitter = emitter;
@@ -85,7 +89,7 @@ class Character {
   }
 
   getHit() {
-    this.healthPoints -= 17;
+    this.healthPoints -= this.dmgTakenOnHit;
     GameManager.scene.sound.play("catDamage"+ this.id)
     console.log(this.healthPoints);
   }

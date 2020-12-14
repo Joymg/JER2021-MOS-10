@@ -56,7 +56,7 @@ class CreditsScene extends Phaser.Scene {
 
     backButton.setInteractive();
     backButton.on("pointerover", () => {
-      backButton.setTint(0x00a0af);
+      backButton.setTint(0x202020);
     });
     backButton.on("pointerout", () => {
       backButton.setTint();

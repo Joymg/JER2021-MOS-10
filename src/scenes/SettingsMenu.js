@@ -88,7 +88,7 @@ class SettingsMenu extends Phaser.Scene {
     backButton.setInteractive();
     //efectos al pasar el raton por encima
     backButton.on("pointerover", () => {
-      backButton.setTint(0x00a0af);
+      backButton.setTint(0x202020);
     });
     backButton.on("pointerout", () => {
       backButton.setTint();

@@ -80,14 +80,12 @@ class Loader extends Phaser.Scene {
 
     //elementos de la seleccion de personaje
     this.load.image("sky", "../assets/sky.png");
-    this.load.image("ready", "../assets/platform.png");
-    this.load.image("back", "../assets/star.png");
     this.load.image("Aricato", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Catsudon", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Tankitty", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Catígula", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Catótico", "/assets/characters/CatsudonPortrait.png");
-    this.load.image("arrow", "/assets/bomb.png");
+
 
     //elementos del gameplay
     this.load.image("woodenCrateSprite", "../assets/WoodenObstacle.png");
@@ -104,6 +102,29 @@ class Loader extends Phaser.Scene {
     this.load.image("Floor8", "../assets/Floor/TileFloor_9.png");
     this.load.image("Particle", "../assets/Polvo.png");
 
+    //Elementos del UI
+    this.load.image("LeftLife1", "../assets/IU/LeftLife1.png");
+    this.load.image("LeftLife2", "../assets/IU/LeftLife2.png");
+    this.load.image("LeftLife3", "../assets/IU/LeftLife3.png");
+    this.load.image("LeftLife4", "../assets/IU/LeftLife4.png");
+    this.load.image("LeftLife5", "../assets/IU/LeftLife5.png");
+    this.load.image("LeftLife6", "../assets/IU/LeftLife6.png");
+    this.load.image("RightLife1", "../assets/IU/RightLife1.png");
+    this.load.image("RightLife2", "../assets/IU/RightLife2.png");
+    this.load.image("RightLife3", "../assets/IU/RightLife3.png");
+    this.load.image("RightLife4", "../assets/IU/RightLife4.png");
+    this.load.image("RightLife5", "../assets/IU/RightLife5.png");
+    this.load.image("RightLife6", "../assets/IU/RightLife6.png");
+    this.load.image("PlayerIcon", "../assets/IU/PlayerIcon.png");
+
+    //Elementos de Texto
+    this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");
+    this.load.image("VictoryJ2", "../assets/text/VictoryJ2.png");
+    this.load.image("Miau", "../assets/text/Miau.png");
+    this.load.image("One", "../assets/text/One.png");
+    this.load.image("Two", "../assets/text/Two.png");
+    this.load.image("Three", "../assets/text/Three.png");
+
     //Sonidos
     this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");
     this.load.audio("catDamage2", "../assets/sounds/catDamege2.mp3");
@@ -118,6 +139,8 @@ class Loader extends Phaser.Scene {
     this.load.audio("tankMovement", "../assets/sounds/tankMovement.mp3");
     this.load.audio("woodImpact1", "../assets/sounds/woodImpact1.mp3");
     this.load.audio("woodImpact2", "../assets/sounds/woodImpact2.mp3");
+
+
 
 
     this.load.text('Level1', '../src/json/Tiles_Level1.txt');
