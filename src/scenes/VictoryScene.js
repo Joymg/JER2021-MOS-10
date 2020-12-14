@@ -12,12 +12,18 @@ class VictoryScene extends Phaser.Scene {
     //Si se ha elegido el modo local
     if (game.config.localMode) {
       //añade el jugador que ha ganado
-      var playerText = this.add.text(100, 100, "Player " + this.winner, { font: "75px" });
-      playerText.setScale(0.01);
+      if (this.winner ==1) {
+        var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ1").setScale(0);
+      }
+      else if(this.winner==2){
+        var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ2").setScale(0);
+      }
+      /* var playerText = this.add.text(100, 100, "Player " + this.winner, { font: "75px" });
+      playerText.setScale(0.01); */
     }
     //texto de victoria
-    var victoryText = this.add.text(60, 150, "Victory!!", { font: "150px" });
-    victoryText.setScale(0.01);
+    /* var victoryText = this.add.text(60, 150, "Victory!!", { font: "150px" });
+    victoryText.setScale(0.01); */
 
     //boton de rematch
     let rematchButton = this.add
@@ -30,7 +36,7 @@ class VictoryScene extends Phaser.Scene {
 
     //efectos al pasar el raton por encima
     rematchButton.on("pointerover", () => {
-      rematchButton.setTint(0x00a0af);
+      rematchButton.setTint(0x202020);
     });
     rematchButton.on("pointerout", () => {
       rematchButton.setTint();
@@ -54,7 +60,7 @@ class VictoryScene extends Phaser.Scene {
     mainMenuButton.setInteractive();
     //efectos al pasar el raton por encima
     mainMenuButton.on("pointerover", () => {
-      mainMenuButton.setTint(0x00a0af);
+      mainMenuButton.setTint(0x202020);
     });
     mainMenuButton.on("pointerout", () => {
       mainMenuButton.setTint();
@@ -92,8 +98,8 @@ class VictoryScene extends Phaser.Scene {
     });
 
     this.tweens.add({
-      targets: [victoryText, playerText],
-      scale: 1,
+      targets: [victory],
+      scale: .4,
       ease: "easein",
       duration: 100,
     });

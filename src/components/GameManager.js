@@ -12,4 +12,7 @@ class GameManager{
     static woodenCrates;
     static ironCrates;
     static pits;
+
+    static p1HpBar;
+    static p2HpBar;
 }
