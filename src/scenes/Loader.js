@@ -139,7 +139,8 @@ class Loader extends Phaser.Scene {
     this.load.audio("tankMovement", "../assets/sounds/tankMovement.mp3");
     this.load.audio("woodImpact1", "../assets/sounds/woodImpact1.mp3");
     this.load.audio("woodImpact2", "../assets/sounds/woodImpact2.mp3");
-
+    this.load.audio("BattleMusic", "../assets/sounds/BattleMusic.mp3");
+    this.load.audio("MenuMusic", "../assets/sounds/MenuMusic.mp3");
 
 
 

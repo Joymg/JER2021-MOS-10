@@ -3,26 +3,23 @@ class GameplayScene extends Phaser.Scene {
     super({
       key: "GameplayScene",
     });
-
     const gm = new GameManager(this);
     this.cursors;
 
     this.pointer;
 
     this.cursors2;
-
-    console.log("GameplayScene#constructor");
   }
 
   init() {
     console.log("GameplayScene#init");
   }
 
-  preload() {
-    console.log("GameplayScene#preload");
-  }
-
   create() {
+    this.sound.add("BattleMusic");
+    if (!this.sound.get("BattleMusic").isPlaying) {
+      this.sound.play("BattleMusic");
+    }
     this.createGroups();
 
     //---- Generación de la escena por tiles ----
@@ -471,14 +468,13 @@ class GameplayScene extends Phaser.Scene {
         .image(
           (this.game.renderer.width * 1.2) / 10,
           (this.game.renderer.height * 0.4) / 10,
-          "LeftLife" + hitsLeft 
+          "LeftLife" + hitsLeft
         )
         .setDepth(999)
         .setScale(0.2)
         .setOrigin(0, 0);
     }
 
-    
     hitsLeft = Math.ceil(
       (Math.ceil(GameManager.character2.maxHP / GameManager.character2.dmgTakenOnHit) *
         GameManager.character2.healthPoints) /
@@ -493,7 +489,7 @@ class GameplayScene extends Phaser.Scene {
         .image(
           (this.game.renderer.width * 8.8) / 10,
           (this.game.renderer.height * 0.4) / 10,
-          "RightLife" + hitsLeft 
+          "RightLife" + hitsLeft
         )
         .setDepth(999)
         .setScale(0.2)
@@ -505,6 +501,7 @@ class GameplayScene extends Phaser.Scene {
     if (GameManager.character.healthPoints <= 0) {
       var winner = GameManager.character;
       this.scene.pause();
+      this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {
         winner,
       });
@@ -512,6 +509,7 @@ class GameplayScene extends Phaser.Scene {
     if (GameManager.character2.healthPoints <= 0) {
       var winner = GameManager.character2;
       this.scene.pause();
+      this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {
         winner,
       });

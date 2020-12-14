@@ -291,6 +291,7 @@ class CharacterSelection extends Phaser.Scene {
           this.scene.start("CharacterSelection", { player2Turn, p1Char });
         } else {
           if (this.player2Character) {
+            this.sound.stopByKey("MenuMusic");
             this.scene.start("GameplayScene");
           }
         }
