@@ -69,7 +69,9 @@ class GameplayScene extends Phaser.Scene {
     var posYplayer2;
 
     //Lee el fichero de texto con la disposición de las tiles.
-    var string = this.cache.text.get("Level1");
+    var levelrandom = Math.round(Math.random() * (5 - 1) + 1);
+    var level = "Level" + levelrandom.toString();
+    var string = this.cache.text.get(level);
     var lines = string.split(";");
 
     //Genera la escena a partir del fichero.

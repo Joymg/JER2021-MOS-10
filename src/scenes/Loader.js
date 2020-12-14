@@ -120,9 +120,11 @@ class Loader extends Phaser.Scene {
     this.load.audio("woodImpact2", "../assets/sounds/woodImpact2.mp3");
 
 
-
-
     this.load.text('Level1', '../src/json/Tiles_Level1.txt');
+    this.load.text('Level2', '../src/json/Tiles_Level2.txt');
+    this.load.text('Level3', '../src/json/Tiles_Level3.txt');
+    this.load.text('Level4', '../src/json/Tiles_Level4.txt');
+    this.load.text('Level5', '../src/json/Tiles_Level5.txt');
 
     //this.load.image("floorTiles", "../assets/tilesetsuelo.png");
 
