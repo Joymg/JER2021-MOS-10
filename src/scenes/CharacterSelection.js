@@ -18,14 +18,10 @@ class CharacterSelection extends Phaser.Scene {
     var background;
     if (!this.player1locked) {
       background = this.add
-        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
-        .setTint(0xf23456)
-        .setScale(1.5);
+        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backSelec");
     } else {
       background = this.add
-        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
-        .setTint(0x65432f)
-        .setScale(1.5);
+        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backSelec");
     }
 
     //Carousel

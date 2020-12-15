@@ -64,12 +64,12 @@ class Character {
 
   //Movimiento del cañon
   aimLeft() {
-    this.aim = this.topSprite.angle - 5;
+    this.aim = this.topSprite.angle - 1.5;
     this.topSprite.setAngle(this.aim);
     console.log(this.aim);
   }
   aimRight() {
-    this.aim = this.topSprite.angle + 5;
+    this.aim = this.topSprite.angle + 1.5;
     this.topSprite.setAngle(this.aim);
     console.log(this.aim);
   }

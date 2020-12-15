@@ -85,6 +85,7 @@ class Loader extends Phaser.Scene {
 
     //elementos de la seleccion de personaje
     this.load.image("sky", "../assets/sky.png");
+    this.load.image("backSelec", "../assets/FondoSeleccion.png");
     this.load.image("Aricato", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Catsudon", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Tankitty", "/assets/characters/CatsudonPortrait.png");
