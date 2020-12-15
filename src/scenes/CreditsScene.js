@@ -54,7 +54,7 @@ class CreditsScene extends Phaser.Scene {
       .text(
         (this.game.renderer.width * 4) / 6,
         (game.renderer.height * 3.25) / 5,
-        "Marta Vidal \n  Gonzalez",
+        "Marta Vidal \n Gonzalez",
         {
           font: "20px",
         }

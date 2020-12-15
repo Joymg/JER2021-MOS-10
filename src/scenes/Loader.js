@@ -166,26 +166,16 @@ class Loader extends Phaser.Scene {
 
   create() {
     this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(1.5);
+    this.sound.add("MenuMusic",{loop:true});
 
     var timedActivation = this.time.delayedCall(1000, () => {
       this.scene.transition({
         target: "MainMenu",
         moveBelow: true,
         duration: 1000,
-        onUpdate: this.transitionOut
+        onUpdate: this.transitionOut,
       });
     })
-    /* var timedActivation = this.time.addEvent({
-      delay: 1000,
-      callback: () => {
-        this.scene.transition({
-          target: "MainMenu",
-          moveBelow: true,
-          duration: 1000,
-          //onUpdate: this.transitionOut,
-        });
-      },
-    }); */
   }
 
   transitionOut(progress) {
