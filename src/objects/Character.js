@@ -1,5 +1,5 @@
 class Character {
-  constructor(name, id, startAngle, topSprite, bottomSprite, bullets, emitter) {
+  constructor(name, id, startAngle, topSprite, bottomSprite, bullets, emitter, emitter2) {
     this.id = id;
     this.aim = startAngle;
     this.movementDir = this.aim + 90;
@@ -20,6 +20,7 @@ class Character {
     this.bullets = bullets;
 
     this.emitter = emitter;
+    this.emitter2 = emitter2;
   }
 
   //Movimiento
@@ -54,6 +55,7 @@ class Character {
     this.topSprite.setX(this.bottomSprite.x);
     this.topSprite.setY(this.bottomSprite.y);
     this.emitter.setPosition(this.bottomSprite.x, this.bottomSprite.y);
+    this.emitter2.setPosition(this.bottomSprite.x, this.bottomSprite.y);
   }
   stopY() {
     this.topSprite.setVelocityY(0);

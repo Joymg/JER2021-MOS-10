@@ -52,6 +52,7 @@ class Loader extends Phaser.Scene {
     this.load.image("play", "../assets/text/Play.png");
     this.load.image("emitter1", "../assets/Emitter1.png");
     this.load.image("emitter2", "../assets/Emitter2.png");
+    this.load.image("emitter3", "../assets/Emitter3.png");
 
 
     //Botones 

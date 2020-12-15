@@ -124,8 +124,10 @@ class GameplayScene extends Phaser.Scene {
 
   //* Funciones de creado
   createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2) {
+
     //Partículas tanque 1.
     var particles1 = this.add.particles("Particle");
+    var particles2 = this.add.particles("emitter3");
 
     var emitter1 = particles1.createEmitter({
         x: posXplayer1,
@@ -138,6 +140,19 @@ class GameplayScene extends Phaser.Scene {
         scale: {min: 0.1, max: 0.5 },
         alpha: {min: 0.1, max: 0.2}
     });
+
+    var emitter1_1 = particles2.createEmitter({
+      x: posXplayer1,
+      y: posYplayer1,
+      angle: { min: -80, max: 80 },
+      rotate: {min: 30, max: 240},
+      gravityY: -50,
+      speed: 50,
+      lifespan: { min: 500, max: 2000 },
+      frequency: 100,
+      scale: {min: 0.1, max: 0.2 },
+      alpha: {min: 0.1, max: 0.2}
+  });
 
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
     var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.05);
@@ -168,16 +183,15 @@ class GameplayScene extends Phaser.Scene {
       top,
       bot,
       GameManager.bulletGroup1,
-      emitter1
+      emitter1,
+      emitter1_1
     );
 
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
 
     //Partículas tanque 2.
-    var particles2 = this.add.particles("Particle");
-
-    var emitter2 = particles2.createEmitter({
+    var emitter2 = particles1.createEmitter({
         x: posXplayer2,
         y: posYplayer2,
         angle: { min: 100, max: 260 },
@@ -188,6 +202,19 @@ class GameplayScene extends Phaser.Scene {
         scale: {min: 0.1, max: 0.5 },
         alpha: {min: 0.1, max: 0.2}
     });
+
+    var emitter2_1 = particles2.createEmitter({
+      x: posXplayer2,
+      y: posYplayer2,
+      angle: { min: 100, max: 260 },
+      rotate: {min: 30, max: 240},
+      gravityY: -50,
+      speed: 50,
+      lifespan: { min: 500, max: 2000 },
+      frequency: 100,
+      scale: {min: 0.1, max: 0.5 },
+      alpha: {min: 0.1, max: 0.2}
+  });
 
     //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
     var bot2 = this.physics.add.sprite(posXplayer2, posYplayer2, "animationTank1").setScale(0.05);
@@ -206,7 +233,8 @@ class GameplayScene extends Phaser.Scene {
       top2,
       bot2,
       GameManager.bulletGroup2,
-      emitter2
+      emitter2,
+      emitter2_1,
     );
 
     /*var cam2= this.cameras.add(this.game.renderer.width/2,0,this.game.renderer.width/2,this.game.renderer.height);
