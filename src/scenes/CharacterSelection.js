@@ -15,13 +15,20 @@ class CharacterSelection extends Phaser.Scene {
   }
 
   create() {
-    var background;
+    var background = this.add.image(
+      this.game.renderer.width / 2,
+      this.game.renderer.height / 2,
+      "backSelec"
+    );
+    var text;
     if (!this.player1locked) {
-      background = this.add
-        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backSelec");
+      text = this.add
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador1")
+        .setScale(2);
     } else {
-      background = this.add
-        .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backSelec");
+      text = this.add
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador2")
+        .setScale(2);
     }
 
     //Carousel
@@ -73,46 +80,41 @@ class CharacterSelection extends Phaser.Scene {
       Aricato.setActive(false);
     }
 
-
     const Catsudon = this.add
       .image(poly.points[1].x, poly.points[1].y, "Catsudon")
-      .setTint(0xFF97AD);
+      .setTint(0xff97ad);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catsudon.texture.key == this.player1Character.texture.key) {
       Catsudon.setTint(0x202020);
       Catsudon.setActive(false);
     }
 
-
     const Tankitty = this.add
       .image(poly.points[2].x, poly.points[2].y, "Tankitty")
-      .setTint(0xBAFF97);
+      .setTint(0xbaff97);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Tankitty.texture.key == this.player1Character.texture.key) {
       Tankitty.setTint(0x202020);
       Tankitty.setActive(false);
     }
- 
 
     const Catigula = this.add
       .image(poly.points[3].x, poly.points[3].y, "Catígula")
-      .setTint(0xB797FF);
+      .setTint(0xb797ff);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catigula.texture.key == this.player1Character.texture.key) {
       Catigula.setTint(0x202020);
       Catigula.setActive(false);
-
     }
 
     const Catotico = this.add
       .image(poly.points[4].x, poly.points[4].y, "Catótico")
-      .setTint(0xFFF297);
+      .setTint(0xfff297);
     //si el jugador 1 ha elegido este personaje este se pinta de negro y se desactiva para que no pueda ser elegido por el jugador 2
     if (this.player1Character && Catotico.texture.key == this.player1Character.texture.key) {
       Catotico.setTint(0x202020);
       Catotico.setActive(false);
     }
-
 
     var CharacterSprites = [Aricato, Catsudon, Tankitty, Catigula, Catotico];
 
@@ -268,23 +270,19 @@ class CharacterSelection extends Phaser.Scene {
     });
 
     //boton de bloquear
-    let lockCharac = this.add.image(
-      this.game.renderer.width / 2,
-      (this.game.renderer.height * 8.5) / 10,
-      "Button_Play"
-    ).setScale(.3);
+    let lockCharac = this.add
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 8.5) / 10, "Button_Play")
+      .setScale(0.3);
     lockCharac.setDepth(1000);
 
     lockCharac.setInteractive();
     lockCharac.on("pointerover", () => {
       lockCharac.setTint(0x909090);
       lockCharac.setScale(0.32);
-
     });
     lockCharac.on("pointerout", () => {
       lockCharac.setTint();
       lockCharac.setScale(0.3);
-
     });
     lockCharac.on("pointerdown", () => {
       if (!this.player1locked) {
@@ -303,9 +301,9 @@ class CharacterSelection extends Phaser.Scene {
             this.sound.stopByKey("MenuMusic");
             var tint1 = this.player1Character.tintTopLeft;
             var tint2 = this.player2Character.tintTopLeft;
-            console.log(this.player1Character.texture.key,tint1);
-            console.log(this.player2Character.texture.key,tint2);
-            this.scene.start("GameplayScene",{tint1,tint2});
+            console.log(this.player1Character.texture.key, tint1);
+            console.log(this.player2Character.texture.key, tint2);
+            this.scene.start("GameplayScene", { tint1, tint2 });
           }
         }
       } else {
