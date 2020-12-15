@@ -127,6 +127,10 @@ class Loader extends Phaser.Scene {
     this.load.image("Floor7", "../assets/Floor/TileFloor_8.png");
     this.load.image("Floor8", "../assets/Floor/TileFloor_9.png");
     this.load.image("Particle", "../assets/Polvo.png");
+    this.load.image("Fade", "../assets/Fade oscuro.png");
+    this.load.image("confeti1", "../assets/Confeti1.png");
+    this.load.image("confeti2", "../assets/Confeti2.png");
+    this.load.image("confeti3", "../assets/Confeti3.png");
 
     //Elementos del UI
     this.load.image("LeftLife1", "../assets/IU/LeftLife1.png");
