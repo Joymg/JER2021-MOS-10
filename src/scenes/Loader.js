@@ -179,6 +179,8 @@ class Loader extends Phaser.Scene {
     this.load.audio("woodImpact2", "../assets/sounds/woodImpact2.mp3");
     this.load.audio("BattleMusic", "../assets/sounds/BattleMusic.mp3");
     this.load.audio("MenuMusic", "../assets/sounds/MenuMusic.mp3");
+    this.load.audio("victorySound", "../assets/sounds/victorySound.mp3");
+    
 
     //Mapas
     this.load.text("Level1", "../src/json/Tiles_Level1.txt");

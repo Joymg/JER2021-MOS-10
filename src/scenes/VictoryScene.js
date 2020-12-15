@@ -75,7 +75,7 @@ class VictoryScene extends Phaser.Scene {
 
     //boton de rematch
     let rematchButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.2) / 5, "Purple_TextBox")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "Purple_TextBox")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
@@ -83,7 +83,7 @@ class VictoryScene extends Phaser.Scene {
     rematchButton.setInteractive();
 
     let rematchText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.2) / 5, "VolverAJugar")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "VolverAJugar")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
@@ -104,13 +104,13 @@ class VictoryScene extends Phaser.Scene {
 
     //boton de vuleta la menu principal
     let mainMenuButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 4) / 5, "Pink_TextBox")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.7) / 5, "Pink_TextBox")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
 
     let mainMenuText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 4) / 5, "IrAlTitulo")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.7) / 5, "IrAlTitulo")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
@@ -146,7 +146,7 @@ class VictoryScene extends Phaser.Scene {
         mainMenuButton.setVisible(true);
         rematchText.setVisible(true);
         mainMenuText.setVisible(true);
-
+        this.sound.play("victorySound");
         //animacion de entrada
         this.tweens.add({
           targets: [rematchButton, rematchText, mainMenuButton, mainMenuText],
