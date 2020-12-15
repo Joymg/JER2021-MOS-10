@@ -9,14 +9,18 @@ class VictoryScene extends Phaser.Scene {
   }
 
   create() {
+    this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "Fade");
     //Si se ha elegido el modo local
     if (game.config.localMode) {
       //añade el jugador que ha ganado
-      if (this.winner ==1) {
-        var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ1").setScale(0);
-      }
-      else if(this.winner==2){
-        var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ2").setScale(0);
+      if (this.winner == 1) {
+        var victory = this.add
+          .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ1")
+          .setScale(0);
+      } else if (this.winner == 2) {
+        var victory = this.add
+          .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ2")
+          .setScale(0);
       }
       /* var playerText = this.add.text(100, 100, "Player " + this.winner, { font: "75px" });
       playerText.setScale(0.01); */
@@ -34,6 +38,12 @@ class VictoryScene extends Phaser.Scene {
 
     rematchButton.setInteractive();
 
+    let rematchText = this.add
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "VolverAJugar")
+      .setScale(0)
+      .setActive(false)
+      .setVisible(false);
+
     //efectos al pasar el raton por encima
     rematchButton.on("pointerover", () => {
       rematchButton.setTint(0x909090);
@@ -49,10 +59,14 @@ class VictoryScene extends Phaser.Scene {
     });
 
     //boton de vuleta la menu principal
-    let mainMenuButton = this.add.image(
-      this.game.renderer.width / 2,
-      (this.game.renderer.height * 4) / 5,
-      "Pink_TextBox")
+    let mainMenuButton = this.add
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 4) / 5, "Pink_TextBox")
+      .setScale(0)
+      .setActive(false)
+      .setVisible(false);
+
+    let mainMenuText = this.add
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 4) / 5, "IrAlTitulo")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
@@ -86,10 +100,12 @@ class VictoryScene extends Phaser.Scene {
         mainMenuButton.setActive(true);
         rematchButton.setVisible(true);
         mainMenuButton.setVisible(true);
+        rematchText.setVisible(true);
+        mainMenuText.setVisible(true);
 
         //animacion de entrada
         this.tweens.add({
-          targets: [rematchButton, mainMenuButton],
+          targets: [rematchButton, rematchText, mainMenuButton, mainMenuText],
           scale: 0.2,
           ease: "elastic",
           duration: 100,
@@ -99,7 +115,7 @@ class VictoryScene extends Phaser.Scene {
 
     this.tweens.add({
       targets: [victory],
-      scale: .4,
+      scale: 0.4,
       ease: "easein",
       duration: 100,
     });

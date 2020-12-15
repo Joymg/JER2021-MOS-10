@@ -40,7 +40,7 @@ class MainMenu extends Phaser.Scene {
 
     let title = this.add.image(
       this.game.renderer.width / 2,
-      (this.game.renderer.height * 2) / 5,
+      (this.game.renderer.height * 1.5) / 5,
       "title"
     );
     title.setScale(0.6);
@@ -48,20 +48,20 @@ class MainMenu extends Phaser.Scene {
     //Boton de buscar partida
     let findGameButton = this.add.image(
       this.game.renderer.width / 2,
-      (this.game.renderer.height * 3) / 5,
-      "Purple_TextBox"
-    ).setScale(.2);
+      (this.game.renderer.height * 3.1) / 5,
+      "play"
+    ).setScale(.3);
 
     findGameButton.setInteractive();
 
     //efectos al pasar el raton por encima
     findGameButton.on("pointerover", () => {
       findGameButton.setTint(0x909090);
-      findGameButton.setScale(.22);
+      findGameButton.setScale(.32);
     });
     findGameButton.on("pointerout", () => {
       findGameButton.setTint();
-      findGameButton.setScale(.2);
+      findGameButton.setScale(.3);
     });
 
     //al pulsar el boton carga la escena de seleccion de personaje
@@ -75,19 +75,19 @@ class MainMenu extends Phaser.Scene {
     let credits = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 3.6) / 5,
-      "Pink_TextBox"
-    ).setScale(.15);
+      "Creditos"
+    ).setScale(.3);
 
     credits.setInteractive();
 
     //efectos al pasar el raton por encima
     credits.on("pointerover", () => {
       credits.setTint(0x909090);
-      credits.setScale(.17);
+      credits.setScale(.32);
     });
     credits.on("pointerout", () => {
       credits.setTint();
-      credits.setScale(.15);
+      credits.setScale(.3);
     });
     credits.on("pointerdown", () => {
       this.scene.start("CreditsScene");

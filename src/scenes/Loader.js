@@ -63,8 +63,23 @@ class Loader extends Phaser.Scene {
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
 
     this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
-    this.load.image("Button_Play", "../assets/text/Play.png");
+    this.load.image("Button_Play", "../assets/text/Miau.png");
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
+
+
+    //Textos
+    this.load.image("Credits", "../assets/text/Credits.png");
+    this.load.image("ENG", "../assets/text/ENG.png");
+    this.load.image("ESP", "../assets/text/ESP.png");
+    this.load.image("GoBackToTitle", "../assets/text/GoBackToTitle.png");
+    this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
+    this.load.image("Idioma", "../assets/text/Idioma.png");
+    this.load.image("Language", "../assets/text/Language.png");
+    this.load.image("Music", "../assets/text/Music.png");
+    this.load.image("Musica", "../assets/text/Musica.png");
+    this.load.image("PlayAgain", "../assets/text/PlayAgain.png");
+    this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
+
 
     //Personajes
     this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
@@ -78,7 +93,7 @@ class Loader extends Phaser.Scene {
     this.load.image("bulletPlayer1", "../assets/Balas/Bala_Jugador1.png");
     this.load.image("bulletPlayer2", "../assets/Balas/Bala_Jugador2.png");
 
-    //elementos de la pantalal de configuracion
+    //elementos de la pantalla de configuracion
     this.load.image("back", "../assets/star.png");
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
@@ -127,6 +142,8 @@ class Loader extends Phaser.Scene {
     this.load.image("RightLife5", "../assets/IU/RightLife5.png");
     this.load.image("RightLife6", "../assets/IU/RightLife6.png");
     this.load.image("PlayerIcon", "../assets/IU/PlayerIcon.png");
+    this.load.image("Fade", "../assets/Fade.png");
+
 
     //Elementos de Texto
     this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");
@@ -135,6 +152,10 @@ class Loader extends Phaser.Scene {
     this.load.image("One", "../assets/text/One.png");
     this.load.image("Two", "../assets/text/Two.png");
     this.load.image("Three", "../assets/text/Three.png");
+    this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
+    this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
+    this.load.image("Creditos", "../assets/text/Credits.png");
+
 
     //Sonidos
     this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");
@@ -173,20 +194,8 @@ class Loader extends Phaser.Scene {
 
   create() {
     this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(1.5);
-    this.sound.add("MenuMusic",{loop:true});
-    this.sound.add("BattleMusic",{loop:true});
-
-    var timedActivation = this.time.delayedCall(1000, () => {
-      this.scene.transition({
-        target: "MainMenu",
-        moveBelow: true,
-        duration: 1000,
-        onUpdate: this.transitionOut,
-      });
-    })
-  }
-
-  transitionOut(progress) {
-    this.logo.y = this.game.renderer.height * progress;
+    this.sound.add("MenuMusic", { loop: true });
+    this.sound.add("BattleMusic", { loop: true });
+    this.scene.start("MainMenu");
   }
 }
