@@ -63,7 +63,7 @@ class Loader extends Phaser.Scene {
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
 
     this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
-    this.load.image("Button_Play", "../assets/text/Play.png");
+    this.load.image("Button_Play", "../assets/text/Miau.png");
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
 
     //Personajes
@@ -78,7 +78,7 @@ class Loader extends Phaser.Scene {
     this.load.image("bulletPlayer1", "../assets/Balas/Bala_Jugador1.png");
     this.load.image("bulletPlayer2", "../assets/Balas/Bala_Jugador2.png");
 
-    //elementos de la pantalal de configuracion
+    //elementos de la pantalla de configuracion
     this.load.image("back", "../assets/star.png");
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
@@ -135,6 +135,10 @@ class Loader extends Phaser.Scene {
     this.load.image("One", "../assets/text/One.png");
     this.load.image("Two", "../assets/text/Two.png");
     this.load.image("Three", "../assets/text/Three.png");
+    this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
+    this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
+    this.load.image("Creditos", "../assets/text/Credits.png");
+
 
     //Sonidos
     this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");
