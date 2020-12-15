@@ -242,6 +242,7 @@ Si se le da a la tecla Esc durante la pantalla de gameplay se abrirá el menu de
 
 ### 5.2 Diagrama de navegación
 Se usará la nomenclatura del apartado anterior para referirse a las pantallas:
+
  1: Menu principal      2: Configuración
  3: Créditos            4: Selección de personaje
  5: Gameplay            6: Pantalla de victoria
@@ -254,3 +255,9 @@ Se usará la nomenclatura del apartado anterior para referirse a las pantallas:
 5 -> 6,7
 6 -> 5,1
 7 -> 5,1
+
+### 5.3 Cambios con respecto a la anterior fase
+Realmente han habido pocos cambios de diseño de una fase para otra, principalmente porque se fueron con expectativas realistas del tiempo y recursos disponibles. Sin embargo si que han habido varias cosas planeadas que no se han implementado finalmente:
+
+- Se querían implementar al menos dos personajes jugables para esta fase, pero por falta de tiempo solo se ha podido meter a uno pero con diferentes filtros para que se pueda diferenciar durante el gameplay.
+- Se queria implementar un tutorial in-game que introdujese las mecánicas principales (movimiento, disparos y tipos de obstaculos), pero al final se ha decidido poner una pantalla que detalla los controles en la parte inferior de la página.
