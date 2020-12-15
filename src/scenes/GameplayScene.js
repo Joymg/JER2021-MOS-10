@@ -11,10 +11,16 @@ class GameplayScene extends Phaser.Scene {
     this.cursors2;
 
     this.paused;
+
+    this.tint1;
+    this.tint2;
   }
 
-  init() {
-    console.log("GameplayScene#init");
+  init(data) {
+    this.tint1 = data.tint1;
+    this.tint2 = data.tint2;
+    console.log(this.tint1, data.tint1);
+    console.log(this.tint2, data.tint2);
   }
 
   create() {
@@ -120,18 +126,15 @@ class GameplayScene extends Phaser.Scene {
   }
 
   update() {
-
-    if(this.paused.isDown){
+    if (this.paused.isDown) {
       this.scene.launch("PauseMenu");
       this.paused.isDown = false;
       this.scene.pause();
     }
-    
+
     this.handleInputs();
     this.updateUI();
     this.checkGameOver();
-
-    
   }
 
   //* Funciones de creado
@@ -167,11 +170,16 @@ class GameplayScene extends Phaser.Scene {
 
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
     var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.05);
+
+    bot.setTint(this.tint1);
     var top = this.physics.add
       .sprite(posXplayer1, posYplayer1, "topSprite")
       .setScale(0.05)
       .setOrigin(0.3, 0.5);
-
+    top.tintFill = false;
+    top.setTint(this.tint1);
+    console.log("top1", top.tintTopLeft);
+    console.log("bot1", bot.tintTopLeft);
     //Animación tanque 1
     this.anims.create({
       key: "tank1_animation",
@@ -228,12 +236,17 @@ class GameplayScene extends Phaser.Scene {
     });
 
     //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
-    var bot2 = this.physics.add.sprite(posXplayer2, posYplayer2, "animationTank1").setScale(0.05);
+    var bot2 = this.physics.add
+      .sprite(posXplayer2, posYplayer2, "animationTank1")
+      .setScale(0.05)
+      .setTint(this.tint2);
     var top2 = this.physics.add
       .sprite(posXplayer2, posYplayer2, "topSprite")
       .setScale(0.05)
-      .setOrigin(0.3, 0.5);
+      .setOrigin(0.3, 0.5)
+      .setTint(this.tint2);
 
+    console.log(2, top2.tintTopLeft);
     bot2.anims.play("tank1_animation");
     bot2.setCollideWorldBounds(true);
 
@@ -301,7 +314,12 @@ class GameplayScene extends Phaser.Scene {
       .setDepth(999)
       .setScale(0.2)
       .setOrigin(1, 0);
-
+    var p1Name=this.add
+    .image(
+      (this.game.renderer.width * 2.5) / 10,
+      (this.game.renderer.height * 0.4) / 10,
+      "jugador1"
+    );
     var p1Icon = this.add
       .image(
         (this.game.renderer.width * 0.8) / 10,
@@ -309,7 +327,15 @@ class GameplayScene extends Phaser.Scene {
         "PlayerIcon"
       )
       .setDepth(1000)
-      .setScale(0.1);
+      .setScale(0.1)
+      .setTint(this.tint1);
+
+      var p1Name=this.add
+    .image(
+      (this.game.renderer.width * 7.5) / 10,
+      (this.game.renderer.height * 0.4) / 10,
+      "jugador2"
+    );
     var p2Icon = this.add
       .image(
         (this.game.renderer.width * 9.2) / 10,
@@ -317,7 +343,8 @@ class GameplayScene extends Phaser.Scene {
         "PlayerIcon"
       )
       .setDepth(1000)
-      .setScale(0.1);
+      .setScale(0.1)
+      .setTint(this.tint2);
   }
   createInputs(localMode) {
     if (localMode) {
@@ -550,7 +577,7 @@ class GameplayScene extends Phaser.Scene {
 
   checkGameOver(localMode) {
     if (GameManager.character.healthPoints <= 0) {
-      var winner = GameManager.character;
+      var winner = GameManager.character2;
       this.scene.pause();
       this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {
@@ -558,7 +585,7 @@ class GameplayScene extends Phaser.Scene {
       });
     }
     if (GameManager.character2.healthPoints <= 0) {
-      var winner = GameManager.character2;
+      var winner = GameManager.character1;
       this.scene.pause();
       this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {
