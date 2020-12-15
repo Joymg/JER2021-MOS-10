@@ -4,7 +4,7 @@ class MainMenu extends Phaser.Scene {
   }
 
   create() {
-
+    
     if (!this.sound.get("MenuMusic").isPlaying) {
       this.sound.get("MenuMusic").play();
     }

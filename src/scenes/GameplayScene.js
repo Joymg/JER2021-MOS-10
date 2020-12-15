@@ -9,6 +9,8 @@ class GameplayScene extends Phaser.Scene {
     this.pointer;
 
     this.cursors2;
+
+    this.paused;
   }
 
   init() {
@@ -16,7 +18,6 @@ class GameplayScene extends Phaser.Scene {
   }
 
   create() {
-    
     if (!this.sound.get("BattleMusic").isPlaying) {
       this.sound.get("BattleMusic").play();
     }
@@ -109,6 +110,8 @@ class GameplayScene extends Phaser.Scene {
     this.createInputs(game.config.localMode);
     this.setColliders();
 
+    this.paused = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
     this.scene.pause("GameplayScene");
     this.scene.launch("CountDownScene");
     this.time.delayedCall(3000, () => {
@@ -117,42 +120,50 @@ class GameplayScene extends Phaser.Scene {
   }
 
   update() {
+
+    if(this.paused.isDown){
+      this.scene.launch("PauseMenu");
+      this.paused.isDown = false;
+      this.scene.pause();
+    }
+    
     this.handleInputs();
     this.updateUI();
     this.checkGameOver();
+
+    
   }
 
   //* Funciones de creado
   createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2) {
-
     //Partículas tanque 1.
     var particles1 = this.add.particles("Particle");
     var particles2 = this.add.particles("emitter3");
 
     var emitter1 = particles1.createEmitter({
-        x: posXplayer1,
-        y: posYplayer1,
-        angle: { min: -80, max: 80 },
-        rotate: {min: 30, max: 240},
-        speed: 50,
-        lifespan: { min: 500, max: 1000 },
-        frequency: 100,
-        scale: {min: 0.1, max: 0.5 },
-        alpha: {min: 0.1, max: 0.2}
+      x: posXplayer1,
+      y: posYplayer1,
+      angle: { min: -80, max: 80 },
+      rotate: { min: 30, max: 240 },
+      speed: 50,
+      lifespan: { min: 500, max: 1000 },
+      frequency: 100,
+      scale: { min: 0.1, max: 0.5 },
+      alpha: { min: 0.1, max: 0.2 },
     });
 
     var emitter1_1 = particles2.createEmitter({
       x: posXplayer1,
       y: posYplayer1,
       angle: { min: -80, max: 80 },
-      rotate: {min: 30, max: 240},
+      rotate: { min: 30, max: 240 },
       gravityY: -50,
       speed: 50,
       lifespan: { min: 500, max: 2000 },
       frequency: 100,
-      scale: {min: 0.1, max: 0.2 },
-      alpha: {min: 0.1, max: 0.2}
-  });
+      scale: { min: 0.1, max: 0.2 },
+      alpha: { min: 0.1, max: 0.2 },
+    });
 
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
     var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.05);
@@ -192,29 +203,29 @@ class GameplayScene extends Phaser.Scene {
 
     //Partículas tanque 2.
     var emitter2 = particles1.createEmitter({
-        x: posXplayer2,
-        y: posYplayer2,
-        angle: { min: 100, max: 260 },
-        rotate: {min: 30, max: 240},
-        speed: 50,
-        lifespan: { min: 500, max: 1000 },
-        frequency: 100,
-        scale: {min: 0.1, max: 0.5 },
-        alpha: {min: 0.1, max: 0.2}
+      x: posXplayer2,
+      y: posYplayer2,
+      angle: { min: 100, max: 260 },
+      rotate: { min: 30, max: 240 },
+      speed: 50,
+      lifespan: { min: 500, max: 1000 },
+      frequency: 100,
+      scale: { min: 0.1, max: 0.5 },
+      alpha: { min: 0.1, max: 0.2 },
     });
 
     var emitter2_1 = particles2.createEmitter({
       x: posXplayer2,
       y: posYplayer2,
       angle: { min: 100, max: 260 },
-      rotate: {min: 30, max: 240},
+      rotate: { min: 30, max: 240 },
       gravityY: -50,
       speed: 50,
       lifespan: { min: 500, max: 2000 },
       frequency: 100,
-      scale: {min: 0.1, max: 0.5 },
-      alpha: {min: 0.1, max: 0.2}
-  });
+      scale: { min: 0.1, max: 0.5 },
+      alpha: { min: 0.1, max: 0.2 },
+    });
 
     //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
     var bot2 = this.physics.add.sprite(posXplayer2, posYplayer2, "animationTank1").setScale(0.05);
@@ -234,7 +245,7 @@ class GameplayScene extends Phaser.Scene {
       bot2,
       GameManager.bulletGroup2,
       emitter2,
-      emitter2_1,
+      emitter2_1
     );
 
     /*var cam2= this.cameras.add(this.game.renderer.width/2,0,this.game.renderer.width/2,this.game.renderer.height);
@@ -575,7 +586,7 @@ class GameplayScene extends Phaser.Scene {
     obstacle.getHit(Math.floor(Math.random() * 2 + 1));
     bullet.bounce();
   }
-  antiCamp(obstacle, bullet){
+  antiCamp(obstacle, bullet) {
     bullet.destroy();
   }
 }
