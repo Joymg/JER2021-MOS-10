@@ -19,8 +19,8 @@ class GameplayScene extends Phaser.Scene {
   init(data) {
     this.tint1 = data.tint1;
     this.tint2 = data.tint2;
-    console.log(this.tint1, data.tint1);
-    console.log(this.tint2, data.tint2);
+    //console.log(this.tint1, data.tint1);
+    //console.log(this.tint2, data.tint2);
   }
 
   create() {
@@ -178,8 +178,8 @@ class GameplayScene extends Phaser.Scene {
       .setOrigin(0.3, 0.5);
     top.tintFill = false;
     top.setTint(this.tint1);
-    console.log("top1", top.tintTopLeft);
-    console.log("bot1", bot.tintTopLeft);
+    //console.log("top1", top.tintTopLeft);
+    //console.log("bot1", bot.tintTopLeft);
     //Animación tanque 1
     this.anims.create({
       key: "tank1_animation",

@@ -12,9 +12,7 @@ class SettingsMenu extends Phaser.Scene {
 
   create() {
     var background = this.add
-      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
-      .setTint(0x18dff)
-      .setScale(1.5);
+      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backSelec");
     var title = this.add
       .image(this.game.renderer.width/3.3, this.game.renderer.height*0.2 ,"settingsTitle").
       setScale(0.5);
@@ -26,10 +24,10 @@ class SettingsMenu extends Phaser.Scene {
       setScale(0.3);
     var sESP = this.add
       .image(this.game.renderer.width/1.4, this.game.renderer.height*0.8 ,"settingsESP").
-      setScale(0.2);
+      setScale(0.2).setTint(0x404040);
     var sENG = this.add
       .image(this.game.renderer.width/1.2, this.game.renderer.height*0.8 ,"settingsENG").
-      setScale(0.2);
+      setScale(0.2).setTint(0x404040);
 
 
     let muteMusicButton;
@@ -37,13 +35,13 @@ class SettingsMenu extends Phaser.Scene {
       muteMusicButton = this.add.image(
         this.game.renderer.width/1.3,
         this.game.renderer.height * 0.5,
-        "muteUp"
+        "muteDown"
       );
     } else {
       muteMusicButton = this.add.image(
         this.game.renderer.width/ 1.3,
         this.game.renderer.height * 0.5,
-        "muteDown"
+        "muteUp"
       );
     }
     muteMusicButton.setScale(0.1);
@@ -57,9 +55,9 @@ class SettingsMenu extends Phaser.Scene {
     muteMusicButton.on("pointerdown", () => {
       this.game.sound.mute = !this.game.sound.mute;
       if (this.game.sound.mute) {
-        muteMusicButton.setTexture("muteDown");
-      } else {
         muteMusicButton.setTexture("muteUp");
+      } else {
+        muteMusicButton.setTexture("muteDown");
       }
     });
 

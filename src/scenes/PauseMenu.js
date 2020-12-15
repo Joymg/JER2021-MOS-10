@@ -17,13 +17,13 @@ class PauseMenu extends Phaser.Scene {
       muteMusicButton = this.add.image(
         (this.game.renderer.width * 1.4) / 2,
         (this.game.renderer.height * 2) / 5 ,
-        "muteUp"
+        "muteDown"
       );
     } else {
       muteMusicButton = this.add.image(
         (this.game.renderer.width * 1.4) / 2,
         (this.game.renderer.height * 2) / 5 ,
-        "muteDown"
+        "muteUp"
       );
     }
     muteMusicButton.setScale(0.1);
@@ -38,9 +38,9 @@ class PauseMenu extends Phaser.Scene {
     muteMusicButton.on("pointerdown", () => {
       this.game.sound.mute = !this.game.sound.mute;
       if (this.game.sound.mute) {
-        muteMusicButton.setTexture("muteDown");
-      } else {
         muteMusicButton.setTexture("muteUp");
+      } else {
+        muteMusicButton.setTexture("muteDown");
       }
     });
 

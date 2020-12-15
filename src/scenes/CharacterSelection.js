@@ -1,7 +1,7 @@
 class CharacterSelection extends Phaser.Scene {
   constructor() {
     super({ key: "CharacterSelection" });
-    console.log("CharacterSelection#constructor");
+    //console.log("CharacterSelection#constructor");
 
     this.ready = false;
     this.player1locked = false;
@@ -23,12 +23,12 @@ class CharacterSelection extends Phaser.Scene {
     var text;
     if (!this.player1locked) {
       text = this.add
-        .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador1")
-        .setScale(2);
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador1HD")
+        .setScale(.2);
     } else {
       text = this.add
-        .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador2")
-        .setScale(2);
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador2HD")
+        .setScale(.2);
     }
 
     //Carousel
@@ -301,8 +301,8 @@ class CharacterSelection extends Phaser.Scene {
             this.sound.stopByKey("MenuMusic");
             var tint1 = this.player1Character.tintTopLeft;
             var tint2 = this.player2Character.tintTopLeft;
-            console.log(this.player1Character.texture.key, tint1);
-            console.log(this.player2Character.texture.key, tint2);
+            //console.log(this.player1Character.texture.key, tint1);
+            //console.log(this.player2Character.texture.key, tint2);
             this.scene.start("GameplayScene", { tint1, tint2 });
           }
         }
@@ -320,7 +320,7 @@ class CharacterSelection extends Phaser.Scene {
     var player;
     array.forEach((element) => {
       if (element.active == true) {
-        console.log(element.texture.key, element.tintTopLeft);
+        //console.log(element.texture.key, element.tintTopLeft);
         if (element.y == this.game.renderer.height / 2 + this.game.renderer.height / 23) {
           player = element;
         }

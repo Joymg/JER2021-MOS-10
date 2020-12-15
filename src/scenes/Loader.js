@@ -38,7 +38,7 @@ class Loader extends Phaser.Scene {
     });
 
     this.load.on("progress", function (value) {
-      console.log(value);
+      //console.log(value);
       progressBar.clear();
       progressBar.fillStyle(0xf54a76, 1);
       progressBar.fillRect(game.renderer.width / 10, game.renderer.height / 2 - 20, game.renderer.width * 0.8 * value, 30);
@@ -48,16 +48,9 @@ class Loader extends Phaser.Scene {
     percentText.setOrigin(0.5, 0.5);
 
     //Elementos del menuPrincipal
-    this.load.image("sky", "../assets/sky.png");
-    this.load.image("backTankats", "../assets/FondoTankats.png");
-    this.load.image("platform", "../assets/platform.png");
-    this.load.image("bomb", "../assets/bomb.png");
-    this.load.image("star", "../assets/star.png");
+
+    this.load.image("backTankats", "../assets/backgrounds/FondoTankats.png");
     this.load.image("title", "../assets/TANKATS.png");
-    this.load.image("play", "../assets/text/Play.png");
-    this.load.image("emitter1", "../assets/Emitter1.png");
-    this.load.image("emitter2", "../assets/Emitter2.png");
-    this.load.image("emitter3", "../assets/Emitter3.png");
 
     //Botones
     this.load.image("Button_Back", "../assets/Botones/Button_Back.png");
@@ -68,6 +61,7 @@ class Loader extends Phaser.Scene {
 
     this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
     this.load.image("Button_Play", "../assets/text/Miau.png");
+    this.load.image("Play", "../assets/text/Play.png");
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
 
     //Textos
@@ -84,19 +78,18 @@ class Loader extends Phaser.Scene {
     this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
 
     //Personajes
-    this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
-    this.load.image("bottomSprite", "../assets/characters/1_Tanque_ParteAbajo.png");
-    this.load.spritesheet("animationTank1", "../assets/spritesheet_tank1.png", {
+    this.load.image("topSprite", "../assets/characters/Catsudon/CatsudonTop.png");
+    this.load.image("bottomSprite", "../assets/characters/Catsudon/CatsudonBot.png");
+    this.load.spritesheet("animationTank1", "../assets/characters/Catsudon/CatsudonBotAnim.png", {
       frameWidth: 1721,
       frameHeight: 1844,
     });
 
     //Balas
-    this.load.image("bulletPlayer1", "../assets/Balas/Bala_Jugador1.png");
-    this.load.image("bulletPlayer2", "../assets/Balas/Bala_Jugador2.png");
+    this.load.image("bulletPlayer1", "../assets/bullets/Bala_Jugador1.png");
+    this.load.image("bulletPlayer2", "../assets/bullets/Bala_Jugador2.png");
 
     //elementos de la pantalla de configuracion
-    this.load.image("back", "../assets/star.png");
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
     this.load.image("settingsTitle", "../assets/text/Settings.png");
@@ -106,18 +99,14 @@ class Loader extends Phaser.Scene {
     this.load.image("settingsENG", "../assets/text/ENG.png");
 
     //elementos de la seleccion de personaje
-    this.load.image("sky", "../assets/sky.png");
-    this.load.image("backSelec", "../assets/FondoSeleccion.png");
-    this.load.image("Aricato", "/assets/characters/CatsudonPortrait.png");
-    this.load.image("Catsudon", "/assets/characters/CatsudonPortrait.png");
-    this.load.image("Tankitty", "/assets/characters/CatsudonPortrait.png");
-    this.load.image("Catígula", "/assets/characters/CatsudonPortrait.png");
-    this.load.image("Catótico", "/assets/characters/CatsudonPortrait.png");
+    this.load.image("backSelec", "../assets/backgrounds/FondoSeleccion.png");
+    this.load.image("Aricato", "/assets/characters/Catsudon/CatsudonPortrait.png");
+    this.load.image("Catsudon", "/assets/characters/Catsudon/CatsudonPortrait.png");
+    this.load.image("Tankitty", "/assets/characters/Catsudon/CatsudonPortrait.png");
+    this.load.image("Catígula", "/assets/characters/Catsudon/CatsudonPortrait.png");
+    this.load.image("Catótico", "/assets/characters/Catsudon/CatsudonPortrait.png");
 
     //elementos del gameplay
-    this.load.image("woodenCrateSprite", "../assets/WoodenObstacle.png");
-    this.load.image("ironCrateSprite", "../assets/IronObstacle.png");
-    this.load.image("pitSprite", "../assets/pit.png");
     this.load.image("Floor0", "../assets/Floor/TileFloor_1.png");
     this.load.image("Floor6", "../assets/Floor/TileFloor_2.png");
     this.load.image("Floor2", "../assets/Floor/TileFloor_3.png");
@@ -127,11 +116,21 @@ class Loader extends Phaser.Scene {
     this.load.image("Floor1", "../assets/Floor/TileFloor_7.png");
     this.load.image("Floor7", "../assets/Floor/TileFloor_8.png");
     this.load.image("Floor8", "../assets/Floor/TileFloor_9.png");
-    this.load.image("Particle", "../assets/Polvo.png");
-    this.load.image("Fade", "../assets/Fade oscuro.png");
-    this.load.image("confeti1", "../assets/Confeti1.png");
-    this.load.image("confeti2", "../assets/Confeti2.png");
-    this.load.image("confeti3", "../assets/Confeti3.png");
+    this.load.image("Fade", "../assets/Fade.png");
+
+    //obstacles
+    this.load.image("woodenCrateSprite", "../assets/obstacles/WoodenObstacle.png");
+    this.load.image("ironCrateSprite", "../assets/obstacles/IronObstacle.png");
+    this.load.image("pitSprite", "../assets/obstacles/pit.png");
+
+    //Particulas
+    this.load.image("emitter1", "../assets/particles/Emitter1.png");
+    this.load.image("emitter2", "../assets/particles/Emitter2.png");
+    this.load.image("emitter3", "../assets/particles/Emitter3.png");
+    this.load.image("confeti1", "../assets/particles/Confeti1.png");
+    this.load.image("confeti2", "../assets/particles/Confeti2.png");
+    this.load.image("confeti3", "../assets/particles/Confeti3.png");
+    this.load.image("Particle", "../assets/particles/Polvo.png");
 
     //Elementos del UI
     this.load.image("LeftLife1", "../assets/IU/LeftLife1.png");
@@ -148,9 +147,11 @@ class Loader extends Phaser.Scene {
     this.load.image("RightLife6", "../assets/IU/RightLife6.png");
     this.load.image("PlayerIcon", "../assets/IU/PlayerIcon.png");
     this.load.image("Fade", "../assets/Fade.png");
-    this.load.image("jugador1", "../assets/jugador1.png");
-    this.load.image("jugador2", "../assets/jugador2.png");
-    this.load.image("MarcoPausa", "../assets/MarcoPausa.png");
+    this.load.image("jugador1", "../assets/text/jugador1.png");
+    this.load.image("jugador2", "../assets/text/jugador2.png");
+    this.load.image("jugador1HD", "../assets/text/jugador1HD.png");
+    this.load.image("jugador2HD", "../assets/text/jugador2HD.png");
+    this.load.image("MarcoPausa", "../assets/backgrounds/MarcoPausa.png");
 
     //Elementos de Texto
     this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");
@@ -162,6 +163,19 @@ class Loader extends Phaser.Scene {
     this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
     this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
     this.load.image("Creditos", "../assets/text/Credits.png");
+
+
+    //Names
+    this.load.image("Alberto", "../assets/names/Alberto.png");
+    this.load.image("AlbertoIcon", "../assets/names/AlbertoIcon.png");
+    this.load.image("Andrea", "../assets/names/Andrea.png");
+    this.load.image("AndreaIcon", "../assets/names/AndreaIcon.png");
+    this.load.image("Joy", "../assets/names/Joy.png");
+    this.load.image("JoyIcon", "../assets/names/JoyIcon.png");
+    this.load.image("Marta", "../assets/names/Marta.png");
+    this.load.image("MartaIcon", "../assets/names/MartaIcon.png");
+    this.load.image("Schair", "../assets/names/Schair.png");   
+    this.load.image("SchairIcon", "../assets/names/SchairIcon.png");
 
     //Sonidos
     this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");
@@ -181,7 +195,7 @@ class Loader extends Phaser.Scene {
     this.load.audio("MenuMusic", "../assets/sounds/MenuMusic.mp3");
     this.load.audio("victorySound", "../assets/sounds/victorySound.mp3");
     
-
+   
     //Mapas
     this.load.text("Level1", "../src/json/Tiles_Level1.txt");
     this.load.text("Level2", "../src/json/Tiles_Level2.txt");
