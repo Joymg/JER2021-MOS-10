@@ -32,11 +32,20 @@ class SettingsMenu extends Phaser.Scene {
       setScale(0.2);
 
 
-    let muteMusicButton = this.add.image(
-      (this.game.renderer.width * 1.6) / 2,
-      (this.game.renderer.height * 1.5) / 5 + 10,
-      "muteUp"
-    );
+    let muteMusicButton;
+    if (this.game.sound.mute) {
+      muteMusicButton = this.add.image(
+        (this.game.renderer.width * 1.6) / 2,
+        (this.game.renderer.height * 1.5) / 5 + 10,
+        "muteUp"
+      );
+    } else {
+      muteMusicButton = this.add.image(
+        (this.game.renderer.width * 1.6) / 2,
+        (this.game.renderer.height * 1.5) / 5 + 10,
+        "muteDown"
+      );
+    }
     muteMusicButton.setScale(0.1);
     muteMusicButton.setInteractive();
     muteMusicButton.on("pointerdown", () => {
@@ -101,12 +110,10 @@ class SettingsMenu extends Phaser.Scene {
     backButton.on("pointerover", () => {
       backButton.setTint(0x909090);
       backButton.setScale(0.32);
-
     });
     backButton.on("pointerout", () => {
       backButton.setTint();
       backButton.setScale(0.3);
-
     });
     //al pulsar el boton te devuelve al menu pricipal
     backButton.on("pointerdown", () => {
