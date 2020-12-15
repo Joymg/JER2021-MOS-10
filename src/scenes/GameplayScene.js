@@ -585,7 +585,7 @@ class GameplayScene extends Phaser.Scene {
       });
     }
     if (GameManager.character2.healthPoints <= 0) {
-      var winner = GameManager.character1;
+      var winner = GameManager.character;
       this.scene.pause();
       this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {
