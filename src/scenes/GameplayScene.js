@@ -16,9 +16,9 @@ class GameplayScene extends Phaser.Scene {
   }
 
   create() {
-    this.sound.add("BattleMusic");
+    
     if (!this.sound.get("BattleMusic").isPlaying) {
-      this.sound.play("BattleMusic");
+      this.sound.get("BattleMusic").play();
     }
     this.createGroups();
 
@@ -381,12 +381,16 @@ class GameplayScene extends Phaser.Scene {
     );
     //colision de las balas del personaje 2 con las cajas de madera
     this.physics.add.collider(GameManager.woodenCrates, GameManager.bulletGroup2, this.obstacleHit);
+    this.physics.add.overlap(GameManager.woodenCrates, GameManager.bulletGroup2, this.antiCamp);
     //colision de las balas del personaje 1 con las cajas de madera
     this.physics.add.collider(GameManager.woodenCrates, GameManager.bulletGroup1, this.obstacleHit);
+    this.physics.add.overlap(GameManager.woodenCrates, GameManager.bulletGroup1, this.antiCamp);
     //colision de las balas del personaje 2 con las cajas de hierro
     this.physics.add.collider(GameManager.ironCrates, GameManager.bulletGroup2, this.obstacleHit);
-    //colision de las balas del personaje 1 con las cajas de madera
+    this.physics.add.overlap(GameManager.ironCrates, GameManager.bulletGroup2, this.antiCamp);
+    //colision de las balas del personaje 1 con las cajas de hierro
     this.physics.add.collider(GameManager.ironCrates, GameManager.bulletGroup1, this.obstacleHit);
+    this.physics.add.overlap(GameManager.ironCrates, GameManager.bulletGroup1, this.antiCamp);
 
     this.physics.add.collider(GameManager.character.bottomSprite, GameManager.woodenCrates); //colision del personaje 1 con las cajas de madera
     this.physics.add.collider(GameManager.character2.bottomSprite, GameManager.woodenCrates); //colision del personaje 2 con las cajas de madera
@@ -570,5 +574,8 @@ class GameplayScene extends Phaser.Scene {
   obstacleHit(obstacle, bullet) {
     obstacle.getHit(Math.floor(Math.random() * 2 + 1));
     bullet.bounce();
+  }
+  antiCamp(obstacle, bullet){
+    bullet.destroy();
   }
 }
