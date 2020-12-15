@@ -1,56 +1,26 @@
 class GameplayScene extends Phaser.Scene {
   constructor() {
-    super({ key: "GameplayScene" });
-
+    super({
+      key: "GameplayScene",
+    });
     const gm = new GameManager(this);
     this.cursors;
 
     this.pointer;
 
     this.cursors2;
-
-    console.log("GameplayScene#constructor");
   }
 
   init() {
     console.log("GameplayScene#init");
   }
 
-  preload() {
-    console.log("GameplayScene#preload");
-  }
-
   create() {
-    
-    GameManager.bulletGroup1 = this.physics.add.group({
-      classType: Bullet,
-      maxSize: 5,
-      bounceX: 1,
-      bounceY: 1,
-      collideWorldBounds: true,
-    });
-
-
-    GameManager.bulletGroup2 = this.physics.add.group({
-      classType: BulletPlayer2,
-      maxSize: 5,
-      bounceX: 1,
-      bounceY: 1,
-      collideWorldBounds: true,
-    });
-
-    GameManager.woodenCrates = this.physics.add.group({
-      classType: WoodenCrate,
-      immovable: true,
-    });
-    GameManager.ironCrates = this.physics.add.group({
-      classType: IronCrate,
-      immovable: true,
-    });
-    GameManager.pits = this.physics.add.group({
-      classType: Pit,
-      immovable: true,
-    });
+    this.sound.add("BattleMusic");
+    if (!this.sound.get("BattleMusic").isPlaying) {
+      this.sound.play("BattleMusic");
+    }
+    this.createGroups();
 
     //---- Generación de la escena por tiles ----
     var floorArray = [];
@@ -134,22 +104,25 @@ class GameplayScene extends Phaser.Scene {
         }
       }
     }
-
+    this.createUI();
     this.createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2);
     this.createInputs(game.config.localMode);
     this.setColliders();
+
+    this.scene.pause("GameplayScene");
+    this.scene.launch("CountDownScene");
   }
 
   update() {
     this.handleInputs();
+    this.updateUI();
     this.checkGameOver();
   }
 
   //* Funciones de creado
   createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2) {
-
     //Partículas tanque 1.
-    var particles1 = this.add.particles('Particle');
+    var particles1 = this.add.particles("Particle");
 
     var emitter1 = particles1.createEmitter({
         x: posXplayer1,
@@ -185,13 +158,21 @@ class GameplayScene extends Phaser.Scene {
 
     bot.setCollideWorldBounds(true);
 
-    GameManager.character = new Character("Aricato", 1, 180, top, bot, GameManager.bulletGroup1, emitter1);
+    GameManager.character = new Character(
+      "Aricato",
+      1,
+      180,
+      top,
+      bot,
+      GameManager.bulletGroup1,
+      emitter1
+    );
 
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
 
     //Partículas tanque 2.
-    var particles2 = this.add.particles('Particle');
+    var particles2 = this.add.particles("Particle");
 
     var emitter2 = particles2.createEmitter({
         x: posXplayer2,
@@ -204,7 +185,7 @@ class GameplayScene extends Phaser.Scene {
         scale: {min: 0.1, max: 0.5 },
         alpha: {min: 0.1, max: 0.2}
     });
-    
+
     //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);
     var bot2 = this.physics.add.sprite(posXplayer2, posYplayer2, "animationTank1").setScale(0.05);
     var top2 = this.physics.add
@@ -215,12 +196,87 @@ class GameplayScene extends Phaser.Scene {
     bot2.anims.play("tank1_animation");
     bot2.setCollideWorldBounds(true);
 
-    GameManager.character2 = new Character("Tankitty", 2, 0, top2, bot2, GameManager.bulletGroup2, emitter2);
+    GameManager.character2 = new Character(
+      "Tankitty",
+      2,
+      0,
+      top2,
+      bot2,
+      GameManager.bulletGroup2,
+      emitter2
+    );
 
     /*var cam2= this.cameras.add(this.game.renderer.width/2,0,this.game.renderer.width/2,this.game.renderer.height);
     cam2.startFollow(bot2);*/
   }
+  createGroups() {
+    GameManager.bulletGroup1 = this.physics.add.group({
+      classType: Bullet,
+      maxSize: 5,
+      bounceX: 1,
+      bounceY: 1,
+      collideWorldBounds: true,
+    });
 
+    GameManager.bulletGroup2 = this.physics.add.group({
+      classType: BulletPlayer2,
+      maxSize: 5,
+      bounceX: 1,
+      bounceY: 1,
+      collideWorldBounds: true,
+    });
+
+    GameManager.woodenCrates = this.physics.add.group({
+      classType: WoodenCrate,
+      immovable: true,
+    });
+    GameManager.ironCrates = this.physics.add.group({
+      classType: IronCrate,
+      immovable: true,
+    });
+    GameManager.pits = this.physics.add.group({
+      classType: Pit,
+      immovable: true,
+    });
+  }
+
+  createUI() {
+    GameManager.p1HpBar = this.physics.add
+      .image(
+        (this.game.renderer.width * 1.2) / 10,
+        (this.game.renderer.height * 0.4) / 10,
+        "LeftLife6"
+      )
+      .setDepth(999)
+      .setScale(0.2)
+      .setOrigin(0, 0);
+    GameManager.p2HpBar = this.physics.add
+      .image(
+        (this.game.renderer.width * 8.8) / 10,
+        (this.game.renderer.height * 0.4) / 10,
+        "RightLife6"
+      )
+      .setDepth(999)
+      .setScale(0.2)
+      .setOrigin(1, 0);
+
+    var p1Icon = this.add
+      .image(
+        (this.game.renderer.width * 0.8) / 10,
+        (this.game.renderer.height * 0.8) / 10,
+        "PlayerIcon"
+      )
+      .setDepth(1000)
+      .setScale(0.1);
+    var p2Icon = this.add
+      .image(
+        (this.game.renderer.width * 9.2) / 10,
+        (this.game.renderer.height * 0.8) / 10,
+        "PlayerIcon"
+      )
+      .setDepth(1000)
+      .setScale(0.1);
+  }
   createInputs(localMode) {
     if (localMode) {
       this.cursors = this.input.keyboard.addKeys({
@@ -309,9 +365,7 @@ class GameplayScene extends Phaser.Scene {
 
     this.physics.add.collider(GameManager.character.bottomSprite, GameManager.pits); //colision del personaje 1 con los hoyos
     this.physics.add.collider(GameManager.character2.bottomSprite, GameManager.pits); //colision del personaje 2 con los hoyos
-
   }
-
 
   //*Funciones de actualizacion
   handleInputs() {
@@ -404,16 +458,66 @@ class GameplayScene extends Phaser.Scene {
     }
   }
 
+  updateUI() {
+    var hitsLeft = Math.ceil(
+      (Math.ceil(GameManager.character.maxHP / GameManager.character.dmgTakenOnHit) *
+        GameManager.character.healthPoints) /
+        GameManager.character.maxHP
+    );
+    //console.log("1" , hitsLeft);
+    if (hitsLeft <= 0) {
+      GameManager.p1HpBar.destroy();
+    } else {
+      GameManager.p1HpBar.destroy();
+      GameManager.p1HpBar = this.add
+        .image(
+          (this.game.renderer.width * 1.2) / 10,
+          (this.game.renderer.height * 0.4) / 10,
+          "LeftLife" + hitsLeft
+        )
+        .setDepth(999)
+        .setScale(0.2)
+        .setOrigin(0, 0);
+    }
+
+    hitsLeft = Math.ceil(
+      (Math.ceil(GameManager.character2.maxHP / GameManager.character2.dmgTakenOnHit) *
+        GameManager.character2.healthPoints) /
+        GameManager.character2.maxHP
+    );
+    //console.log("2" , hitsLeft);
+    if (hitsLeft <= 0) {
+      GameManager.p2HpBar.destroy();
+    } else {
+      GameManager.p2HpBar.destroy();
+      GameManager.p2HpBar = this.add
+        .image(
+          (this.game.renderer.width * 8.8) / 10,
+          (this.game.renderer.height * 0.4) / 10,
+          "RightLife" + hitsLeft
+        )
+        .setDepth(999)
+        .setScale(0.2)
+        .setOrigin(1, 0);
+    }
+  }
+
   checkGameOver(localMode) {
     if (GameManager.character.healthPoints <= 0) {
       var winner = GameManager.character;
       this.scene.pause();
-      this.scene.launch("VictoryScene", { winner });
+      this.sound.stopByKey("BattleMusic");
+      this.scene.launch("VictoryScene", {
+        winner,
+      });
     }
     if (GameManager.character2.healthPoints <= 0) {
       var winner = GameManager.character2;
       this.scene.pause();
-      this.scene.launch("VictoryScene", { winner });
+      this.sound.stopByKey("BattleMusic");
+      this.scene.launch("VictoryScene", {
+        winner,
+      });
     }
   }
 
@@ -433,7 +537,7 @@ class GameplayScene extends Phaser.Scene {
   }
 
   obstacleHit(obstacle, bullet) {
-    obstacle.getHit(Math.floor(Math.random()*2+1));
+    obstacle.getHit(Math.floor(Math.random() * 2 + 1));
     bullet.bounce();
   }
 }

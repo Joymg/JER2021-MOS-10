@@ -136,7 +136,7 @@ class CharacterSelection extends Phaser.Scene {
     rightCharacButton.setInteractive();
     //efectos al pasar el raton por encima
     rightCharacButton.on("pointerover", () => {
-      rightCharacButton.setTint(0x00a0af);
+      rightCharacButton.setTint(0x202020);
     });
     rightCharacButton.on("pointerout", () => {
       rightCharacButton.setTint();
@@ -192,7 +192,7 @@ class CharacterSelection extends Phaser.Scene {
 
     leftCharacButton.setInteractive();
     leftCharacButton.on("pointerover", () => {
-      leftCharacButton.setTint(0x00a0af);
+      leftCharacButton.setTint(0x202020);
     });
     leftCharacButton.on("pointerout", () => {
       leftCharacButton.setTint();
@@ -272,7 +272,7 @@ class CharacterSelection extends Phaser.Scene {
 
     lockCharac.setInteractive();
     lockCharac.on("pointerover", () => {
-      lockCharac.setTint(0x00a0af);
+      lockCharac.setTint(0x202020);
     });
     lockCharac.on("pointerout", () => {
       lockCharac.setTint();
@@ -291,6 +291,7 @@ class CharacterSelection extends Phaser.Scene {
           this.scene.start("CharacterSelection", { player2Turn, p1Char });
         } else {
           if (this.player2Character) {
+            this.sound.stopByKey("MenuMusic");
             this.scene.start("GameplayScene");
           }
         }
