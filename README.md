@@ -9,8 +9,6 @@ Documento de Diseño
 
 Repositorio en Github: https://github.com/Joymg/JER2021-MOS-10
 
-![Screenshot](.capturas/Captura.png)
-
 ## Introducción:
 Este es el documento de diseño de Tankats. Este juego estará desarrollado para la asignatura de Juegos en Red del grado de Diseño y Desarrollo de Videojuegos de la Universidad Rey Juan Carlos, por el Grupo 10 de la misma. 
 
@@ -40,7 +38,6 @@ A pesar de tratarse de un juego de apariencia cartoon y de dibujos animados, se 
 
 ### 1.7. Estilo visual
 Tankats tendrá un estilo sencillo, sin ser demasiado detallista, para encajar en la idea de amigable y mona de los  gatitos en tanques, por eso el estilo visual más apropiado es el cartoon o de dibujo animado. Tanto los personajes jugables, los tanques y el entorno serán exagerados con colores vivos y de texturas simples.
-
 
 
 ## Mecánicas de juego
@@ -117,7 +114,7 @@ Pantalla dividida:
 -	Teclado: 
 Jugador 1:
 Teclas “WASD” para el movimiento del tanque
-Teclas “F” y “G” para girar el cañon en sentido antihorario y horario respectivamente
+Teclas “C” y “V” para girar el cañon en sentido antihorario y horario respectivamente
 ESPACIO para disparar
 
 Jugador 2:
@@ -128,10 +125,9 @@ Teclas “I” y “P” para girar el cañon en sentido antihorario y horario r
 
 ## Interfaz 
 - **Menú principal:** 
-    - Buscar partida
-    - Partida local
+    - Jugar
     - Configuración.
-    - Salir del juego
+    - Creditos
 - **Selección de personajes:** 
     - Seleccionar gato.
     - Flechas para visualizar a todos los gatos.
@@ -153,16 +149,12 @@ Teclas “I” y “P” para girar el cañon en sentido antihorario y horario r
     - Revancha.
 - **Configuración:**
     - Ajustes de sonido: 
-        - Ajustar el volumen de la música.
-        - Ajustar el volumen de los efectos de sonido.
         - Mutear la música.
         - Mutear los efectos de sonido.
     - Cambiar de idioma.
         - Español.
         - Inglés.
-    - Créditos.
-        - Cerrar créditos.
-    - Tutorial.
+    - Tutorial (Aun no implementado).
         - Salir del tutorial.
 
 
@@ -171,14 +163,14 @@ El siguiente diagrama de flujo muestra las pantallas posibles y los accesos entr
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Flowchat.png?raw=true)
 
 ### 3.2. Menu principal
-En el menú principal hay un botón de buscar partida, el cual inicia una partida con todo lo que ello conlleva (elegir personaje, comenzar la partida, jugar etc), uno de partida local, otro de ajustes y un último botón con una confirmación necesaria para salir del juego.
+En el menú principal hay un botón de jugar, el cual inicia una partida local con todo lo que ello conlleva (elegir personaje, comenzar la partida, jugar etc), otro de ajustes y un último botón que nos lleva a los creditos.
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Mainscreen.png?raw=true)
 
 ### 3.3. Créditos
-Animada pantalla en la que se pueden ver los créditos del juego, así como información adicional.
+Pantalla en la que se pueden ver los créditos del juego, así como información adicional.
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/Credits.png?raw=true)
 
-### 3.4. Selección de partida
+### 3.4. Selección de partida (Modo online aun no implementado)
 En la pantalla de selección de personaje se podrá elegir modo de partida, emparejado con gente aleatoria que esté buscando partida o creando una partida o buscándola con un código. En el caso de que sea una partida local, saltará directamente la pantalla de selección de personajes.
 
 ### 3.5. Selección de personaje
@@ -207,15 +199,35 @@ Durante la partida se podrá acceder a una pantalla de pausa. En ella se podrá 
 
 ### 4.2. Audio 
 - Música ambiente: 
-    - Un único tema para los menús.
-    - Tema mapa 1.
-    - Tema mapa 2.
-    - Tema mapa 3.
+    - Un tema para los menús.
+    - Un tema para las partidas
+    
 - Efectos de sonido:
     - Varios sonidos de disparo de bala.
     - Sonido de impacto de bala con un personaje.
     - Sonido de impacto de bala con un objeto/pared.
     - Sonido cuando se hiere a un personaje.
-    - Sonido cuando se pulsa un botón en los menús.
     - Sonido cuando se coge un power up o power down.
+
+## Fase 2:
+### 5.1 Capturas
+
+#### 1
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura.PNG)
+Este es el menú principal, desde aqui podemos acceder a la configuración, a los créditos o empezar una partida
+
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura2.PNG)
+Esta es la pantalla de configuración, desde aquí se puede "mutear" el juego o cambiar el idioma (aun no implementado al 100%)
+
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura3.PNG)
+Esta es la pantalla de créditos, donde aparecen los nombres y fotos de los desarrolladores del videojuego. 
+
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura4.PNG)
+Esta es la pantalla de selección de personaje, actualmente solo hay un gato implementado, pero en el juego se pueden diferenciar los jugadores por tintes en el sprite. Primero escoje el jugador 1 (que controla con WASD) y por último el jugador 2 (que controla con las flechas).
+
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura5.PNG)
+Esta es la pantalla de gameplay, el mapa en cada partida se escoje aleatoriamente de una pool. Arriba se puede ver la vida de cada jugador y si ha cogido algun Power Up.
+
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura6.PNG)
+Esta es la pantalla de victoria, en la cual se nos presentan las opciones de volver al menú o volver a jugar en el mismo mapa y con los mismos personajes.
 
