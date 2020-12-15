@@ -31,7 +31,7 @@ class VictoryScene extends Phaser.Scene {
 
     //boton de rematch
     let rematchButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "Purple_TextBox")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "VolverAJugar")
       .setScale(0)
       .setActive(false)
       .setVisible(false);

@@ -48,20 +48,20 @@ class MainMenu extends Phaser.Scene {
     //Boton de buscar partida
     let findGameButton = this.add.image(
       this.game.renderer.width / 2,
-      (this.game.renderer.height * 3.1) / 5,
+      (this.game.renderer.height * 3) / 5,
       "play"
-    ).setScale(.3);
+    ).setScale(0.35);
 
     findGameButton.setInteractive();
 
     //efectos al pasar el raton por encima
     findGameButton.on("pointerover", () => {
       findGameButton.setTint(0x909090);
-      findGameButton.setScale(.32);
+      findGameButton.setScale(0.33);
     });
     findGameButton.on("pointerout", () => {
       findGameButton.setTint();
-      findGameButton.setScale(.3);
+      findGameButton.setScale(0.35);
     });
 
     //al pulsar el boton carga la escena de seleccion de personaje
