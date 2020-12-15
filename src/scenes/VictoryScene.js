@@ -12,10 +12,57 @@ class VictoryScene extends Phaser.Scene {
     //Si se ha elegido el modo local
     if (game.config.localMode) {
       //añade el jugador que ha ganado
+      var confeti1;
+      var confeti2;
+      var confeti3;
       if (this.winner ==1) {
+        var fade = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"Fade").setScale(1.5);
+
+        //Confeti
+        confeti1 = this.add.particles("confeti1");
+        confeti2 = this.add.particles("confeti2");
+        confeti3 = this.add.particles("confeti3");
+        var emitter1 = confeti1.createEmitter({
+        x: 200, y: -200, gravityY: 30, rotate: {min: 30, max: 240}, speed: 200,
+        lifespan: { min: 5000, max: 10000 }, scale: {min: 0.1, max: 0.5 },
+        blendMode: 'ADD'
+        });
+        var emitter2 = confeti2.createEmitter({
+          x: 500, y: -200, gravityY: 30, rotate: {min: 30, max: 240}, speed: 200,
+          lifespan: { min: 5000, max: 10000 }, scale: {min: 0.1, max: 0.5 },
+          blendMode: 'ADD'
+        });
+        var emitter3 = confeti3.createEmitter({
+          x: 800, y: -200, gravityY: 30, rotate: {min: 30, max: 240}, speed: 200,
+          lifespan: { min: 5000, max: 10000 }, scale: {min: 0.1, max: 0.5 },
+          blendMode: 'ADD'
+        });
+
         var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ1").setScale(0);
       }
       else if(this.winner==2){
+        var fade = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"Fade").setScale(1.5);
+
+        //Confeti
+        confeti1 = this.add.particles("confeti1");
+        confeti2 = this.add.particles("confeti2");
+        confeti3 = this.add.particles("confeti3");
+        var emitter1 = confeti1.createEmitter({
+          x: 200, y: -200, gravityY: 30, rotate: {min: 30, max: 240}, speed: 200,
+          lifespan: { min: 5000, max: 10000 }, scale: {min: 0.1, max: 0.5 },
+          blendMode: 'ADD'
+          });
+          var emitter2 = confeti2.createEmitter({
+            x: 500, y: -200, gravityY: 30, rotate: {min: 30, max: 240}, speed: 200,
+            lifespan: { min: 5000, max: 10000 }, scale: {min: 0.1, max: 0.5 },
+            blendMode: 'ADD'
+          });
+          var emitter3 = confeti3.createEmitter({
+            x: 800, y: -200, gravityY: 30, rotate: {min: 30, max: 240}, speed: 200,
+            lifespan: { min: 5000, max: 10000 }, scale: {min: 0.1, max: 0.5 },
+            blendMode: 'ADD'
+          });
+          
         var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ2").setScale(0);
       }
       /* var playerText = this.add.text(100, 100, "Player " + this.winner, { font: "75px" });
