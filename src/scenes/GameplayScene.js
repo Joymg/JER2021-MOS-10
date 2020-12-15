@@ -1,3 +1,28 @@
+var text;
+var textUI;
+var timer = -1;
+var speedUp;
+var speedDown;
+var shield;
+var touched = false;
+var timerCreated = false;
+
+var text2;
+var textUI2;
+var timer2 = -1;
+var speedUp2;
+var speedDown2;
+var shield2;
+var touched2 = false;
+var timerCreated2 = false;
+
+var timerItem = -1;
+var timerItemCreated = false;
+var itemDestroyed = false;
+
+var powerUpCollider1;
+var powerUpCollider2;
+
 class GameplayScene extends Phaser.Scene {
   constructor() {
     super({
@@ -44,6 +69,10 @@ class GameplayScene extends Phaser.Scene {
     var posYplayer1;
     var posXplayer2;
     var posYplayer2;
+
+    //Posición powerUp
+    var posXitem1;
+    var posYitem1;
 
     //Lee el fichero de texto con la disposición de las tiles.
     var levelrandom = Math.round(Math.random() * (5 - 1) + 1);
@@ -94,6 +123,8 @@ class GameplayScene extends Phaser.Scene {
           //PowerUp.
           case "3":
             this.add.sprite(posXFloor, posYFloor, name);
+            posXitem1 = posXFloor;
+            posYitem1 = posYFloor;
             break;
           //Obstáculos de hierro.
           case "4":
@@ -112,12 +143,24 @@ class GameplayScene extends Phaser.Scene {
       }
     }
     this.createUI();
-    this.createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2);
+    this.createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2, posXitem1, posYitem1);
     this.createInputs(game.config.localMode);
     this.setColliders();
+    
+    textUI2 = this.add.image(1152, 220, "TimeRight").setScale(0.17);
+    text2 = this.add.text(1033, 154, '', {fontFamily: 'Arial', fontSize: '50px', fontStyle: 'Bold', color: '#D1CFBD'});
+    speedUp2 = this.add.image(960, 112, "SpeedUp").setVisible(false).setScale(0.55);
+    speedDown2 = this.add.image( 213, 117, "SpeedDown").setVisible(false).setScale(0.6);
+    shield2 = this.add.image(870, 115, "Shield").setVisible(false).setScale(0.6);
+
+    textUI = this.add.image(205, 220, "TimeLeft").setScale(0.17);
+    text = this.add.text(70, 154, '', {fontFamily: 'Arial', fontSize: '50px', fontStyle: 'Bold', color: '#D1CFBD'});
+    speedUp = this.add.image(168, 112, "SpeedUp").setVisible(false).setScale(0.55);
+    speedDown = this.add.image(915, 117, "SpeedDown").setVisible(false).setScale(0.6);
+    shield = this.add.image(258, 115, "Shield").setVisible(false).setScale(0.6);
 
     this.paused = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-
+    
     this.scene.pause("GameplayScene");
     this.scene.launch("CountDownScene");
     this.time.delayedCall(3000, () => {
@@ -126,10 +169,15 @@ class GameplayScene extends Phaser.Scene {
   }
 
   update() {
+      this.countdown(touched);
+      this.countdown2(touched2);
+      this.spawnItem(itemDestroyed);
     if (this.paused.isDown) {
       this.scene.launch("PauseMenu");
       this.paused.isDown = false;
       this.scene.pause();
+
+
     }
 
     this.handleInputs();
@@ -138,7 +186,7 @@ class GameplayScene extends Phaser.Scene {
   }
 
   //* Funciones de creado
-  createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2) {
+  createCharacters(posXplayer1, posYplayer1, posXplayer2, posYplayer2, posXitem1, posYitem1) {
     //Partículas tanque 1.
     var particles1 = this.add.particles("Particle");
     var particles2 = this.add.particles("emitter3");
@@ -208,6 +256,44 @@ class GameplayScene extends Phaser.Scene {
 
     /*var cam = this.cameras.main.setSize(this.game.renderer.width/2,this.game.renderer.height);
     cam.startFollow(bot);*/
+
+    //POWERUPS
+    var powerUpItem = this.physics.add.sprite(posXitem1, posYitem1, "SpeedUp");
+    this.anims.create({
+      key: "SpeedUp_animation",
+      frames: this.anims.generateFrameNumbers("SpeedUp", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+      frameRate: 7,
+    }); 
+    this.anims.create({
+      key: "SpeedDown_animation",
+      frames: this.anims.generateFrameNumbers("SpeedDown", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+      frameRate: 7,
+    });    
+    this.anims.create({
+      key: "Shield_animation",
+      frames: this.anims.generateFrameNumbers("Shield", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+      frameRate: 7,
+    });       
+    powerUpItem.anims.play("SpeedUp_animation");
+    GameManager.item1 = new Item(
+      posXitem1,
+      posYitem1,
+      powerUpItem,
+      0
+    );
+
 
     //Partículas tanque 2.
     var emitter2 = particles1.createEmitter({
@@ -412,6 +498,11 @@ class GameplayScene extends Phaser.Scene {
     //colision entre balas del personaje 2
     this.physics.add.overlap(GameManager.bulletGroup2, GameManager.bulletGroup2, this.bulletsHit);
 
+       //colision de personaje 1 con power up
+       powerUpCollider1 = this.physics.add.overlap(GameManager.character.bottomSprite, GameManager.item1.sprite, this.checkItem);
+       //colision de personaje 2 con power up
+       powerUpCollider2 = this.physics.add.overlap(GameManager.character2.bottomSprite, GameManager.item1.sprite, this.checkItem2);
+
     //colision entre tankes
     this.physics.add.collider(
       GameManager.character.bottomSprite,
@@ -594,13 +685,111 @@ class GameplayScene extends Phaser.Scene {
     }
   }
 
+  countdown(touched){
+    if(touched === true){
+      if(timerCreated === false){
+        timer = this.time.addEvent({      
+          delay: 10000,
+        });  
+        timerCreated = true;
+      }else if(timerCreated === true){
+        text.setText(Math.floor(0.001 * (timer.delay - timer.elapsed)));
+        if(timer.delay - timer.elapsed === 0){                     
+          timer = -1;
+          touched = false;                   
+          if(speedUp.setVisible){
+            speedUp.setVisible(false);
+            GameManager.character2.velocity = 200;
+                         
+          }if(speedDown.setVisible){
+            speedDown.setVisible(false);
+            GameManager.character.velocity = 200;
+            
+          }              
+        }    
+      }
+    }
+  } 
+
+  countdown2(touched2){
+    if(touched2 === true){
+      if(timerCreated2 === false){
+        timer2 = this.time.addEvent({      
+          delay: 10000,
+        });  
+        timerCreated2 = true;
+      }else if(timerCreated2 === true){
+        text2.setText(Math.floor(0.001 * (timer2.delay - timer2.elapsed)));        
+        if(timer2.delay - timer2.elapsed === 0){
+          timer2 = -1;
+          touched2 === false;                 
+          if(speedUp2.setVisible){
+            speedUp2.setVisible(false);
+            GameManager.character2.velocity = 200;                        
+          }
+          if(speedDown2.setVisible){
+            speedDown2.setVisible(false);
+            GameManager.character.velocity = 200; 
+            
+          }
+        }   
+      } 
+    }    
+  }
+  
+
+
+  spawnItem(itemDestroyed){
+    if(itemDestroyed === true){
+      if(timerItemCreated === false){
+        timerItem = this.time.addEvent({      
+          delay: 11000,
+        });  
+        timerItemCreated = true;
+      }else if((timerItem.delay - timerItem.elapsed) === 0){  
+        timerItem = -1;
+        var randomValue = Math.round(Math.random()*2);
+        itemDestroyed = false;
+        switch (randomValue){
+          case 0:           
+            powerUpCollider1 = this.physics.add.overlap(GameManager.character.bottomSprite, GameManager.item1.sprite, this.checkItem);
+            powerUpCollider2 = this.physics.add.overlap(GameManager.character2.bottomSprite, GameManager.item1.sprite, this.checkItem2);
+            GameManager.item1.sprite = this.physics.add.sprite(GameManager.item1.xPos, GameManager.item1.yPos, "SpeedUp");
+            GameManager.item1.sprite.anims.play("SpeedUp_animation");
+            GameManager.item1.id = 0;            
+            break;
+          case 1:           
+            powerUpCollider1 = this.physics.add.overlap(GameManager.character.bottomSprite, GameManager.item1.sprite, this.checkItem);
+            powerUpCollider2 = this.physics.add.overlap(GameManager.character2.bottomSprite, GameManager.item1.sprite, this.checkItem2);
+            GameManager.item1.sprite = this.physics.add.sprite(GameManager.item1.xPos, GameManager.item1.yPos, "SpeedDown");
+            GameManager.item1.sprite.anims.play("SpeedDown_animation");
+            GameManager.item1.id = 1;            
+            break;
+          case 2:           
+            powerUpCollider1 = this.physics.add.overlap(GameManager.character.bottomSprite, GameManager.item1.sprite, this.checkItem);
+            powerUpCollider2 = this.physics.add.overlap(GameManager.character2.bottomSprite, GameManager.item1.sprite, this.checkItem2);
+            GameManager.item1.sprite = this.physics.add.sprite(GameManager.item1.xPos, GameManager.item1.yPos, "Shield");
+            GameManager.item1.sprite.anims.play("Shield_animation");
+            GameManager.item1.id = 2;
+            break;
+        }            
+      }
+    }
+  }
+
   //Funciones de colisiones
   tankHit1(tank, bullet) {
     GameManager.character.getHit();
+    if(GameManager.character.shield === 0){
+      shield.setActive(false);
+    }
     bullet.destroy();
   }
   tankHit2(tank, bullet) {
     GameManager.character2.getHit();
+    if(GameManager.character2.shield === 0){
+      shield2.setActive(false);
+    }
     bullet.destroy();
   }
 
@@ -615,5 +804,90 @@ class GameplayScene extends Phaser.Scene {
   }
   antiCamp(obstacle, bullet) {
     bullet.destroy();
+  }
+  checkItem(character, item1){    
+    switch(GameManager.item1.id){
+      case 0:
+       
+          GameManager.character.velocity = 350;
+          GameManager.item1.sprite.setScale(0);
+          powerUpCollider1.destroy();
+          powerUpCollider2.destroy();
+          speedUp.setVisible(true);
+          touched = true;
+          timerCreated = false;  
+          timerItemCreated = false;
+          itemDestroyed = true; 
+          
+        
+        break;
+      case 1:
+        
+          GameManager.character2.velocity = 100;
+          GameManager.item1.sprite.setScale(0);
+          powerUpCollider1.destroy();
+          powerUpCollider2.destroy();
+          speedDown.setVisible(true);
+          touched = true;
+          timerCreated2 = false; 
+          timerItemCreated = false;  
+          itemDestroyed = true;
+         
+        
+        break;
+      case 2:
+        GameManager.character.shield = 30;
+        GameManager.item1.sprite.setScale(0);
+        powerUpCollider1.destroy();
+        powerUpCollider2.destroy();
+        shield.setVisible(true);
+        timerItemCreated = false;
+        itemDestroyed = true; 
+        break;
+    
+  }
+}
+    
+checkItem2(Item){
+  
+    switch(GameManager.item1.id){
+      case 0:
+        
+          GameManager.character2.velocity = 350;
+          GameManager.item1.sprite.setScale(0);
+          powerUpCollider1.destroy();
+          powerUpCollider2.destroy();
+          speedUp2.setVisible(true);
+          touched2 = true;
+          timerCreated2 = false; 
+          timerItemCreated = false; 
+          itemDestroyed = true;
+         
+        
+        break;
+      case 1:
+        
+          GameManager.character.velocity = 100;
+          GameManager.item1.sprite.setScale(0);
+          powerUpCollider1.destroy();
+          powerUpCollider2.destroy();
+          speedDown2.setVisible(true);
+          touched2 = true;
+          timerCreated = false; 
+          timerItemCreated = false;  
+          itemDestroyed = true;
+          
+        
+        break;
+      case 2:
+        GameManager.character2.shield = 30;
+        GameManager.item1.sprite.setScale(0);
+        powerUpCollider1.destroy();
+        powerUpCollider2.destroy();
+        shield2.setVisible(true);
+        timerItemCreated = false;
+        itemDestroyed = true; 
+        break;
+    }   
   }
 }
