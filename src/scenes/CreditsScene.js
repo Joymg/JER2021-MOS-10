@@ -5,15 +5,15 @@ class CreditsScene extends Phaser.Scene {
   }
 
   create() {
+   
     var background = this.add
       .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
       .setScale(1.5);
 
-    var title = this.add
-      .text(this.game.renderer.width / 2, (this.game.renderer.height * 0.5) / 5, "Credits", {
-        font: "50px",
-      })
-      .setOrigin(0.5);
+      var tittle = this.add
+      .image(this.game.renderer.width/2, this.game.renderer.height*0.1 ,"Creditos").
+      setScale(0.5);
+  
 
     var schair = this.add
       .text((this.game.renderer.width * 1) /6, (game.renderer.height * 1.5) / 5, "Schair Álvarez \n    Maniega", {
