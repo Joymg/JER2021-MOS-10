@@ -132,6 +132,18 @@ class Loader extends Phaser.Scene {
     this.load.image("confeti1", "../assets/Confeti1.png");
     this.load.image("confeti2", "../assets/Confeti2.png");
     this.load.image("confeti3", "../assets/Confeti3.png");
+    this.load.spritesheet("SpeedUp", "../assets/PUVelMas.png", {
+      frameWidth: 94,
+      frameHeight: 94
+    });
+    this.load.spritesheet("SpeedDown", "../assets/PUVelMen.png", {
+      frameWidth: 94,
+      frameHeight: 94
+    });
+    this.load.spritesheet("Shield", "../assets/PUEsc.png", {
+      frameWidth: 94,
+      frameHeight: 94
+    });
 
     //Elementos del UI
     this.load.image("LeftLife1", "../assets/IU/LeftLife1.png");
@@ -151,6 +163,8 @@ class Loader extends Phaser.Scene {
     this.load.image("jugador1", "../assets/jugador1.png");
     this.load.image("jugador2", "../assets/jugador2.png");
     this.load.image("MarcoPausa", "../assets/MarcoPausa.png");
+    this.load.image("TimeLeft", "../assets/IU/PUTimeLeft.png");
+    this.load.image("TimeRight", "../assets/IU/PUTimeRight.png");
 
     //Elementos de Texto
     this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");

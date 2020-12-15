@@ -1,5 +1,11 @@
-class Item extends Phaser.Physics.Arcade.Image{
-    constructor(scene,xPos,yPos,sprite){
-        super(scene,xPos,yPos,sprite);
+class Item {
+    constructor(xPos,yPos,sprite,id){
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.sprite = sprite;
+        this.id = id;
+        
+        
+
     }
 }

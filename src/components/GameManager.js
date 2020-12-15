@@ -15,4 +15,5 @@ class GameManager{
 
     static p1HpBar;
     static p2HpBar;
+    static item1;
 }

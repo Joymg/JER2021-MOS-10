@@ -21,30 +21,33 @@ class Character {
 
     this.emitter = emitter;
     this.emitter2 = emitter2;
+
+    this.velocity = 200;
+    this.shield = 0;
   }
 
   //Movimiento
   moveUp() {
-    this.topSprite.setVelocityY(-200);
-    this.bottomSprite.setVelocityY(-200);
+    this.topSprite.setVelocityY(-this.velocity);
+    this.bottomSprite.setVelocityY(-this.velocity);
     
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveDown() {
-    this.topSprite.setVelocityY(200);
-    this.bottomSprite.setVelocityY(200);
+    this.topSprite.setVelocityY(this.velocity);
+    this.bottomSprite.setVelocityY(this.velocity);
 
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveLeft() {
-    this.topSprite.setVelocityX(-200);
-    this.bottomSprite.setVelocityX(-200);
+    this.topSprite.setVelocityX(-this.velocity);
+    this.bottomSprite.setVelocityX(-this.velocity);
 
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveRight() {
-    this.topSprite.setVelocityX(200);
-    this.bottomSprite.setVelocityX(200);
+    this.topSprite.setVelocityX(this.velocity);
+    this.bottomSprite.setVelocityX(this.velocity);
     this.bottomSprite.setAngle(this.movementDir);
   }
   stopX() {
@@ -91,9 +94,13 @@ class Character {
   }
 
   getHit() {
-    this.healthPoints -= this.dmgTakenOnHit;
-    GameManager.scene.sound.play("catDamage"+ this.id)
-    console.log(this.healthPoints);
+    if(this.shield === 0){
+      this.healthPoints -= this.dmgTakenOnHit;
+      GameManager.scene.sound.play("catDamage"+ this.id)
+      console.log(this.healthPoints);
+    }else{
+      this.shield -= 10;
+    }
   }
 
 }
