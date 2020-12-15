@@ -20,12 +20,12 @@ class CharacterSelection extends Phaser.Scene {
       background = this.add
         .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
         .setTint(0xf23456)
-        .setScale(1.4);
+        .setScale(1.5);
     } else {
       background = this.add
         .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
         .setTint(0x65432f)
-        .setScale(1.4);
+        .setScale(1.5);
     }
 
     //Carousel
@@ -136,10 +136,12 @@ class CharacterSelection extends Phaser.Scene {
     rightCharacButton.setInteractive();
     //efectos al pasar el raton por encima
     rightCharacButton.on("pointerover", () => {
-      rightCharacButton.setTint(0x202020);
+      rightCharacButton.setTint(0x909090);
+      rightCharacButton.setScale(0.32);
     });
     rightCharacButton.on("pointerout", () => {
       rightCharacButton.setTint();
+      rightCharacButton.setScale(0.3);
     });
     //al pulsar el boton rota el carrousel hacia la derecha
     rightCharacButton.on("pointerdown", () => {
@@ -192,10 +194,12 @@ class CharacterSelection extends Phaser.Scene {
 
     leftCharacButton.setInteractive();
     leftCharacButton.on("pointerover", () => {
-      leftCharacButton.setTint(0x202020);
+      leftCharacButton.setTint(0x909090);
+      leftCharacButton.setScale(0.32);
     });
     leftCharacButton.on("pointerout", () => {
       leftCharacButton.setTint();
+      leftCharacButton.setScale(0.3);
     });
     leftCharacButton.on("pointerdown", () => {
       poly.points.forEach((p, index) => {
@@ -272,10 +276,14 @@ class CharacterSelection extends Phaser.Scene {
 
     lockCharac.setInteractive();
     lockCharac.on("pointerover", () => {
-      lockCharac.setTint(0x202020);
+      lockCharac.setTint(0x909090);
+      lockCharac.setScale(0.32);
+
     });
     lockCharac.on("pointerout", () => {
       lockCharac.setTint();
+      lockCharac.setScale(0.3);
+
     });
     lockCharac.on("pointerdown", () => {
       if (!this.player1locked) {

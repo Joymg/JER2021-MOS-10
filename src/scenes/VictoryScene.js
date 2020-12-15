@@ -36,7 +36,7 @@ class VictoryScene extends Phaser.Scene {
 
     //efectos al pasar el raton por encima
     rematchButton.on("pointerover", () => {
-      rematchButton.setTint(0x202020);
+      rematchButton.setTint(0x909090);
     });
     rematchButton.on("pointerout", () => {
       rematchButton.setTint();
@@ -60,7 +60,7 @@ class VictoryScene extends Phaser.Scene {
     mainMenuButton.setInteractive();
     //efectos al pasar el raton por encima
     mainMenuButton.on("pointerover", () => {
-      mainMenuButton.setTint(0x202020);
+      mainMenuButton.setTint(0x909090);
     });
     mainMenuButton.on("pointerout", () => {
       mainMenuButton.setTint();

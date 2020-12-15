@@ -8,34 +8,34 @@ class SettingsMenu extends Phaser.Scene {
     console.log("ConfigMenu#init");
   }
 
-  preload() {
-
-  }
+  preload() {}
 
   create() {
-    var background = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2, "sky").setTint(0x654321).setScale(1.3);
-    var title = this.add.text(
-      this.game.renderer.width / 2, (this.game.renderer.height * 0.5) / 5,
-      "Settings",
-      { font: "50px" }
-    ).setOrigin(0.5);
+    var background = this.add
+      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
+      .setTint(0x987654)
+      .setScale(1.5);
+    var title = this.add
+      .text(this.game.renderer.width / 2, (this.game.renderer.height * 0.5) / 5, "Settings", {
+        font: "50px",
+      })
+      .setOrigin(0.5);
 
-    let muteMusicButton = this.add
-      .image(
-        (this.game.renderer.width * 1.6) / 2,
-        (this.game.renderer.height * 1.5) / 5 + 10,
-        "muteUp"
-      );
-      muteMusicButton.scale = 0.15;
-      muteMusicButton.setInteractive();
-      muteMusicButton.on("pointerdown", () => {
-        this.game.sound.mute = !this.game.sound.mute;
-        if (this.game.sound.mute) {
-          muteMusicButton.setTexture("muteDown");
-        } else {
-          muteMusicButton.setTexture("muteUp");
-        }
-      });
+    let muteMusicButton = this.add.image(
+      (this.game.renderer.width * 1.6) / 2,
+      (this.game.renderer.height * 1.5) / 5 + 10,
+      "muteUp"
+    );
+    muteMusicButton.setScale(0.1);
+    muteMusicButton.setInteractive();
+    muteMusicButton.on("pointerdown", () => {
+      this.game.sound.mute = !this.game.sound.mute;
+      if (this.game.sound.mute) {
+        muteMusicButton.setTexture("muteDown");
+      } else {
+        muteMusicButton.setTexture("muteUp");
+      }
+    });
 
     var muteMusicText = this.add.text(
       (this.game.renderer.width * 0.2) / 2,
@@ -68,7 +68,6 @@ class SettingsMenu extends Phaser.Scene {
     );
     muteSEText.depth = 1;*/
 
-
     var languageText = this.add.text(
       (this.game.renderer.width * 0.2) / 2,
       (this.game.renderer.height * 3) / 5,
@@ -81,21 +80,24 @@ class SettingsMenu extends Phaser.Scene {
     let backButton = this.add.image(
       (this.game.renderer.width * 9) / 10,
       this.game.renderer.height / 8,
-      "back"
+      "Button_Back"
     );
-    backButton.scale = 0.09;
+    backButton.setScale(0.3);
 
     backButton.setInteractive();
     //efectos al pasar el raton por encima
     backButton.on("pointerover", () => {
-      backButton.setTint(0x202020);
+      backButton.setTint(0x909090);
+      backButton.setScale(0.32);
+
     });
     backButton.on("pointerout", () => {
       backButton.setTint();
+      backButton.setScale(0.3);
+
     });
     //al pulsar el boton te devuelve al menu pricipal
     backButton.on("pointerdown", () => {
-
       this.scene.start("MainMenu");
     });
   }

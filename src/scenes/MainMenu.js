@@ -8,7 +8,6 @@ class MainMenu extends Phaser.Scene {
     if (!this.sound.get("MenuMusic").isPlaying) {
       this.sound.play("MenuMusic");
     }
-  
     var background = this.add
       .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backTankats")
       .setScale(1.5);

@@ -111,6 +111,9 @@ class GameplayScene extends Phaser.Scene {
 
     this.scene.pause("GameplayScene");
     this.scene.launch("CountDownScene");
+    this.time.delayedCall(3000, () => {
+      this.scene.stop("CountDownScene");
+    });
   }
 
   update() {
