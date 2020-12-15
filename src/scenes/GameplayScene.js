@@ -155,11 +155,12 @@ class GameplayScene extends Phaser.Scene {
         x: posXplayer1,
         y: posYplayer1,
         angle: { min: -80, max: 80 },
+        rotate: {min: 30, max: 240},
         speed: 50,
-        lifespan: { min: 1000, max: 2000 },
+        lifespan: { min: 500, max: 1000 },
         frequency: 100,
-        scale: {min: 0.3, max: 1 },
-        alpha: {min: 0.3, max: 1}
+        scale: {min: 0.1, max: 0.5 },
+        alpha: {min: 0.1, max: 0.2}
     });
 
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
@@ -182,7 +183,6 @@ class GameplayScene extends Phaser.Scene {
 
     bot.anims.play("tank1_animation");
 
-
     bot.setCollideWorldBounds(true);
 
     GameManager.character = new Character("Aricato", 1, 180, top, bot, GameManager.bulletGroup1, emitter1);
@@ -197,11 +197,12 @@ class GameplayScene extends Phaser.Scene {
         x: posXplayer2,
         y: posYplayer2,
         angle: { min: 100, max: 260 },
+        rotate: {min: 30, max: 240},
         speed: 50,
-        lifespan: { min: 1000, max: 2000 },
+        lifespan: { min: 500, max: 1000 },
         frequency: 100,
-        scale: {min: 0.3, max: 1 },
-        alpha: {min: 0.3, max: 1}
+        scale: {min: 0.1, max: 0.5 },
+        alpha: {min: 0.1, max: 0.2}
     });
     
     //var bot2 = this.physics.add.sprite(200, 300, "bottomSprite").setScale(0.05);

@@ -9,7 +9,6 @@ class BulletPlayer2 extends Phaser.Physics.Arcade.Sprite {
     this.bounces = 2;
 
     this.speed =250;
-
   }
 
   fire(x, y, angle) {
