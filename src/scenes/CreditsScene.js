@@ -52,7 +52,7 @@ class CreditsScene extends Phaser.Scene {
       .setScale(0.08);
 
       var Marta = this.add
-      .image((this.game.renderer.width * 2) / 6, (game.renderer.height * 3.2) / 5, "Marta")
+      .image((this.game.renderer.width * 4) / 6, (game.renderer.height * 3.2) / 5, "Marta")
       .setOrigin(0.5)
       .setScale(0.5);
     var MartaIcon = this.add
