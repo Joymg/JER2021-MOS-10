@@ -314,7 +314,12 @@ class GameplayScene extends Phaser.Scene {
       .setDepth(999)
       .setScale(0.2)
       .setOrigin(1, 0);
-
+    var p1Name=this.add
+    .image(
+      (this.game.renderer.width * 2.5) / 10,
+      (this.game.renderer.height * 0.4) / 10,
+      "jugador1"
+    );
     var p1Icon = this.add
       .image(
         (this.game.renderer.width * 0.8) / 10,
@@ -324,6 +329,13 @@ class GameplayScene extends Phaser.Scene {
       .setDepth(1000)
       .setScale(0.1)
       .setTint(this.tint1);
+
+      var p1Name=this.add
+    .image(
+      (this.game.renderer.width * 7.5) / 10,
+      (this.game.renderer.height * 0.4) / 10,
+      "jugador2"
+    );
     var p2Icon = this.add
       .image(
         (this.game.renderer.width * 9.2) / 10,
@@ -565,7 +577,7 @@ class GameplayScene extends Phaser.Scene {
 
   checkGameOver(localMode) {
     if (GameManager.character.healthPoints <= 0) {
-      var winner = GameManager.character;
+      var winner = GameManager.character2;
       this.scene.pause();
       this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {
@@ -573,7 +585,7 @@ class GameplayScene extends Phaser.Scene {
       });
     }
     if (GameManager.character2.healthPoints <= 0) {
-      var winner = GameManager.character2;
+      var winner = GameManager.character1;
       this.scene.pause();
       this.sound.stopByKey("BattleMusic");
       this.scene.launch("VictoryScene", {

@@ -7,8 +7,8 @@ class PauseMenu extends Phaser.Scene {
 
   create() {
     var background = this.add
-      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backSelec")
-      .setScale(0.8);
+      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "MarcoPausa")
+      .setScale(1.2);
 
     this.paused = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
@@ -53,10 +53,10 @@ class PauseMenu extends Phaser.Scene {
       .setScale(0.3);
 
     let backToMenuButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 7.5) / 10, "Pink_TextBox")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 8) / 10, "Pink_TextBox")
       .setScale(0.3);
     let backToMenuText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 7.5) / 10, "IrAlTitulo")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 8) / 10, "IrAlTitulo")
       .setScale(0.3);
 
     backToMenuButton.setInteractive();
@@ -78,8 +78,8 @@ class PauseMenu extends Phaser.Scene {
     });
 
     let backButton = this.add.image(
-      (this.game.renderer.width * 8.3) / 10,
-      (this.game.renderer.height * 2) / 10,
+      (this.game.renderer.width * 8.9) / 10,
+      (this.game.renderer.height * 1.7) / 10,
       "Button_Back"
     );
     backButton.setScale(0.25);

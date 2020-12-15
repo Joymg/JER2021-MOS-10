@@ -143,6 +143,10 @@ class Loader extends Phaser.Scene {
     this.load.image("RightLife6", "../assets/IU/RightLife6.png");
     this.load.image("PlayerIcon", "../assets/IU/PlayerIcon.png");
     this.load.image("Fade", "../assets/Fade.png");
+    this.load.image("jugador1", "../assets/jugador1.png");
+    this.load.image("jugador2", "../assets/jugador2.png");
+    this.load.image("MarcoPausa", "../assets/MarcoPausa.png");
+
 
 
     //Elementos de Texto

@@ -9,7 +9,7 @@ class VictoryScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "Fade");
+    this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "MarcoPausa");
     //Si se ha elegido el modo local
     if (game.config.localMode) {
       //añade el jugador que ha ganado
@@ -31,7 +31,7 @@ class VictoryScene extends Phaser.Scene {
 
     //boton de rematch
     let rematchButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "VolverAJugar")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.2) / 5, "Purple_TextBox")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
@@ -39,7 +39,7 @@ class VictoryScene extends Phaser.Scene {
     rematchButton.setInteractive();
 
     let rematchText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3) / 5, "VolverAJugar")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.2) / 5, "VolverAJugar")
       .setScale(0)
       .setActive(false)
       .setVisible(false);
