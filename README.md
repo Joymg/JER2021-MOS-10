@@ -230,9 +230,27 @@ Esta es la pantalla de selección de personaje, actualmente solo hay un gato imp
 
 #### 5
 ![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura5.PNG)
-Esta es la pantalla de gameplay, el mapa en cada partida se escoje aleatoriamente de una pool. Arriba se puede ver la vida de cada jugador y si ha cogido algun Power Up.
+Esta es la pantalla de gameplay, el mapa en cada partida se escoje aleatoriamente de una pool. Arriba se puede ver la vida de cada jugador y si ha cogido algun Power Up. 
 
 #### 6
 ![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura6.PNG)
 Esta es la pantalla de victoria, en la cual se nos presentan las opciones de volver al menú o volver a jugar en el mismo mapa y con los mismos personajes.
 
+#### 7
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura7.PNG)
+Si se le da a la tecla Esc durante la pantalla de gameplay se abrirá el menu de pausa, donde podremos mutear la música, volver a la pantalla principal o al juego. 
+
+### 5.2 Diagrama de navegación
+Se usará la nomenclatura del apartado anterior para referirse a las pantallas:
+ 1: Menu principal      2: Configuración
+ 3: Créditos            4: Selección de personaje
+ 5: Gameplay            6: Pantalla de victoria
+ 7: Pausa
+
+1 -> 2,3,4
+2 -> 1
+3 -> 1
+4 -> 1,5
+5 -> 6,7
+6 -> 5,1
+7 -> 5,1
