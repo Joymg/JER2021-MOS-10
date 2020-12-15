@@ -249,11 +249,17 @@ Se usará la nomenclatura del apartado anterior para referirse a las pantallas:
  7: Pausa
 
 1 -> 2,3,4
+
 2 -> 1
+
 3 -> 1
+
 4 -> 1,5
+
 5 -> 6,7
+
 6 -> 5,1
+
 7 -> 5,1
 
 ### 5.3 Cambios con respecto a la anterior fase
