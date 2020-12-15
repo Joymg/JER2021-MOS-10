@@ -14,8 +14,6 @@ class BulletPlayer2 extends Phaser.Physics.Arcade.Sprite {
   fire(x, y, angle) {
     this.setActive(true);
     this.setVisible(true);
-
-    //  Bullets fire from the middle of the screen to the given x/y
     this.setPosition(x, y);
 
     this.setRotation(angle*Math.PI/180);
@@ -32,7 +30,7 @@ class BulletPlayer2 extends Phaser.Physics.Arcade.Sprite {
     if (this.bounces == 0) {
       this.destroy();
     }
-    console.log(this.bounces);
+    //console.log(this.bounces);
   }
 
 }

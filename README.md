@@ -72,7 +72,7 @@ Los personajes principales de Tanks serían gatos montados en tanques que tienen
 
 - **Catótico:** Es un gato gótico al que le gusta mucho provocar el caos, tanto caos ha provocado que trasciendió tornándose su pelaje morado. Su único objetivo en la vida es provocar el caos allá donde vaya, es por eso que el combate con tanques es su profesión soñada.
 
-#### 2.3.2. Personajes jugables.
+#### 2.3.2. Personajes no jugables.
 - Sombra, el gato: solía ser un gato que participaba en las batallas. Tal fue su dedicación a estas que, aunque ahora ya no pueda participar en ellas, se dedica a ser el muñeco de pruebas cuando el resto de gatos quiere probar sus armas.
 
 ### 2.4. Objetos
@@ -92,7 +92,7 @@ Los personajes principales de Tanks serían gatos montados en tanques que tienen
 #### 2.5.1. Interacción entre elementos
 Tankats se desarrolla sobre un plano sobre el cual los personajes pueden desplazarse. En el escenario habrá obstáculos, como muros que no podrán ser atravesados a no ser que sean destruidos y agujeros que solo podrán ser atravesados por los disparos.
 
-Ambos jugadores atacan a distancia y no habrá daño por contacto entre personajes.Cuando el jugador dispare en una dirección, el cañón del tanque apuntará en dicha dirección y efectuará el disparo.Cuando un disparo colisiona con un personaje, éste pierde vida y la bala desaparece.
+Ambos jugadores atacan a distancia y no habrá daño por contacto entre personajes.Cuando el jugador dispare en una dirección, el cañón del tanque apuntará en dicha dirección y efectuará el disparo. Cuando un disparo colisiona con un personaje, éste pierde vida y la bala desaparece.
 
 Lista de colisiones que se producirán:
 - Personaje - Personaje
@@ -230,9 +230,27 @@ Esta es la pantalla de selección de personaje, actualmente solo hay un gato imp
 
 #### 5
 ![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura5.PNG)
-Esta es la pantalla de gameplay, el mapa en cada partida se escoje aleatoriamente de una pool. Arriba se puede ver la vida de cada jugador y si ha cogido algun Power Up.
+Esta es la pantalla de gameplay, el mapa en cada partida se escoje aleatoriamente de una pool. Arriba se puede ver la vida de cada jugador y si ha cogido algun Power Up. 
 
 #### 6
 ![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura6.PNG)
-Esta es la pantalla de victoria, en la cual se nos presentan las opciones de volver al menú o volver a jugar en el mismo mapa y con los mismos personajes.
+Esta es la pantalla de victoria, en la cual se nos presentan las opciones de volver al menú o volver a jugar con los mismos personajes en un mapa aleatorio de los disponibles.
 
+#### 7
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura7.PNG)
+Si se le da a la tecla Esc durante la pantalla de gameplay se abrirá el menu de pausa, donde podremos mutear la música, volver a la pantalla principal o al juego. 
+
+### 5.2 Diagrama de navegación
+Se usará la nomenclatura del apartado anterior para referirse a las pantallas:
+ 1: Menu principal      2: Configuración
+ 3: Créditos            4: Selección de personaje
+ 5: Gameplay            6: Pantalla de victoria
+ 7: Pausa
+
+1 -> 2,3,4
+2 -> 1
+3 -> 1
+4 -> 1,5
+5 -> 6,7
+6 -> 5,1
+7 -> 5,1

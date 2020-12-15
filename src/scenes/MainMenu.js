@@ -49,7 +49,7 @@ class MainMenu extends Phaser.Scene {
     let findGameButton = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 3) / 5,
-      "play"
+      "Play"
     ).setScale(0.35);
 
     findGameButton.setInteractive();

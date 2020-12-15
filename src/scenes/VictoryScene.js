@@ -17,7 +17,6 @@ class VictoryScene extends Phaser.Scene {
       var confeti2;
       var confeti3;
       if (this.winner ==1) {
-        var fade = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"Fade").setScale(1.5);
 
         //Confeti
         confeti1 = this.add.particles("confeti1");
@@ -42,7 +41,6 @@ class VictoryScene extends Phaser.Scene {
         var victory = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"VictoryJ1").setScale(0);
       }
       else if(this.winner==2){
-        var fade = this.add.image(this.game.renderer.width/2,this.game.renderer.height*2/5,"Fade").setScale(1.5);
 
         //Confeti
         confeti1 = this.add.particles("confeti1");

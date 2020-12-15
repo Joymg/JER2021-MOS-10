@@ -69,12 +69,12 @@ class Character {
   aimLeft() {
     this.aim = this.topSprite.angle - 1.5;
     this.topSprite.setAngle(this.aim);
-    console.log(this.aim);
+    //console.log(this.aim);
   }
   aimRight() {
     this.aim = this.topSprite.angle + 1.5;
     this.topSprite.setAngle(this.aim);
-    console.log(this.aim);
+    //console.log(this.aim);
   }
   shoot() {
     if (game.getTime() >= this.lastShot + this.fireRate) {
