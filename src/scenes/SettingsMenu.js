@@ -16,33 +16,33 @@ class SettingsMenu extends Phaser.Scene {
       .setTint(0x18dff)
       .setScale(1.5);
     var tittle = this.add
-      .image(this.game.renderer.width/2, this.game.renderer.height*0.7/2 ,"settingsTitle").
+      .image(this.game.renderer.width/3.3, this.game.renderer.height*0.2 ,"settingsTitle").
       setScale(0.5);
     var sMusica = this.add
-      .image(this.game.renderer.width/2, this.game.renderer.height*0.9/2.1 ,"settingsMusica").
+      .image(this.game.renderer.width/3.3, this.game.renderer.height*0.5 ,"settingsMusica").
       setScale(0.3);
     var sIdioma = this.add
-      .image(this.game.renderer.width/2, this.game.renderer.height*1.7/2.1 ,"settingsIdioma").
+      .image(this.game.renderer.width/3.3, this.game.renderer.height*0.8 ,"settingsIdioma").
       setScale(0.3);
     var sESP = this.add
-      .image(this.game.renderer.width/1.4, this.game.renderer.height*1.45/2.1 ,"settingsESP").
+      .image(this.game.renderer.width/1.4, this.game.renderer.height*0.8 ,"settingsESP").
       setScale(0.2);
     var sENG = this.add
-      .image(this.game.renderer.width/1, this.game.renderer.height*1.63/2.1 ,"settingsENG").
+      .image(this.game.renderer.width/1.2, this.game.renderer.height*0.8 ,"settingsENG").
       setScale(0.2);
 
 
     let muteMusicButton;
     if (this.game.sound.mute) {
       muteMusicButton = this.add.image(
-        (this.game.renderer.width * 1.6) / 2,
-        (this.game.renderer.height * 1.5) / 5 + 10,
+        this.game.renderer.width/1.3,
+        this.game.renderer.height * 0.5,
         "muteUp"
       );
     } else {
       muteMusicButton = this.add.image(
-        (this.game.renderer.width * 1.6) / 2,
-        (this.game.renderer.height * 1.5) / 5 + 10,
+        this.game.renderer.width/ 1.3,
+        this.game.renderer.height * 0.5,
         "muteDown"
       );
     }
