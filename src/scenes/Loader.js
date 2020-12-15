@@ -1,7 +1,7 @@
 class Loader extends Phaser.Scene {
   constructor() {
     super({
-      key: "Loader"
+      key: "Loader",
     });
     this.logo;
   }
@@ -9,7 +9,12 @@ class Loader extends Phaser.Scene {
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(240, 270, 540, 50);
+    progressBox.fillRect(
+      (this.game.renderer.width * 1) / 10 - 10,
+      game.renderer.height / 2 - 30,
+      this.game.renderer.width * 0.8 + 20,
+      50
+    );
 
     var loadingText = this.make.text({
       x: game.renderer.width / 2,
@@ -35,8 +40,8 @@ class Loader extends Phaser.Scene {
     this.load.on("progress", function (value) {
       console.log(value);
       progressBar.clear();
-      progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(250, 280, 520 * value, 30);
+      progressBar.fillStyle(0xf54a76, 1);
+      progressBar.fillRect(game.renderer.width / 10, game.renderer.height / 2 - 20, game.renderer.width * 0.8 * value, 30);
 
       percentText.setText(parseInt(value * 100) + "%");
     });
@@ -54,8 +59,7 @@ class Loader extends Phaser.Scene {
     this.load.image("emitter2", "../assets/Emitter2.png");
     this.load.image("emitter3", "../assets/Emitter3.png");
 
-
-    //Botones 
+    //Botones
     this.load.image("Button_Back", "../assets/Botones/Button_Back.png");
     this.load.image("Button_Config", "../assets/Botones/Button_Config.png");
     this.load.image("Button_Left", "../assets/Botones/Button_Left.png");
@@ -65,7 +69,6 @@ class Loader extends Phaser.Scene {
     this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
     this.load.image("Button_Play", "../assets/text/Miau.png");
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
-
 
     //Textos
     this.load.image("Credits", "../assets/text/Credits.png");
@@ -80,13 +83,12 @@ class Loader extends Phaser.Scene {
     this.load.image("PlayAgain", "../assets/text/PlayAgain.png");
     this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
 
-
     //Personajes
     this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
     this.load.image("bottomSprite", "../assets/characters/1_Tanque_ParteAbajo.png");
     this.load.spritesheet("animationTank1", "../assets/spritesheet_tank1.png", {
       frameWidth: 1721,
-      frameHeight: 1844
+      frameHeight: 1844,
     });
 
     //Balas
@@ -111,7 +113,6 @@ class Loader extends Phaser.Scene {
     this.load.image("Tankitty", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Catígula", "/assets/characters/CatsudonPortrait.png");
     this.load.image("Catótico", "/assets/characters/CatsudonPortrait.png");
-
 
     //elementos del gameplay
     this.load.image("woodenCrateSprite", "../assets/WoodenObstacle.png");
@@ -151,8 +152,6 @@ class Loader extends Phaser.Scene {
     this.load.image("jugador2", "../assets/jugador2.png");
     this.load.image("MarcoPausa", "../assets/MarcoPausa.png");
 
-
-
     //Elementos de Texto
     this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");
     this.load.image("VictoryJ2", "../assets/text/VictoryJ2.png");
@@ -163,7 +162,6 @@ class Loader extends Phaser.Scene {
     this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
     this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
     this.load.image("Creditos", "../assets/text/Credits.png");
-
 
     //Sonidos
     this.load.audio("catDamage1", "../assets/sounds/catDamege1.mp3");
@@ -182,13 +180,12 @@ class Loader extends Phaser.Scene {
     this.load.audio("BattleMusic", "../assets/sounds/BattleMusic.mp3");
     this.load.audio("MenuMusic", "../assets/sounds/MenuMusic.mp3");
 
-
     //Mapas
-    this.load.text('Level1', '../src/json/Tiles_Level1.txt');
-    this.load.text('Level2', '../src/json/Tiles_Level2.txt');
-    this.load.text('Level3', '../src/json/Tiles_Level3.txt');
-    this.load.text('Level4', '../src/json/Tiles_Level4.txt');
-    this.load.text('Level5', '../src/json/Tiles_Level5.txt');
+    this.load.text("Level1", "../src/json/Tiles_Level1.txt");
+    this.load.text("Level2", "../src/json/Tiles_Level2.txt");
+    this.load.text("Level3", "../src/json/Tiles_Level3.txt");
+    this.load.text("Level4", "../src/json/Tiles_Level4.txt");
+    this.load.text("Level5", "../src/json/Tiles_Level5.txt");
 
     //this.load.image("floorTiles", "../assets/tilesetsuelo.png");
 
