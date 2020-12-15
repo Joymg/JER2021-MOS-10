@@ -51,13 +51,13 @@ class CountDownScene extends Phaser.Scene{
             targets: one,
             delay:2000,
             scale: 0.8,
-            duration:100,
+            duration: 100,
         });
         this.tweens.add({
             targets: one,
             delay: 2800,
             scale: 10,
-            duration:100,
+            duration: 100,
             onComplete:()=>{
                 one.setVisible(false);
                 this.scene.resume("GameplayScene");
@@ -67,9 +67,9 @@ class CountDownScene extends Phaser.Scene{
         miau.setVisible(true);
         this.tweens.add({
             targets: miau,
-            delay:3000,
-            scale: 5,
-            duration:500,
+            delay: 3000,
+            scale: 2,
+            duration: 1000,
             onComplete:()=>{
                 miau.setVisible(false);
             }
