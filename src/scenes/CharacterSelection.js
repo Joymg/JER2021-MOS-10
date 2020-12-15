@@ -73,6 +73,7 @@ class CharacterSelection extends Phaser.Scene {
       Aricato.setActive(false);
     }
 
+
     const Catsudon = this.add
       .image(poly.points[1].x, poly.points[1].y, "Catsudon")
       .setTint(0xFF97AD);
@@ -82,6 +83,7 @@ class CharacterSelection extends Phaser.Scene {
       Catsudon.setActive(false);
     }
 
+
     const Tankitty = this.add
       .image(poly.points[2].x, poly.points[2].y, "Tankitty")
       .setTint(0xBAFF97);
@@ -90,6 +92,7 @@ class CharacterSelection extends Phaser.Scene {
       Tankitty.setTint(0x202020);
       Tankitty.setActive(false);
     }
+ 
 
     const Catigula = this.add
       .image(poly.points[3].x, poly.points[3].y, "Catígula")
@@ -98,6 +101,7 @@ class CharacterSelection extends Phaser.Scene {
     if (this.player1Character && Catigula.texture.key == this.player1Character.texture.key) {
       Catigula.setTint(0x202020);
       Catigula.setActive(false);
+
     }
 
     const Catotico = this.add
@@ -108,6 +112,7 @@ class CharacterSelection extends Phaser.Scene {
       Catotico.setTint(0x202020);
       Catotico.setActive(false);
     }
+
 
     var CharacterSprites = [Aricato, Catsudon, Tankitty, Catigula, Catotico];
 
@@ -296,7 +301,11 @@ class CharacterSelection extends Phaser.Scene {
         } else {
           if (this.player2Character) {
             this.sound.stopByKey("MenuMusic");
-            this.scene.start("GameplayScene");
+            var tint1 = this.player1Character.tintTopLeft;
+            var tint2 = this.player2Character.tintTopLeft;
+            console.log(this.player1Character.texture.key,tint1);
+            console.log(this.player2Character.texture.key,tint2);
+            this.scene.start("GameplayScene",{tint1,tint2});
           }
         }
       } else {
@@ -313,6 +322,7 @@ class CharacterSelection extends Phaser.Scene {
     var player;
     array.forEach((element) => {
       if (element.active == true) {
+        console.log(element.texture.key, element.tintTopLeft);
         if (element.y == this.game.renderer.height / 2 + this.game.renderer.height / 23) {
           player = element;
         }

@@ -83,7 +83,7 @@ class MainMenu extends Phaser.Scene {
     //efectos al pasar el raton por encima
     credits.on("pointerover", () => {
       credits.setTint(0x909090);
-      credits.setScale(.28);
+      credits.setScale(.32);
     });
     credits.on("pointerout", () => {
       credits.setTint();

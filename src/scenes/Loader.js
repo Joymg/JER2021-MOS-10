@@ -66,6 +66,21 @@ class Loader extends Phaser.Scene {
     this.load.image("Button_Play", "../assets/text/Miau.png");
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
 
+
+    //Textos
+    this.load.image("Credits", "../assets/text/Credits.png");
+    this.load.image("ENG", "../assets/text/ENG.png");
+    this.load.image("ESP", "../assets/text/ESP.png");
+    this.load.image("GoBackToTitle", "../assets/text/GoBackToTitle.png");
+    this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
+    this.load.image("Idioma", "../assets/text/Idioma.png");
+    this.load.image("Language", "../assets/text/Language.png");
+    this.load.image("Music", "../assets/text/Music.png");
+    this.load.image("Musica", "../assets/text/Musica.png");
+    this.load.image("PlayAgain", "../assets/text/PlayAgain.png");
+    this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
+
+
     //Personajes
     this.load.image("topSprite", "../assets/characters/catsudonTopSprite.png");
     this.load.image("bottomSprite", "../assets/characters/1_Tanque_ParteAbajo.png");
@@ -127,6 +142,8 @@ class Loader extends Phaser.Scene {
     this.load.image("RightLife5", "../assets/IU/RightLife5.png");
     this.load.image("RightLife6", "../assets/IU/RightLife6.png");
     this.load.image("PlayerIcon", "../assets/IU/PlayerIcon.png");
+    this.load.image("Fade", "../assets/Fade.png");
+
 
     //Elementos de Texto
     this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");
@@ -177,20 +194,8 @@ class Loader extends Phaser.Scene {
 
   create() {
     this.logo = this.add.image(0, 0, "sky").setOrigin(0).setTint(0xff0000).setScale(1.5);
-    this.sound.add("MenuMusic",{loop:true});
-    this.sound.add("BattleMusic",{loop:true});
-
-    var timedActivation = this.time.delayedCall(1000, () => {
-      this.scene.transition({
-        target: "MainMenu",
-        moveBelow: true,
-        duration: 1000,
-        onUpdate: this.transitionOut,
-      });
-    })
-  }
-
-  transitionOut(progress) {
-    this.logo.y = this.game.renderer.height * progress;
+    this.sound.add("MenuMusic", { loop: true });
+    this.sound.add("BattleMusic", { loop: true });
+    this.scene.start("MainMenu");
   }
 }

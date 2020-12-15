@@ -15,7 +15,7 @@ class SettingsMenu extends Phaser.Scene {
       .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
       .setTint(0x18dff)
       .setScale(1.5);
-    var tittle = this.add
+    var title = this.add
       .image(this.game.renderer.width/3.3, this.game.renderer.height*0.2 ,"settingsTitle").
       setScale(0.5);
     var sMusica = this.add
@@ -48,6 +48,12 @@ class SettingsMenu extends Phaser.Scene {
     }
     muteMusicButton.setScale(0.1);
     muteMusicButton.setInteractive();
+    muteMusicButton.on("pointerover", () => {
+      muteMusicButton.setScale(0.12);
+    });
+    muteMusicButton.on("pointerout", () => {
+      muteMusicButton.setScale(0.1);
+    });
     muteMusicButton.on("pointerdown", () => {
       this.game.sound.mute = !this.game.sound.mute;
       if (this.game.sound.mute) {
