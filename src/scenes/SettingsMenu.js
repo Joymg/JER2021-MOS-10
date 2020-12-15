@@ -1,11 +1,7 @@
 class SettingsMenu extends Phaser.Scene {
   constructor() {
     super({ key: "ConfigMenu" });
-    console.log("ConfigMenu#constructor");
-  }
-
-  init() {
-    console.log("ConfigMenu#init");
+    //console.log("ConfigMenu#constructor");
   }
 
   preload() {}
@@ -60,46 +56,6 @@ class SettingsMenu extends Phaser.Scene {
         muteMusicButton.setTexture("muteDown");
       }
     });
-
-   /* var muteMusicText = this.add.text(
-      (this.game.renderer.width * 0.2) / 2,
-      (this.game.renderer.height * 1.5) / 5,
-      "Mute Music:",
-      { font: "40px" }
-    );
-    muteMusicText.depth = 1;
-*/
-    /*let muteSEButton = this.add.image(
-      (this.game.renderer.width * 1.6) / 2,
-      (this.game.renderer.height * 2.25) / 5 + 10,
-      "muteUp"
-    );
-    muteSEButton.scale = 0.3;
-    muteSEButton.setInteractive();
-    muteSEButton.on("pointerdown", () => {
-        this.game.sound.mute = !this.game.sound.mute;
-        if (this.game.sound.mute) {
-          muteSEButton.setTexture("muteDown");
-        } else {
-          muteSEButton.setTexture("muteUp");
-        }
-      });
-        var muteSEText = this.add.text(
-      (this.game.renderer.width * 0.2) / 2,
-      (this.game.renderer.height * 2.25) / 5,
-      "Mute Sound Effects:",
-      { font: "40px" }
-    );
-    muteSEText.depth = 1;*/
-
-  /*  var languageText = this.add.text(
-      (this.game.renderer.width * 0.2) / 2,
-      (this.game.renderer.height * 3) / 5,
-      "Language:",
-      { font: "40px" }
-    );
-    languageText.depth = 1;
-*/
 
     //Boton de atras
     let backButton = this.add.image(

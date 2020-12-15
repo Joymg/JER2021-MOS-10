@@ -33,7 +33,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     if (this.bounces == 0) {
       this.destroy();
     }
-    console.log(this.bounces);
+    //console.log(this.bounces);
   }
 
 }

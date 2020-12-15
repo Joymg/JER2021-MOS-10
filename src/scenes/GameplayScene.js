@@ -246,7 +246,7 @@ class GameplayScene extends Phaser.Scene {
       .setOrigin(0.3, 0.5)
       .setTint(this.tint2);
 
-    console.log(2, top2.tintTopLeft);
+    //console.log(2, top2.tintTopLeft);
     bot2.anims.play("tank1_animation");
     bot2.setCollideWorldBounds(true);
 
