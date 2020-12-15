@@ -13,13 +13,24 @@ class SettingsMenu extends Phaser.Scene {
   create() {
     var background = this.add
       .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
-      .setTint(0x987654)
+      .setTint(0x18dff)
       .setScale(1.5);
-    var title = this.add
-      .text(this.game.renderer.width / 2, (this.game.renderer.height * 0.5) / 5, "Settings", {
-        font: "50px",
-      })
-      .setOrigin(0.5);
+    var tittle = this.add
+      .image(this.game.renderer.width/2, this.game.renderer.height*0.7/2 ,"settingsTitle").
+      setScale(0.5);
+    var sMusica = this.add
+      .image(this.game.renderer.width/2, this.game.renderer.height*0.9/2.1 ,"settingsMusica").
+      setScale(0.3);
+    var sIdioma = this.add
+      .image(this.game.renderer.width/2, this.game.renderer.height*1.7/2.1 ,"settingsIdioma").
+      setScale(0.3);
+    var sESP = this.add
+      .image(this.game.renderer.width/1.4, this.game.renderer.height*1.45/2.1 ,"settingsESP").
+      setScale(0.2);
+    var sENG = this.add
+      .image(this.game.renderer.width/1, this.game.renderer.height*1.63/2.1 ,"settingsENG").
+      setScale(0.2);
+
 
     let muteMusicButton;
     if (this.game.sound.mute) {
@@ -46,14 +57,14 @@ class SettingsMenu extends Phaser.Scene {
       }
     });
 
-    var muteMusicText = this.add.text(
+   /* var muteMusicText = this.add.text(
       (this.game.renderer.width * 0.2) / 2,
       (this.game.renderer.height * 1.5) / 5,
       "Mute Music:",
       { font: "40px" }
     );
     muteMusicText.depth = 1;
-
+*/
     /*let muteSEButton = this.add.image(
       (this.game.renderer.width * 1.6) / 2,
       (this.game.renderer.height * 2.25) / 5 + 10,
@@ -77,13 +88,14 @@ class SettingsMenu extends Phaser.Scene {
     );
     muteSEText.depth = 1;*/
 
-    var languageText = this.add.text(
+  /*  var languageText = this.add.text(
       (this.game.renderer.width * 0.2) / 2,
       (this.game.renderer.height * 3) / 5,
       "Language:",
       { font: "40px" }
     );
     languageText.depth = 1;
+*/
 
     //Boton de atras
     let backButton = this.add.image(

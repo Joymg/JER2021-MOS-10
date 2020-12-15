@@ -82,6 +82,11 @@ class Loader extends Phaser.Scene {
     this.load.image("back", "../assets/star.png");
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
+    this.load.image("settingsTitle", "../assets/text/Settings.png");
+    this.load.image("settingsMusica", "../assets/text/Musica.png");
+    this.load.image("settingsIdioma", "../assets/text/Idioma.png");
+    this.load.image("settingsESP", "../assets/text/ESP.png");
+    this.load.image("settingsENG", "../assets/text/ENG.png");
 
     //elementos de la seleccion de personaje
     this.load.image("sky", "../assets/sky.png");
