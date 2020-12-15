@@ -10,8 +10,35 @@ class MainMenu extends Phaser.Scene {
     }
   
     var background = this.add
-      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "sky")
+      .image(this.game.renderer.width / 2, this.game.renderer.height / 2, "backTankats")
       .setScale(1.5);
+
+    var particles1 = this.add.particles("emitter1");
+
+    var emitter1 = particles1.createEmitter({
+        x: 446,
+        y: -300,
+        gravityY: 30,
+        rotate: {min: 30, max: 240},
+        speed: 200,
+        lifespan: { min: 5000, max: 10000 },
+        scale: {min: 0.1, max: 0.5 },
+        blendMode: 'ADD'
+    });
+
+    var particles2 = this.add.particles("emitter2");
+
+    var emitter2 = particles2.createEmitter({
+        x: 646,
+        y: -300,
+        gravityY: 30,
+        rotate: {min: 30, max: 240},
+        speed: 200,
+        lifespan: { min: 5000, max: 10000 },
+        scale: {min: 0.1, max: 0.5 },
+        blendMode: 'ADD'
+    })
+
     let title = this.add.image(
       this.game.renderer.width / 2,
       (this.game.renderer.height * 2) / 5,
@@ -85,6 +112,8 @@ class MainMenu extends Phaser.Scene {
       configButton.setTint();
       configButton.setScale(.3);
     });
+
+
     //al pulsar el boton carga la escena de configuracion
     configButton.on("pointerdown", () => {
       this.scene.start("ConfigMenu");

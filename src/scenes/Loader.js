@@ -44,11 +44,15 @@ class Loader extends Phaser.Scene {
 
     //Elementos del menuPrincipal
     this.load.image("sky", "../assets/sky.png");
+    this.load.image("backTankats", "../assets/FondoTankats.png");
     this.load.image("platform", "../assets/platform.png");
     this.load.image("bomb", "../assets/bomb.png");
     this.load.image("star", "../assets/star.png");
     this.load.image("title", "../assets/TANKATS.png");
     this.load.image("play", "../assets/text/Play.png");
+    this.load.image("emitter1", "../assets/Emitter1.png");
+    this.load.image("emitter2", "../assets/Emitter2.png");
+
 
     //Botones 
     this.load.image("Button_Back", "../assets/Botones/Button_Back.png");
