@@ -29,6 +29,7 @@ body{
     margin-top: -1.2%;
     width: 9%;         
   }
+  
   #TutJug1 img{
     margin-top: 1%;
     margin-left: 5%;
@@ -41,25 +42,14 @@ body{
     width: 45%;  
     float: right;
   }
-  #TutImgIzq {
-    position: absolute; 
-    left: 0px;
-    top: 700px;
-    border-radius: 3px;  
-    width: 340px;
-    height: 100px;
+  #Tuto{
+    position: absolute;
+    margin-left: 1148px;
+    top: 775px;
   }
-  #TutImgJug img{
-  width: 80%;    
+  #Tuto img{
+    width: 270px;
   }
-  #TutImgDer {
-    position: absolute; 
-    left: 1420px;
-    top: 700px;
-    width: 340px;
-    height: 100px;
-  }
- 
   canvas{     
     border: 5px solid rgba(30, 149, 185, 0.678); 
     border-radius: 3px;    
