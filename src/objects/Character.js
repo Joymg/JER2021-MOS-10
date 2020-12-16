@@ -23,33 +23,33 @@ class Character {
     this.emitter = emitter;
     this.emitter2 = emitter2;
 
-    this.velocity = 200;
+    this.speed = 200;
     this.maxShield = 30;
     this.shield = 0;
   }
 
   //Movimiento
   moveUp() {
-    this.topSprite.setVelocityY(-this.velocity);
-    this.bottomSprite.setVelocityY(-this.velocity);
+    this.topSprite.setVelocityY(-this.speed);
+    this.bottomSprite.setVelocityY(-this.speed);
     
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveDown() {
-    this.topSprite.setVelocityY(this.velocity);
-    this.bottomSprite.setVelocityY(this.velocity);
+    this.topSprite.setVelocityY(this.speed);
+    this.bottomSprite.setVelocityY(this.speed);
 
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveLeft() {
-    this.topSprite.setVelocityX(-this.velocity);
-    this.bottomSprite.setVelocityX(-this.velocity);
+    this.topSprite.setVelocityX(-this.speed);
+    this.bottomSprite.setVelocityX(-this.speed);
 
     this.bottomSprite.setAngle(this.movementDir);
   }
   moveRight() {
-    this.topSprite.setVelocityX(this.velocity);
-    this.bottomSprite.setVelocityX(this.velocity);
+    this.topSprite.setVelocityX(this.speed);
+    this.bottomSprite.setVelocityX(this.speed);
     this.bottomSprite.setAngle(this.movementDir);
   }
   stopX() {
@@ -103,6 +103,10 @@ class Character {
     }else{
       this.shield -= this.dmgTakenOnShield;
     }
+  }
+
+  setSpeed(value){
+    this.speed = value;
   }
 
 }

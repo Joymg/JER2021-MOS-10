@@ -155,9 +155,9 @@ class GameplayScene extends Phaser.Scene {
     text2 = this.add.text(1033, 154, '', {fontFamily: 'Arial', fontSize: '50px', fontStyle: 'Bold', color: '#D1CFBD'});
     speedUp2 = this.add.image(this.game.renderer.width*6.5/10, this.game.renderer.height*1.5/10, "SpeedUp").setVisible(false).setScale(0.55);
     speedDown2 = this.add.image( this.game.renderer.width*4/10, this.game.renderer.height*1.5/10, "SpeedDown").setVisible(false).setScale(0.6);
-    shield2_1 = this.add.image(this.game.renderer.width*7/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
+    shield2_1 = this.add.image(this.game.renderer.width*8/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
     shield2_2 = this.add.image(this.game.renderer.width*7.5/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
-    shield2_3 = this.add.image(this.game.renderer.width*8/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
+    shield2_3 = this.add.image(this.game.renderer.width*7/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
 
     textUI = this.add.image(205, 220, "TimeLeft").setScale(0.17);
     text = this.add.text(70, 154, '', {fontFamily: 'Arial', fontSize: '50px', fontStyle: 'Bold', color: '#D1CFBD'});
@@ -639,7 +639,7 @@ class GameplayScene extends Phaser.Scene {
     );
 
     var shieldLeft = Math.ceil((Math.ceil(GameManager.character.maxShield/GameManager.character.dmgTakenOnShield)*GameManager.character.shield)/GameManager.character.maxShield);
-    console.log(shieldLeft);
+
     if (shieldLeft <= 0) {
       shield_1.setVisible(false);
       shield_2.setVisible(false);
@@ -673,7 +673,6 @@ class GameplayScene extends Phaser.Scene {
     );
 
     var shieldLeft = Math.ceil((Math.ceil(GameManager.character2.maxShield/GameManager.character2.dmgTakenOnShield)*GameManager.character2.shield)/GameManager.character2.maxShield);
-    console.log(shieldLeft);
     if (shieldLeft <= 0) {
       shield2_1.setVisible(false);
       shield2_2.setVisible(false);
@@ -685,7 +684,6 @@ class GameplayScene extends Phaser.Scene {
     }else if (shieldLeft <= 2) {
       shield2_3.setVisible(false);
     }
-    //console.log("2" , hitsLeft);
     if (hitsLeft <= 0) {
       GameManager.p2HpBar.destroy();
     } else {
@@ -729,18 +727,18 @@ class GameplayScene extends Phaser.Scene {
         });  
         timerCreated = true;
       }else if(timerCreated === true){
-        console.log(Math.floor(0.001 * (timer.delay - timer.elapsed)));
+
         text.setText(Math.floor(0.001 * (timer.delay - timer.elapsed)));
         if(timer.delay - timer.elapsed === 0){                     
           timer = -1;
           touched = false;                   
           if(speedUp.visible){
             speedUp.setVisible(false);
-            GameManager.character2.velocity = 200;
+            GameManager.character.setSpeed (200);
                          
-          }if(speedDown.visible){
-            speedDown.setVisible(false);
-            GameManager.character.velocity = 200;
+          }if(speedDown2.visible){
+            speedDown2.setVisible(false);
+            GameManager.character.setSpeed( 200 );
             
           }              
         }    
@@ -756,18 +754,18 @@ class GameplayScene extends Phaser.Scene {
         });  
         timerCreated2 = true;
       }else if(timerCreated2 === true){
-        console.log(Math.floor(0.001 * (timer2.delay - timer2.elapsed)));
+
         text2.setText(Math.floor(0.001 * (timer2.delay - timer2.elapsed)));        
         if(timer2.delay - timer2.elapsed === 0){
           timer2 = -1;
           touched2 === false;                 
           if(speedUp2.visible){
             speedUp2.setVisible(false);
-            GameManager.character2.velocity = 200;                        
+            GameManager.character2.setSpeed(200);                        
           }
-          if(speedDown2.visible){
-            speedDown2.setVisible(false);
-            GameManager.character.velocity = 200; 
+          if(speedDown.visible){
+            speedDown.setVisible(false);
+            GameManager.character2.setSpeed(200);
             
           }
         }   
@@ -818,20 +816,11 @@ class GameplayScene extends Phaser.Scene {
   //Funciones de colisiones
   tankHit1(tank, bullet) {
     GameManager.character.getHit();
-    if(GameManager.character.shield === 0){
-      shield_1.setVisible(false);
-      shield_2.setVisible(false);
-      shield_3.setVisible(false);
-    }
     bullet.destroy();
   }
   tankHit2(tank, bullet) {
     GameManager.character2.getHit();
-    if(GameManager.character2.shield === 0){
-      shield2_1.setVisible(false);
-      shield2_2.setVisible(false);
-      shield2_3.setVisible(false);
-    }
+
     bullet.destroy();
   }
 
@@ -852,7 +841,7 @@ class GameplayScene extends Phaser.Scene {
     switch(GameManager.item1.id){
       case 0:
        
-          GameManager.character.velocity = 350;
+          GameManager.character.setSpeed(300);
           GameManager.item1.sprite.setScale(0);
           powerUpCollider1.destroy();
           powerUpCollider2.destroy();
@@ -866,12 +855,12 @@ class GameplayScene extends Phaser.Scene {
         break;
       case 1:
         
-          GameManager.character2.velocity = 100;
+          GameManager.character2.setSpeed(100);
           GameManager.item1.sprite.setScale(0);
           powerUpCollider1.destroy();
           powerUpCollider2.destroy();
           speedDown.setVisible(true);
-          touched = true;
+          touched2 = true;
           timerCreated2 = false; 
           timerItemCreated = false;  
           itemDestroyed = true;
@@ -898,7 +887,7 @@ checkItem2(Item){
     switch(GameManager.item1.id){
       case 0:
         
-          GameManager.character2.velocity = 350;
+          GameManager.character2.setSpeed(300);
           GameManager.item1.sprite.setScale(0);
           powerUpCollider1.destroy();
           powerUpCollider2.destroy();
@@ -912,12 +901,12 @@ checkItem2(Item){
         break;
       case 1:
         
-          GameManager.character.velocity = 100;
+          GameManager.character.setSpeed(100);
           GameManager.item1.sprite.setScale(0);
           powerUpCollider1.destroy();
           powerUpCollider2.destroy();
           speedDown2.setVisible(true);
-          touched2 = true;
+          touched = true;
           timerCreated = false; 
           timerItemCreated = false;  
           itemDestroyed = true;
