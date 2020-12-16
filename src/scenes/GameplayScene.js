@@ -3,7 +3,9 @@ var textUI;
 var timer = -1;
 var speedUp;
 var speedDown;
-var shield;
+var shield_1;
+var shield_2;
+var shield_3;
 var touched = false;
 var timerCreated = false;
 
@@ -12,7 +14,9 @@ var textUI2;
 var timer2 = -1;
 var speedUp2;
 var speedDown2;
-var shield2;
+var shield2_1;
+var shield2_2;
+var shield2_3;
 var touched2 = false;
 var timerCreated2 = false;
 
@@ -149,15 +153,19 @@ class GameplayScene extends Phaser.Scene {
     
     textUI2 = this.add.image(1152, 220, "TimeRight").setScale(0.17);
     text2 = this.add.text(1033, 154, '', {fontFamily: 'Arial', fontSize: '50px', fontStyle: 'Bold', color: '#D1CFBD'});
-    speedUp2 = this.add.image(960, 112, "SpeedUp").setVisible(false).setScale(0.55);
-    speedDown2 = this.add.image( 213, 117, "SpeedDown").setVisible(false).setScale(0.6);
-    shield2 = this.add.image(870, 115, "Shield").setVisible(false).setScale(0.6);
+    speedUp2 = this.add.image(this.game.renderer.width*6.5/10, this.game.renderer.height*1.5/10, "SpeedUp").setVisible(false).setScale(0.55);
+    speedDown2 = this.add.image( this.game.renderer.width*4/10, this.game.renderer.height*1.5/10, "SpeedDown").setVisible(false).setScale(0.6);
+    shield2_1 = this.add.image(this.game.renderer.width*7/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
+    shield2_2 = this.add.image(this.game.renderer.width*7.5/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
+    shield2_3 = this.add.image(this.game.renderer.width*8/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
 
     textUI = this.add.image(205, 220, "TimeLeft").setScale(0.17);
     text = this.add.text(70, 154, '', {fontFamily: 'Arial', fontSize: '50px', fontStyle: 'Bold', color: '#D1CFBD'});
-    speedUp = this.add.image(168, 112, "SpeedUp").setVisible(false).setScale(0.55);
-    speedDown = this.add.image(915, 117, "SpeedDown").setVisible(false).setScale(0.6);
-    shield = this.add.image(258, 115, "Shield").setVisible(false).setScale(0.6);
+    speedUp = this.add.image(this.game.renderer.width*3.5/10, this.game.renderer.height*1.5/10, "SpeedUp").setVisible(false).setScale(0.55);
+    speedDown = this.add.image(this.game.renderer.width*6/10, this.game.renderer.height*1.5/10, "SpeedDown").setVisible(false).setScale(0.6);
+    shield_1 = this.add.image(this.game.renderer.width*2/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
+    shield_2 = this.add.image(this.game.renderer.width*2.5/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
+    shield_3 = this.add.image(this.game.renderer.width*3/10, this.game.renderer.height*1.5/10, "Shield").setVisible(false).setScale(0.6);
 
     this.paused = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
     
@@ -166,6 +174,7 @@ class GameplayScene extends Phaser.Scene {
     this.time.delayedCall(3000, () => {
       this.scene.stop("CountDownScene");
     });
+
   }
 
   update() {
@@ -628,7 +637,20 @@ class GameplayScene extends Phaser.Scene {
         GameManager.character.healthPoints) /
         GameManager.character.maxHP
     );
-    //console.log("1" , hitsLeft);
+
+    var shieldLeft = Math.ceil((Math.ceil(GameManager.character.maxShield/GameManager.character.dmgTakenOnShield)*GameManager.character.shield)/GameManager.character.maxShield);
+    console.log(shieldLeft);
+    if (shieldLeft <= 0) {
+      shield_1.setVisible(false);
+      shield_2.setVisible(false);
+      shield_3.setVisible(false);
+    }
+    else if (shieldLeft <= 1) {
+      shield_2.setVisible(false);
+      shield_3.setVisible(false);
+    }else if (shieldLeft <= 2) {
+      shield_3.setVisible(false);
+    }
     if (hitsLeft <= 0) {
       GameManager.p1HpBar.destroy();
     } else {
@@ -649,6 +671,20 @@ class GameplayScene extends Phaser.Scene {
         GameManager.character2.healthPoints) /
         GameManager.character2.maxHP
     );
+
+    var shieldLeft = Math.ceil((Math.ceil(GameManager.character2.maxShield/GameManager.character2.dmgTakenOnShield)*GameManager.character2.shield)/GameManager.character2.maxShield);
+    console.log(shieldLeft);
+    if (shieldLeft <= 0) {
+      shield2_1.setVisible(false);
+      shield2_2.setVisible(false);
+      shield2_3.setVisible(false);
+    }
+    else if (shieldLeft <= 1) {
+      shield2_2.setVisible(false);
+      shield2_3.setVisible(false);
+    }else if (shieldLeft <= 2) {
+      shield2_3.setVisible(false);
+    }
     //console.log("2" , hitsLeft);
     if (hitsLeft <= 0) {
       GameManager.p2HpBar.destroy();
@@ -693,15 +729,16 @@ class GameplayScene extends Phaser.Scene {
         });  
         timerCreated = true;
       }else if(timerCreated === true){
+        console.log(Math.floor(0.001 * (timer.delay - timer.elapsed)));
         text.setText(Math.floor(0.001 * (timer.delay - timer.elapsed)));
         if(timer.delay - timer.elapsed === 0){                     
           timer = -1;
           touched = false;                   
-          if(speedUp.setVisible){
+          if(speedUp.visible){
             speedUp.setVisible(false);
             GameManager.character2.velocity = 200;
                          
-          }if(speedDown.setVisible){
+          }if(speedDown.visible){
             speedDown.setVisible(false);
             GameManager.character.velocity = 200;
             
@@ -719,15 +756,16 @@ class GameplayScene extends Phaser.Scene {
         });  
         timerCreated2 = true;
       }else if(timerCreated2 === true){
+        console.log(Math.floor(0.001 * (timer2.delay - timer2.elapsed)));
         text2.setText(Math.floor(0.001 * (timer2.delay - timer2.elapsed)));        
         if(timer2.delay - timer2.elapsed === 0){
           timer2 = -1;
           touched2 === false;                 
-          if(speedUp2.setVisible){
+          if(speedUp2.visible){
             speedUp2.setVisible(false);
             GameManager.character2.velocity = 200;                        
           }
-          if(speedDown2.setVisible){
+          if(speedDown2.visible){
             speedDown2.setVisible(false);
             GameManager.character.velocity = 200; 
             
@@ -781,14 +819,18 @@ class GameplayScene extends Phaser.Scene {
   tankHit1(tank, bullet) {
     GameManager.character.getHit();
     if(GameManager.character.shield === 0){
-      shield.setActive(false);
+      shield_1.setVisible(false);
+      shield_2.setVisible(false);
+      shield_3.setVisible(false);
     }
     bullet.destroy();
   }
   tankHit2(tank, bullet) {
     GameManager.character2.getHit();
     if(GameManager.character2.shield === 0){
-      shield2.setActive(false);
+      shield2_1.setVisible(false);
+      shield2_2.setVisible(false);
+      shield2_3.setVisible(false);
     }
     bullet.destroy();
   }
@@ -805,6 +847,7 @@ class GameplayScene extends Phaser.Scene {
   antiCamp(obstacle, bullet) {
     bullet.destroy();
   }
+  
   checkItem(character, item1){    
     switch(GameManager.item1.id){
       case 0:
@@ -836,11 +879,13 @@ class GameplayScene extends Phaser.Scene {
         
         break;
       case 2:
-        GameManager.character.shield = 30;
+        GameManager.character.shield = GameManager.character2.maxShield;
         GameManager.item1.sprite.setScale(0);
         powerUpCollider1.destroy();
         powerUpCollider2.destroy();
-        shield.setVisible(true);
+        shield_1.setVisible(true);
+        shield_2.setVisible(true);
+        shield_3.setVisible(true);
         timerItemCreated = false;
         itemDestroyed = true; 
         break;
@@ -880,11 +925,13 @@ checkItem2(Item){
         
         break;
       case 2:
-        GameManager.character2.shield = 30;
+        GameManager.character2.shield = GameManager.character2.maxShield;
         GameManager.item1.sprite.setScale(0);
         powerUpCollider1.destroy();
         powerUpCollider2.destroy();
-        shield2.setVisible(true);
+        shield2_1.setVisible(true);
+        shield2_2.setVisible(true);
+        shield2_3.setVisible(true);
         timerItemCreated = false;
         itemDestroyed = true; 
         break;

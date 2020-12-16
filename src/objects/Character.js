@@ -17,12 +17,14 @@ class Character {
     this.maxHP = 100;
     this.healthPoints = this.maxHP;
     this.dmgTakenOnHit =17;
+    this.dmgTakenOnShield =10;
     this.bullets = bullets;
 
     this.emitter = emitter;
     this.emitter2 = emitter2;
 
     this.velocity = 200;
+    this.maxShield = 30;
     this.shield = 0;
   }
 
@@ -99,7 +101,7 @@ class Character {
       GameManager.scene.sound.play("catDamage"+ this.id)
       console.log(this.healthPoints);
     }else{
-      this.shield -= 10;
+      this.shield -= this.dmgTakenOnShield;
     }
   }
 

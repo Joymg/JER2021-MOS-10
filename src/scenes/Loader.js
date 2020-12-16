@@ -164,6 +164,21 @@ class Loader extends Phaser.Scene {
     this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
     this.load.image("Creditos", "../assets/text/Credits.png");
 
+    //PowerUps
+    this.load.spritesheet("SpeedUp", "../assets/PUVelMas.png", {
+      frameWidth: 94,
+      frameHeight: 94
+    });
+    this.load.spritesheet("SpeedDown", "../assets/PUVelMen.png", {
+      frameWidth: 94,
+      frameHeight: 94
+    });
+    this.load.spritesheet("Shield", "../assets/PUEsc.png", {
+      frameWidth: 94,
+      frameHeight: 94
+    });
+    this.load.image("TimeLeft", "../assets/IU/PUTimeLeft.png");
+    this.load.image("TimeRight", "../assets/IU/PUTimeRight.png");
 
     //Names
     this.load.image("Alberto", "../assets/names/Alberto.png");
