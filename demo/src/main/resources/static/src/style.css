@@ -7,7 +7,8 @@ body{
     border-radius: 8px; 
     width: 1034px;
     height: 813px;
-    margin: 0 auto;            
+    margin: 0 auto;   
+    display: none;    
   } 
   #titulo{
     text-align: center;
@@ -24,6 +25,7 @@ body{
     width: 1034px;
     margin: 0 auto;  
     display: table; 
+    visibility: hidden;
   }
   #titulo img{    
     margin-top: -1.2%;
@@ -54,4 +56,20 @@ body{
     border: 5px solid rgba(30, 149, 185, 0.678); 
     border-radius: 3px;    
 
+  }
+  #login{
+    border: 5px solid rgba(126, 126, 126, 0.2); 
+    border-radius: 3px;   
+    margin: 0 auto;
+    width: 300px;
+    padding: 250px;
+    background-color:  rgba(255, 255, 255, 0.95);
+    font-size: 25px;
+    text-align: center; 
+
+  }
+  button{
+    padding: 5px;
+    font-size: 17px;
+    margin-top: 20px;
   }
