@@ -58,6 +58,7 @@ class Loader extends Phaser.Scene {
     this.load.image("Button_Left", "../assets/Botones/Button_Left.png");
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
     this.load.image("Button_Right", "../assets/Botones/Button_Right.png");
+    this.load.image("Profile", "../assets/Botones/Profile.png"); //F3
 
     this.load.image("Pink_TextBox", "../assets/text/Pink_Text.png");
     this.load.image("Button_Play", "../assets/text/Miau.png");
@@ -65,7 +66,8 @@ class Loader extends Phaser.Scene {
     this.load.image("Purple_TextBox", "../assets/text/Purple_Text.png");
 
     //Textos
-    this.load.image("Credits", "../assets/text/Credits.png");
+    this.load.image("Credits", "../assets/text/Creditos.png"); //Modificado, debería ir Credits.png
+    //this.load.image("Creditos", "../assets/text/Creditos.png"); //Está más abajo, pero lo he metido aquí por si acaso hiciese falta
     this.load.image("ENG", "../assets/text/ENG.png");
     this.load.image("ESP", "../assets/text/ESP.png");
     this.load.image("GoBackToTitle", "../assets/text/GoBackToTitle.png");
@@ -92,7 +94,8 @@ class Loader extends Phaser.Scene {
     //elementos de la pantalla de configuracion
     this.load.image("muteUp", "../assets/muteUp.png");
     this.load.image("muteDown", "../assets/muteDown.png");
-    this.load.image("settingsTitle", "../assets/text/Settings.png");
+    this.load.image("settingsTitle", "../assets/text/Ajustes.png"); //Modificado, debería ir Settings.png
+    //this.load.image("ajustesTitle", "../assets/text/Ajustes.png");
     this.load.image("settingsMusica", "../assets/text/Musica.png");
     this.load.image("settingsIdioma", "../assets/text/Idioma.png");
     this.load.image("settingsESP", "../assets/text/ESP.png");
@@ -163,7 +166,7 @@ class Loader extends Phaser.Scene {
     this.load.image("Three", "../assets/text/Three.png");
     this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
     this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
-    this.load.image("Creditos", "../assets/text/Credits.png");
+    this.load.image("Creditos", "../assets/text/Creditos.png"); //Modificado, debería ser Credits.png
 
     //PowerUps
     this.load.spritesheet("SpeedUp", "../assets/PUVelMas.png", {

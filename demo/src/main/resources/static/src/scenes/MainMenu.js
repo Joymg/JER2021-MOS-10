@@ -113,7 +113,33 @@ class MainMenu extends Phaser.Scene {
       this.getPetition();
       //this.scene.start("ConfigMenu");
     });
-  }
+  //}
+
+  //Boton de perfil (aun por configurar)
+  let profileButton = this.add.image(
+    (this.game.renderer.width * 9.2) / 10,
+    (this.game.renderer.height * 9) / 10,
+    "Profile"
+  );
+  profileButton.setScale(0.3);
+
+  profileButton.setInteractive();
+  //efectos al pasar el raton por encima
+  profileButton.on("pointerover", () => {
+    profileButton.setTint(0x909090);
+    profileButton.setScale(0.32);
+  });
+  profileButton.on("pointerout", () => {
+    profileButton.setTint();
+    profileButton.setScale(0.3);
+  });
+
+  //al pulsar el boton popup de perfil (?)
+  profileButton.on("pointerdown", () => {
+    this.getPetition();
+    //this.scene.start("ConfigMenu");
+  });
+}
 
   getPetition() {
     fetch("http://localhost:8080/players")
