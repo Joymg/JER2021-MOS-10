@@ -167,6 +167,7 @@ class Loader extends Phaser.Scene {
     this.load.image("VolverAJugar", "../assets/text/VolverAJugar.png");
     this.load.image("IrAlTitulo", "../assets/text/IrAlTitulo.png");
     this.load.image("Creditos", "../assets/text/Creditos.png"); //Modificado, debería ser Credits.png
+    this.load.image("Perfil", "../assets/text/Perfil.png");
 
     //PowerUps
     this.load.spritesheet("SpeedUp", "../assets/PUVelMas.png", {

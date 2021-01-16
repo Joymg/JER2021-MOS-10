@@ -110,12 +110,12 @@ class MainMenu extends Phaser.Scene {
 
     //al pulsar el boton carga la escena de configuracion
     configButton.on("pointerdown", () => {
-      this.getPetition();
-      //this.scene.start("ConfigMenu");
+      //this.getPetition();
+      this.scene.start("ConfigMenu");
     });
   //}
 
-  //Boton de perfil (aun por configurar)
+  //Boton de perfil
   let profileButton = this.add.image(
     (this.game.renderer.width * 9.2) / 10,
     (this.game.renderer.height * 9) / 10,
@@ -134,10 +134,9 @@ class MainMenu extends Phaser.Scene {
     profileButton.setScale(0.3);
   });
 
-  //al pulsar el boton popup de perfil (?)
+  //al pulsar el boton carga escena ProfileMenu
   profileButton.on("pointerdown", () => {
-    this.getPetition();
-    //this.scene.start("ConfigMenu");
+    this.scene.start("PerfilMenu");
   });
 }
 
