@@ -156,6 +156,7 @@ class Loader extends Phaser.Scene {
     this.load.image("jugador1HD", "../assets/text/jugador1HD.png");
     this.load.image("jugador2HD", "../assets/text/jugador2HD.png");
     this.load.image("MarcoPausa", "../assets/backgrounds/MarcoPausa.png");
+    this.load.image("Banner", "../assets/IU/banner.png");
 
     //Elementos de Texto
     this.load.image("VictoryJ1", "../assets/text/VictoryJ1.png");
