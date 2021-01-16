@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tankats</title>
+    <link rel="icon" href="../assets/Icon.png" type="image/png" sizes= "16x16">
+    <script src="../src/vendor/phaser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="centro">                       <!--bloque que centra todo-->
+      <div id="titulo">                     <!--bloque interior con el título del juego arriba, debajo está el canvas-->
+        <img src="../assets/TANKATS.png">
+        <div id="Tuto">                     <!--triquiñuela para el cartel de tutorial-->
+          <img src="../assets/Tutorial.png">
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./components/GameManager.js"></script>
+  <script src="./components/Direction.js"></script>
+  <script src="./components/ItemSpawner.js"></script>
+  <script src="./objects/BulletsGroup.js"></script>
+  <script src="./objects/Bullet.js"></script>
+  <script src="./objects/BulletPlayer2.js"></script>
+  <script src="./objects/Obstacle.js"></script>
+  <script src="./objects/WoodenCrate.js"></script>
+  <script src="./objects/IronCrate.js"></script>
+  <script src="./objects/Pit.js"></script>
+  <script src="./objects/Item.js"></script>
+  
+  <script src="./scenes/PruebasScene.js"></script>
+  <script src="./scenes/Loader.js"></script>
+  <script src="./scenes/MainMenu.js"></script>
+  <script src="./scenes/CharacterSelection.js"></script>
+  <script src="./scenes/GameplayScene.js"></script>
+  <script src="./scenes/PauseMenu.js"></script>
+  <script src="./scenes/SettingsMenu.js"></script>
+  <script src="./scenes/VictoryScene.js"></script>
+  <script src="./scenes/CountDownScene.js"></script>
+  <script src="./scenes/CreditsScene.js"></script>
+  <script src="./objects/Character.js"></script>
+  <script src="main.js"></script>
+ <div id="controles">
+    <div id="TutJug1">
+      <img src="../assets/TutJug2.png">
+    </div>
+    <div id="TutJug2">
+      <img src="../assets/TutJug1.png">
+    </div>
+  </div>
+</html>
