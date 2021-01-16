@@ -458,6 +458,12 @@ class GameplayScene extends Phaser.Scene {
   }
 
   createUI() {
+    var banner = this.add.image(
+      this.game.renderer.width / 2,
+      this.game.renderer.height / 11.6,
+      "Banner"
+    );
+
     GameManager.p1HpBar = this.physics.add
       .image(
         (this.game.renderer.width * 1.2) / 10,
