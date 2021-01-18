@@ -6,9 +6,12 @@ $(document).ready(function(){
 //esto simplemente es para hacerlo un poco bonito e intuitivo
 var failed = false;
 
+//esto es para que el chat se vea "bonito"
+var displayName;
+
 function postPetition() {
-    var nickname = $("#nickName").val();
-    if (nickname != ""){
+    displayName = $("#nickName").val();
+    if (displayName != ""){
         fetch("http://localhost:8080/players", {
             method: "POST",
             headers: {
@@ -18,7 +21,7 @@ function postPetition() {
 
         //make sure to serialize your JSON body
         body: JSON.stringify({
-        nickName: nickname,
+        nickName: $("#nickName").val(),
         }),
         })
         .then((response) => response.json())
