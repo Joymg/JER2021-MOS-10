@@ -62,13 +62,10 @@ public class PlayerController {
 		 * Date(System.currentTimeMillis()); GameController.addGame(new Game(id,
 		 * player1,player2,d)); }
 		 */
-		// savePersistentData();
+		//savePersistentData();
 		return player;
 	}
 
-	public void addPlayertoMap(Player p) {
-		players.put(p.getId(), p);
-	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Player> updatePlayer(@PathVariable long id, @RequestBody Player updatedPlayer) {
@@ -117,7 +114,7 @@ public class PlayerController {
 	public void savePersistentData() {
 		JSONObject jsonObject = new JSONObject();
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(new File("mytextfile.json")));
+			BufferedWriter out = new BufferedWriter(new FileWriter(new File("mytextfile.txt")));
 			for (Player player : players.values()) {
 				jsonObject.put("id", player.getId());
 				jsonObject.put("nickName", player.getNickName());

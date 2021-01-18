@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tankats</title>
+    <link rel="icon" href="../assets/Icon.png" type="image/png" sizes="16x16" />
+    <script src="./src/vendor/phaser.min.js"></script>
+    <script src="./src/vendor/jquery-3.5.1.min.js"></script>
+    <script src="./src/form.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="centro">
+      <!--bloque que centra todo-->
+      <div id="titulo">
+        <!--bloque interior con el título del juego arriba, debajo está el canvas-->
+        <img src="./assets/TANKATS.png" />
+        <p id="onlinePlayers">Jugadores En Linea:</p>
+        <div id="Tuto">
+          <!--triquiñuela para el cartel de tutorial-->
+          <img src="./assets/Tutorial.png" />
+        </div>
+      </div>
+    </div>
+    <div id="login">
+      <p style = "font-size: 30px;">Introduce un nombre para jugar a Tankats</p>
+      <input type="text" id="nickName" placeholder="El nombre va aquí..." required><br><br>   
+      <button id="subm" onclick="postPetition()">¡Jugar!</button><br><br>                                                                              
+    </div>
+  </body>
+  <script src="./src/components/GameManager.js"></script>
+  <script src="./src/components/Direction.js"></script>
+  <script src="./src/components/ItemSpawner.js"></script>
+  <script src="./src/objects/BulletsGroup.js"></script>
+  <script src="./src/objects/Bullet.js"></script>
+  <script src="./src/objects/BulletPlayer2.js"></script>
+  <script src="./src/objects/Obstacle.js"></script>
+  <script src="./src/objects/WoodenCrate.js"></script>
+  <script src="./src/objects/IronCrate.js"></script>
+  <script src="./src/objects/Pit.js"></script>
+  <script src="./src/objects/Item.js"></script>
+
+  <script src="./src/scenes/PruebasScene.js"></script>
+  <script src="./src/scenes/Loader.js"></script>
+  <script src="./src/scenes/MainMenu.js"></script>
+  <script src="./src/scenes/CharacterSelection.js"></script>
+  <script src="./src/scenes/GameplayScene.js"></script>
+  <script src="./src/scenes/PauseMenu.js"></script>
+  <script src="./src/scenes/SettingsMenu.js"></script>
+  <script src="./src/scenes/VictoryScene.js"></script>
+  <script src="./src/scenes/CountDownScene.js"></script>
+  <script src="./src/scenes/CreditsScene.js"></script>
+  <script src="./src/objects/Character.js"></script>
+  <script src="./src/scenes/ProfileMenu.js"></script>
+  <script src="./src/main.js"></script>
+  <!--Cosas del Chat con API REST-->
+  <div id="chatBox">
+    <div id="chatHistory">
+      <p><b>Nombre: </b>Mensaje de prueba.</p>
+    </div>
+    <div id="chatWriter">
+      <input type="text" placeholder="Escriba su mensaje aquí..." id="message">
+      <button id="sendMessage" onclick="postMessage()"> Enviar </button>
+    </div>
+  </div>
+ <div id="controles">
+    <div id="TutJug1">
+      <img src="./assets/TutJug2.png" />
+    </div>
+    <div id="TutJug2">
+      <img src="./assets/TutJug1.png" />
+    </div>
+  </div>
+</html>

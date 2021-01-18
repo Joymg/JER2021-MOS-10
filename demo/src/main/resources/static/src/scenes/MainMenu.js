@@ -86,7 +86,7 @@ class MainMenu extends Phaser.Scene {
     });
     credits.on("pointerdown", () => {
       //this.scene.start("CreditsScene");
-      addPlayer();
+      postPetition();
     });
 
     //Boton de configuracion
@@ -143,7 +143,7 @@ class MainMenu extends Phaser.Scene {
     if (ready) {
       var timer = this.time.addEvent({
         delay: 500, // ms
-        callback: updatePlayer,
+        callback: checkServer,
         loop: true,
       });
     }

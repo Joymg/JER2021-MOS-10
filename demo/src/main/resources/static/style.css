@@ -1,5 +1,5 @@
 body{
-    background-image: url('../assets/backgrounds/FondoPaginaWeb.png');     
+    background-image: url('./assets/backgrounds/FondoPaginaWeb.png');     
   }
   #centro{
     background-color: white; 
