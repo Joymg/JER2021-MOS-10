@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tankats</title>
     <link rel="icon" href="../assets/Icon.png" type="image/png" sizes= "16x16">
+    <script src="../src/jquery/jquery-3.5.1.js"></script>
     <script src="../src/vendor/phaser.min.js"></script>
     <script src="../src/form.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -19,18 +20,9 @@
       </div> 
     </div>
     <div id="login">
-      <form method = "POST">
-        <p style = "font-size: 30px;">Inicia sesión para jugar a Tankats</p>
-        <label for="name">Usuario</label><br>
-        <input type="text" name="name" required><br><br>
-        <label for="psw">Contraseña</label><br>
-        <input type="password" name="psw" required><br>    
-        <button type="submit" value="submit" onclick="formulario()">Iniciar Sesión</button><br><br>
-        <p style = "font-size: 20px; margin-bottom: -10px">¿Eres nuevo? </p>
-        <p style = "font-size: 18px; margin-bottom: -10px">Escribe un usuario y contraseña y pulsa aquí:</p>
-        <button type="submit" value="submit" onclick="formulario()">Registrarse</button>                                                                                     
-      </form>
-
+      <p style = "font-size: 30px;">Introduce un nombre para jugar a Tankats</p>
+      <input type="text" id="nickName" placeholder="El nombre va aquí..." required><br><br>   
+      <button id="subm" onclick="postPetition()">¡Jugar!</button><br><br>                                                                              
     </div>
   </body>
   <script src="./components/GameManager.js"></script>

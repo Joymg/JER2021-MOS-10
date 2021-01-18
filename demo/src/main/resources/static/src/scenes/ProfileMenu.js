@@ -3,7 +3,6 @@ class ProfileMenu extends Phaser.Scene {
       super({
         key: "PerfilMenu",
       });
-      console.log("ProfileMenu#constructor");
     }
   
     preload() {}
