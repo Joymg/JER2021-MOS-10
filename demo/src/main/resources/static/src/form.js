@@ -59,3 +59,93 @@ function getMessage(){
       .then((data) => console.log(data));
 }
 
+function checkServer() {
+    updatePlayer();
+    getPlayer();
+    serverNotRespond > 3
+      ? (document.getElementById("onlinePlayers").innerHTML = "Offline")
+      : (document.getElementById("onlinePlayers").innerHTML = "Jugadores En Linea: " + activePlayers);
+  }
+  
+  //Check player connection
+  function checkPlayer() {
+    getPlayer();
+  }
+  
+  //! JQuery
+  //Get players from server
+  function getPlayer() {
+    var playersOnline;
+    $.ajax({
+      url: "http://localhost:8080/players",
+    })
+      .done(function (players) {
+        serverNotRespond = 0;
+        playersOnline = players;
+        activePlayers = players;
+        console.log(player,activePlayers);
+      })
+      .fail((jqXHR, Status, errorThrown) => {
+        serverNotRespond ++;
+        console.log(errorThrown);
+      });
+  }
+  
+  //Create player in server
+  function addPlayer() {
+    let request = {
+      nickName: document.getElementById("loginNickName").value,
+      password: document.getElementById("loginPassword").value,
+    };
+    console.log(JSON.stringify(request));
+    $.ajax({
+      method: "POST",
+      url: "http://localhost:8080/players",
+      data: JSON.stringify(request),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8", // Indica el contenido
+      },
+    })
+      .done((data) => {
+        actualPlayerID = data.id;
+      })
+      .fail((jqXHR, Status, errorThrown) => {
+        console.log(errorThrown);
+      });
+  }
+  
+  //Update player in server
+  function updatePlayer() {
+    let request = {
+      nickName: document.getElementById("loginNickName").value,
+      password: document.getElementById("loginPassword").value,
+    };
+    $.ajax({
+      method: "PUT",
+      url: "http://localhost:8080/players/" + actualPlayerID,
+      data: JSON.stringify(request),
+      processData: false,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .done(function (player) {
+        serverNotRespond = 0;
+        console.log("resoponde");
+      })
+      .fail((jqXHR, Status, errorThrown) => {
+        serverNotRespond++;
+        console.log(errorThrown,serverNotRespond, "no responde" );
+      });
+  }
+  
+  //Delete player from server
+  function deletePlayer(playerID) {
+    $.ajax({
+      method: "DELETE",
+      url: "http://localhost:8080/players/" + playerID,
+    }).done(function (playerID) {
+      console.log("Deleted player " + playerID);
+    });
+  }
+
