@@ -267,3 +267,11 @@ Realmente han habido pocos cambios de diseño de una fase para otra, principalme
 
 - Se querían implementar al menos dos personajes jugables para esta fase, pero por falta de tiempo solo se ha podido meter a uno pero con diferentes filtros para que se pueda diferenciar durante el gameplay.
 - Se queria implementar un tutorial in-game que introdujese las mecánicas principales (movimiento, disparos y tipos de obstaculos), pero al final se ha decidido poner una pantalla que detalla los controles en la parte inferior de la página.
+
+## Fase 3:
+### 6.1 Nuevas pantallas
+A continuación se muestran las nuevas escenas que se han añadido para esta entrega. El diagrama de navegación usará la nomenclatura del apartado 5.1.
+
+### 6.2 Diagrama de clases y API REST
+
+### 6.3 Instrucciones para ejecutar la aplicación
