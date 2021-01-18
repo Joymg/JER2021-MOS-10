@@ -83,7 +83,7 @@ function checkServer() {
         serverNotRespond = 0;
         playersOnline = players;
         activePlayers = players;
-        console.log(player,activePlayers);
+        console.log(players,activePlayers);
       })
       .fail((jqXHR, Status, errorThrown) => {
         serverNotRespond ++;

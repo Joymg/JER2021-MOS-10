@@ -22,3 +22,7 @@ var config = {
   game.config.localMode = true; 
   game.config.language = "spanish";
 
+var activePlayerID;
+var ready = false
+var serverNotRespond = 0;
+var activePlayers;

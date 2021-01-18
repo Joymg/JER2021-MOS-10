@@ -86,7 +86,7 @@ class MainMenu extends Phaser.Scene {
     });
     credits.on("pointerdown", () => {
       //this.scene.start("CreditsScene");
-      this.postPetition();
+      addPlayer();
     });
 
     //Boton de configuracion
@@ -110,56 +110,42 @@ class MainMenu extends Phaser.Scene {
 
     //al pulsar el boton carga la escena de configuracion
     configButton.on("pointerdown", () => {
-      //this.getPetition();
-      this.scene.start("ConfigMenu");
+      getPlayer();
+      //this.scene.start("ConfigMenu");
     });
-  //}
+    //}
 
-  //Boton de perfil
-  let profileButton = this.add.image(
-    (this.game.renderer.width * 9.2) / 10,
-    (this.game.renderer.height * 9) / 10,
-    "Profile"
-  );
-  profileButton.setScale(0.3);
-
-  profileButton.setInteractive();
-  //efectos al pasar el raton por encima
-  profileButton.on("pointerover", () => {
-    profileButton.setTint(0x909090);
-    profileButton.setScale(0.32);
-  });
-  profileButton.on("pointerout", () => {
-    profileButton.setTint();
+    //Boton de perfil
+    let profileButton = this.add.image(
+      (this.game.renderer.width * 9.2) / 10,
+      (this.game.renderer.height * 9) / 10,
+      "Profile"
+    );
     profileButton.setScale(0.3);
-  });
 
-  //al pulsar el boton carga escena ProfileMenu
-  profileButton.on("pointerdown", () => {
-    this.scene.start("PerfilMenu");
-  });
-}
+    profileButton.setInteractive();
+    //efectos al pasar el raton por encima
+    profileButton.on("pointerover", () => {
+      profileButton.setTint(0x909090);
+      profileButton.setScale(0.32);
+    });
+    profileButton.on("pointerout", () => {
+      profileButton.setTint();
+      profileButton.setScale(0.3);
+    });
 
-  getPetition() {
-    fetch("http://localhost:8080/players")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  }
+    //al pulsar el boton carga escena ProfileMenu
+    profileButton.on("pointerdown", () => {
+      //this.putPetition(2);
+      this.scene.start("PerfilMenu");
+    });
 
-  postPetition() {
-    fetch("http://localhost:8080/players", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
-        nickName: "Joy",
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    if (ready) {
+      var timer = this.time.addEvent({
+        delay: 500, // ms
+        callback: updatePlayer,
+        loop: true,
+      });
+    }
   }
 }

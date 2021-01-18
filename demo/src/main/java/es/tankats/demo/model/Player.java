@@ -1,21 +1,18 @@
 package es.tankats.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 
 public class Player {
 
-    private long id;
+    private long id = 0;
     private String nickName;
-    private int wonGames;
-    private int lostGames;
-    public Player(long id, String nickName, int wonGames, int lostGames) {
-        this.id = id;
-        this.nickName = nickName;
-        this.wonGames = wonGames;
-        this.lostGames = lostGames;
-    }
-
+    private String password;
+    private int wonGames= 0;
+    private int lostGames = 0 ;
+    private boolean online;
+    private Date date= new Date();
     
+
     public long getId() {
         return id;
     }
@@ -30,6 +27,14 @@ public class Player {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getWonGames() {
@@ -47,6 +52,23 @@ public class Player {
     public void setLostGames(int lostGames) {
         this.lostGames = lostGames;
     }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
 
     
 }

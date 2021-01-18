@@ -18,6 +18,13 @@ body{
     width: 1024px;
     height: 25px;
   }
+
+  #onlinePlayers{
+    position: absolute;
+    top: 5px;
+    left:1200px;
+  }
+
   #controles{
     background-color: #FFCA7A; 
     border: 5px solid #5b020059; 

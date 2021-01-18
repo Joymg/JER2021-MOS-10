@@ -94,6 +94,14 @@ class GameplayScene extends Phaser.Scene {
     this.handleInputs();
     this.updateUI();
     this.checkGameOver();
+
+    if (ready) {
+      var timer = this.time.addEvent({
+        delay: 500, // ms
+        callback: updatePlayer,
+        loop: true,
+      });
+    }
   }
 
   //* Funciones de creado
@@ -460,9 +468,9 @@ class GameplayScene extends Phaser.Scene {
   createUI() {
     var banner = this.add.image(
       this.game.renderer.width / 2,
-      this.game.renderer.height / 11.6,
+      0,
       "Banner"
-    );
+    ).setOrigin(0.5,0);
 
     GameManager.p1HpBar = this.physics.add
       .image(
