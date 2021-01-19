@@ -3,6 +3,8 @@ var failed = false;
 
 //esto es para que el chat se vea "bonito"
 var displayName;
+var lastName;
+var lastMessage;
 
 function postPetition() {
   ready = true;
@@ -37,6 +39,8 @@ function postPetition() {
     failed = true;
   }
 }
+
+
 function postMessage() {
   var writtenMessage = $("#message").val();
   if (writtenMessage != null) {
@@ -58,16 +62,45 @@ function postMessage() {
       .fail((jqXHR, Status, errorThrown) => {
         console.log(errorThrown);
       });
-    $("#chatHistory").append("<p><b>" + displayName + ": </b>" + writtenMessage + "</p>");
+    $("#chatHistory").append("<p><b><i>(enviando...) </i>" + displayName + ": </b>" + writtenMessage + "</p>");
   }
 }
+
+
+function postLastMessage() {
+    if (lastMessage != null) {
+      let request = {
+        name: lastName,
+        message: lastMessage,
+      };
+      $.ajax({
+        method: "POST",
+        url: "http://localhost:8080/chat",
+        data: JSON.stringify(request),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8", // Indica el contenido
+        },
+      })
+        .done((data) => {
+          console.log(data);
+        })
+        .fail((jqXHR, Status, errorThrown) => {
+          console.log(errorThrown);
+        });
+      $("#chatHistory").append("<p><b>" + lastName + ": </b>" + lastMessage + "</p>");
+    }
+  }
 
 function getMessage() {
   $.ajax({
     url: "http://localhost:8080/chat",
   })
     .done(function (data) {
-      console.log(data[data.length-1])
+        if(lastName != data[data.length - 1].name  && lastMessage != data[data.length - 1].message){
+            lastName = data[data.length - 1].name;
+            lastMessage = data[data.length - 1].message;
+            postLastMessage();
+        }
     })
     .fail((jqXHR, Status, errorThrown) => {
       console.log(errorThrown);
@@ -135,4 +168,10 @@ function deletePlayer(playerID) {
   }).done(function (playerID) {
     console.log("Deleted player " + playerID);
   });
+}
+
+//listen new message
+function messageListener(){
+    auxName = displayName;
+    auxMessage = $("#message").val();
 }

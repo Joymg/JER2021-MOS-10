@@ -92,9 +92,10 @@ body{
   }
 
   #chatHistory{
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     height: 90%;
     padding: 1em;
     color: white;
     border-radius: 2em;
+    font-size: 1.5em;
   }
