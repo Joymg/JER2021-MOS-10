@@ -244,7 +244,8 @@ class Loader extends Phaser.Scene {
   }
   update(){
     if (ready) {
-      this.scene.start("MainMenu");
+     this.scene.start("MainMenu");
+     
     }
   }
 }

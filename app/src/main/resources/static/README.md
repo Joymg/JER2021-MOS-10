@@ -279,3 +279,9 @@ Para esta entrega no se han añadido nuevas escenas al juego.
 
 ### 6.3 Instrucciones para ejecutar la aplicación
 
+1. Se abre el proyecto en eclipse
+2. Click derecho en el proyecto -> Maven -> Update project
+3. En el menu que sale, pulsar OK
+4. Esperar a que se actualice
+5. Click derecho en el proyecto -> Run as... -> Spring Boot App 
+6. Cargar en el navegador el Local Host, puerto 8080

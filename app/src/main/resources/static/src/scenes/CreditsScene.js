@@ -62,6 +62,10 @@ class CreditsScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setScale(0.08);
 
+    //Creditos musica
+    this.add.text(10, 740, 'Música menú principal: Jincheng Zhang - Dark I Love You', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+    this.add.text(770, 740, 'Música combate: datsflaze - Haste', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+
     //Boton de atras
     let backButton = this.add.image(
       (this.game.renderer.width * 9) / 10,
