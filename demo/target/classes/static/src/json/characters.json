@@ -1,0 +1,7 @@
+{"characters":[
+    {"name":"Aricato", "topSprite":"../assets/characters/aricatoTopSprite","bottomSprite":"../assets/characters/aricatoBottomSprite","apodo":"4RI-Cat-0"},
+    {"name":"Catsudon", "topSprite":"../assets/characters/catsudonTopSprite","bottomSprite":"../assets/characters/catsudonBottomSprite"},
+    {"name":"Tankitty", "topSprite":"../assets/characters/tankittyTopSprite","bottomSprite":"../assets/characters/tankittyBottomSprite"},
+    {"name":"Catígula", "topSprite":"../assets/characters/catigulaTopSprite","bottomSprite":"../assets/characters/catigulaBottomSprite"},
+    {"name":"Catótico", "topSprite":"../assets/characters/catoticoTopSprite","bottomSprite":"../assets/characters/catoticoBottomSprite"}
+]}
