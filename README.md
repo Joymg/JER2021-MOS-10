@@ -213,31 +213,31 @@ Durante la partida se podrá acceder a una pantalla de pausa. En ella se podrá 
 ### 5.1 Capturas
 
 #### 1
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura.png?raw=true)
 Este es el menú principal, desde aqui podemos acceder a la configuración, a los créditos o empezar una partida
 
 #### 2
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura2.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura2.png?raw=true)
 Esta es la pantalla de configuración, desde aquí se puede "mutear" el juego o cambiar el idioma (aun no implementado al 100%)
 
 #### 3
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura3.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura3.png?raw=true)
 Esta es la pantalla de créditos, donde aparecen los nombres y fotos de los desarrolladores del videojuego. 
 
 #### 4
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura4.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura4.png?raw=true)
 Esta es la pantalla de selección de personaje, actualmente solo hay un gato implementado, pero en el juego se pueden diferenciar los jugadores por tintes en el sprite. Primero escoje el jugador 1 (que controla con WASD) y por último el jugador 2 (que controla con las flechas).
 
 #### 5
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura5.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura5.png?raw=true)
 Esta es la pantalla de gameplay, el mapa en cada partida se escoje aleatoriamente de una pool. Arriba se puede ver la vida de cada jugador y si ha cogido algun Power Up. 
 
 #### 6
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura6.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura6.png?raw=true)
 Esta es la pantalla de victoria, en la cual se nos presentan las opciones de volver al menú o volver a jugar con los mismos personajes en un mapa aleatorio de los disponibles.
 
 #### 7
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/demo/src/main/resources/static/capturas/Captura7.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura7.png?raw=true)
 Si se le da a la tecla Esc durante la pantalla de gameplay se abrirá el menu de pausa, donde podremos mutear la música, volver a la pantalla principal o al juego. 
 
 ### 5.2 Diagrama de navegación
@@ -275,7 +275,7 @@ Para esta entrega no se han añadido nuevas escenas al juego.
 
 ### 6.2 Diagrama de clases y API REST
 
-![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/app/src/main/resources/static/GDD-Images/DiagClases.PNG)
+![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/GDD-Images/DiagClases.png?raw=true)
 
 ### 6.3 Instrucciones para ejecutar la aplicación
 
