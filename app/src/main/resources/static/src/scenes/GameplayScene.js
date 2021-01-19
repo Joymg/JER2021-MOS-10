@@ -45,11 +45,16 @@ class GameplayScene extends Phaser.Scene {
 
     this.tint1;
     this.tint2;
+
+    this.character1Sprite;
+    this.character2Sprite;
   }
 
   init(data) {
     this.tint1 = data.tint1;
     this.tint2 = data.tint2;
+    this.character1Sprite = data.character1;
+    this.character2Sprite = data.character2;
     //console.log(this.tint1, data.tint1);
     //console.log(this.tint2, data.tint2);
   }
@@ -165,13 +170,35 @@ class GameplayScene extends Phaser.Scene {
       },
     });
 
+    var player1Top, player1Bot, player2Top, player2Bot;
+    switch(this.tint1){
+        case "0x202020":
+          player1Top = "topSprite2";
+          player1Bot = "bottomSprite2";
+          break;
+        default:          
+          player1Top = "topSprite";
+          player1Bot = "animationTank1";
+          break;
+    }
+    
+    switch(this.tint2){
+      case "0x202020":
+        player2Top = "topSprite2";
+        player2Bot = "bottomSprite2";
+        break;
+      default:          
+        player2Top = "topSprite";
+        player2Bot = "animationTank1";
+        break;
+    }
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
-    var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.036);
+    var bot = this.physics.add.sprite(posXplayer1, posYplayer1, player1Bot).setScale(0.036);
     bot.body.setBoundsRectangle(this.customBounds);
 
     bot.setTint(this.tint1);
     var top = this.physics.add
-      .sprite(posXplayer1, posYplayer1, "topSprite")
+      .sprite(posXplayer1, posYplayer1, player1Top)
       .setScale(0.036)
       .setOrigin(0.3, 0.5);
     top.tintFill = false;
@@ -181,7 +208,7 @@ class GameplayScene extends Phaser.Scene {
     //Animación tanque 1
     this.anims.create({
       key: "tank1_animation",
-      frames: this.anims.generateFrameNumbers("animationTank1", {
+      frames: this.anims.generateFrameNumbers(player1Bot, {
         start: 0,
         end: 5,
       }),
@@ -265,13 +292,13 @@ class GameplayScene extends Phaser.Scene {
     });
 
     var bot2 = this.physics.add
-      .sprite(posXplayer2, posYplayer2, "animationTank1")
+      .sprite(posXplayer2, posYplayer2, player2Bot)
       .setScale(0.036)
       .setTint(this.tint2);
 
     bot2.body.setBoundsRectangle(this.customBounds);
     var top2 = this.physics.add
-      .sprite(posXplayer2, posYplayer2, "topSprite")
+      .sprite(posXplayer2, posYplayer2, player2Top)
       .setScale(0.036)
       .setOrigin(0.3, 0.5)
       .setTint(this.tint2);
