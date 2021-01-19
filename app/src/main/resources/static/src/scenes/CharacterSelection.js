@@ -303,7 +303,7 @@ class CharacterSelection extends Phaser.Scene {
             var tint2 = this.player2Character.tintTopLeft;
             //console.log(this.player1Character.texture.key, tint1);
             //console.log(this.player2Character.texture.key, tint2);
-            this.scene.start("GameplayScene", { tint1, tint2 });
+            this.scene.start("GameplayScene", { tint1, tint2});
           }
         }
       } else {
@@ -318,6 +318,7 @@ class CharacterSelection extends Phaser.Scene {
 
   getSelectedCharacter(array) {
     var player;
+    var indexCounter = 0;
     array.forEach((element) => {
       if (element.active == true) {
         //console.log(element.texture.key, element.tintTopLeft);

@@ -86,6 +86,8 @@ class Loader extends Phaser.Scene {
       frameWidth: 1721,
       frameHeight: 1844,
     });
+    this.load.image("topSprite2", "./assets/characters/Aricato/AricatoTop.png");
+    this.load.image("bottomSprite2", "./assets/characters/Aricato/AricatoBot.png");
 
     //Balas
     this.load.image("bulletPlayer1", "./assets/bullets/Bala_Jugador1.png");
@@ -103,7 +105,7 @@ class Loader extends Phaser.Scene {
 
     //elementos de la seleccion de personaje
     this.load.image("backSelec", "./assets/backgrounds/FondoSeleccion.png");
-    this.load.image("Aricato", "./assets/characters/Catsudon/Portrait.png");
+    this.load.image("Aricato", "./assets/characters/Aricato/Portrait.png");
     this.load.image("Catsudon", "./assets/characters/Catsudon/Portrait.png");
     this.load.image("Tankitty", "./assets/characters/Catsudon/Portrait.png");
     this.load.image("Catígula", "./assets/characters/Catsudon/Portrait.png");
@@ -125,7 +127,7 @@ class Loader extends Phaser.Scene {
     //obstacles
     this.load.image("woodenCrateSprite", "./assets/obstacles/WoodenObstacle.png");
     this.load.image("ironCrateSprite", "./assets/obstacles/IronObstacle.png");
-    this.load.image("pitSprite", "./assets/obstacles/pit.png");
+    this.load.image("pitSprite", "./assets/obstacles/Agujero.png");
     //Particulas
     this.load.image("emitter1", "./assets/particles/Emitter1.png");
     this.load.image("emitter2", "./assets/particles/Emitter2.png");
@@ -149,6 +151,7 @@ class Loader extends Phaser.Scene {
     this.load.image("RightLife5", "./assets/IU/RightLife5.png");
     this.load.image("RightLife6", "./assets/IU/RightLife6.png");
     this.load.image("PlayerIcon", "./assets/IU/PlayerIcon.png");
+    this.load.image("PlayerIcon2", "./assets/IU/PlayerIcon2.png");
     this.load.image("Fade", "./assets/Fade.png");
     this.load.image("jugador1", "./assets/text/jugador1.png");
     this.load.image("jugador2", "./assets/text/jugador2.png");
