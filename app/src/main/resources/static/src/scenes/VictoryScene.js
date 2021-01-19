@@ -161,5 +161,14 @@ class VictoryScene extends Phaser.Scene {
       ease: "easein",
       duration: 100,
     });
+
+
+    if (ready) {
+      var timer = this.time.addEvent({
+        delay: 500, // ms
+        callback: checkServer,
+        loop: true,
+      });
+    }
   }
 }

@@ -85,5 +85,13 @@ class SettingsMenu extends Phaser.Scene {
     backButton.on("pointerdown", () => {
       this.scene.start("MainMenu");
     });
+
+    if (ready) {
+      var timer = this.time.addEvent({
+        delay: 500, // ms
+        callback: checkServer,
+        loop: true,
+      });
+    }
   }
 }

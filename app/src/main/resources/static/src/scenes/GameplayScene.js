@@ -1174,4 +1174,12 @@ class GameplayScene extends Phaser.Scene {
       powerUp.usePowerUp();
     }
   }
+
+  if (ready) {
+    var timer = this.time.addEvent({
+      delay: 500, // ms
+      callback: checkServer,
+      loop: true,
+    });
+  }
 }
