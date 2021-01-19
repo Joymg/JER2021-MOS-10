@@ -275,7 +275,7 @@ Para esta entrega no se han añadido nuevas escenas al juego.
 
 ### 6.2 Diagrama de clases y API REST
 
-![Screenshot](https://raw.github.com/Joymg/JER2021-MOS-10/GDD-Images/DiagClases.PNG)
+![Screenshot](https://github.com/Joymg/JER2021-MOS-10/tree/main/app/src/main/resources/static/GDD-Images/DiagClases.PNG)
 
 ### 6.3 Instrucciones para ejecutar la aplicación
 
