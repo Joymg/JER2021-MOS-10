@@ -6,13 +6,7 @@ class CountDownScene extends Phaser.Scene{
     }
 
     create(){
-        if (ready) {
-            var timer = this.time.addEvent({
-              delay: 800, // ms
-              callback: checkServer,
-              loop: true,
-            });
-          }
+        
         this.scene.pause("GameplayScene");
         var three = this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,"Three").setScale(0);
         var two = this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,"Two").setScale(0).setVisible(false);

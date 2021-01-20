@@ -3,7 +3,7 @@ class Pit extends Obstacle{
         super(scene,xPos,yPos,"pitSprite")
         this.isDestructible = false;
         this.bulletsGoThrough = true;
-        this.setScale(0.9);
+        this.setScale(0.55);
     }
 
 }

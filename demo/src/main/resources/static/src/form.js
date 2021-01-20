@@ -16,7 +16,6 @@ function postPetition() {
     let request = {
       nickName: $("#nickName").val(),
     };
-    console.log(JSON.stringify(request));
     $.ajax({
       method: "POST",
       url: url + "/players",
@@ -59,8 +58,6 @@ function postMessage() {
       },
     })
       .done((data) => {
-        console.log(data);
-        $("#message").removeAttr("val");
       })
       .fail((jqXHR, Status, errorThrown) => {
         console.log(errorThrown);
@@ -85,7 +82,6 @@ function postirstMessage() {
       },
     })
       .done((data) => {
-        $("#message").removeAttr("val");
       })
       .fail((jqXHR, Status, errorThrown) => {
         console.log(errorThrown);
@@ -199,7 +195,6 @@ function deletePlayer(playerID) {
     method: "DELETE",
     url: url + "/players/" + playerID,
   }).done(function (playerID) {
-    console.log("Deleted player " + playerID);
   });
 }
 

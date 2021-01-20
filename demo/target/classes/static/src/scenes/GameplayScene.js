@@ -81,6 +81,13 @@ class GameplayScene extends Phaser.Scene {
       this.scene.stop("CountDownScene");
     });
 
+    if (ready) {
+      var timer = this.time.addEvent({
+        delay: 800, // ms
+        callback: checkServer,
+        loop: true,
+      });
+    }
     
   }
 
@@ -166,13 +173,13 @@ class GameplayScene extends Phaser.Scene {
     var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.036);
     bot.body.setBoundsRectangle(this.customBounds);
 
-    bot.setTint(this.tint1);
+    //bot.setTint(this.tint1);
     var top = this.physics.add
       .sprite(posXplayer1, posYplayer1, "topSprite")
       .setScale(0.036)
       .setOrigin(0.3, 0.5);
-    top.tintFill = false;
-    top.setTint(this.tint1);
+  
+    //top.setTint(this.tint1);
     //console.log("top1", top.tintTopLeft);
     //console.log("bot1", bot.tintTopLeft);
     //Animación tanque 1
@@ -265,14 +272,14 @@ class GameplayScene extends Phaser.Scene {
       .sprite(posXplayer2, posYplayer2, "bottomSprite2")
       .setScale(0.036)
       .setRotation(90)
-      .setTint(this.tint2);
+      //.setTint(this.tint2);
 
     bot2.body.setBoundsRectangle(this.customBounds);
     var top2 = this.physics.add
       .sprite(posXplayer2, posYplayer2, "topSprite2")
       .setScale(0.036)
       .setOrigin(0.3, 0.5)
-      .setTint(this.tint2);
+      //.setTint(this.tint2);
 
     //console.log(2, top2.tintTopLeft);
     //bot2.anims.play("tank1_animation");
@@ -475,11 +482,11 @@ class GameplayScene extends Phaser.Scene {
       .image(
         (this.game.renderer.width * 0.8) / 10,
         (this.game.renderer.height * 0.8) / 10,
-        "PlayerIcon"
+        "CatsudonIcon"
       )
       .setDepth(1000)
       .setScale(0.1)
-      .setTint(this.tint1);
+      //.setTint(this.tint1);
 
     var p2Name = this.add
       .image(
@@ -492,11 +499,11 @@ class GameplayScene extends Phaser.Scene {
       .image(
         (this.game.renderer.width * 9.2) / 10,
         (this.game.renderer.height * 0.8) / 10,
-        "PlayerIcon"
+        "AricatoIcon"
       )
       .setDepth(1000)
       .setScale(0.1)
-      .setTint(this.tint2);
+      //.setTint(this.tint2);
 
     textUI = this.add
       .image(
@@ -722,10 +729,6 @@ class GameplayScene extends Phaser.Scene {
           powerUp.triggered = true;
           var coolDown = Math.floor(
             (Math.random() * (ItemSpawer.maxCD - ItemSpawer.minCD) + ItemSpawer.minCD) * 1000
-          );
-          console.log(
-            "🚀 ~ file: GameplayScene.js ~ line 726 ~ GameplayScene ~ GameManager.powerUps.getChildren ~ coolDown",
-            coolDown
           );
           var timer = this.time.addEvent({
             delay: coolDown,
@@ -1158,10 +1161,6 @@ class GameplayScene extends Phaser.Scene {
   }
 
   usePowerUp(character, powerUp) {
-    console.log(
-      "🚀 ~ file: GameplayScene.js ~ line 1158 ~ GameplayScene ~ usePowerUp ~ character",
-      character
-    );
     if (powerUp.item != null) {
       powerUp.usePowerUp();
     }

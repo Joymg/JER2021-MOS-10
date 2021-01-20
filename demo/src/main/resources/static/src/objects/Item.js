@@ -29,8 +29,6 @@ class Item extends Phaser.Physics.Arcade.Sprite {
         
         break;
     }
-    console.log("🚀 ~ file: Item.js ~ line 23 ~ Item ~ useItem ~ this", this.id)
-
   }
 }
 

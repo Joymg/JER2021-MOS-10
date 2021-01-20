@@ -7,7 +7,7 @@ var config = {
       default: "arcade",
       arcade: {
         gravity: { y: 0 },
-        debug :true
+        //debug :true
       },
     },
     //el qeu va primero es el qeu se ve al iniciar, bueno para testeat

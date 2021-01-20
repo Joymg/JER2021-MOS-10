@@ -88,6 +88,8 @@ class Loader extends Phaser.Scene {
     //TODO darles nombres diferentes dependiendo del personaje
     this.load.image("topSprite2", "./assets/characters/Aricato/AricatoTop.png");
     this.load.image("bottomSprite2", "./assets/characters/Aricato/AricatoBot.png");
+    this.load.image("AricatoIcon", "./assets/characters/Aricato/AricatoIcon.png");
+    this.load.image("CatsudonIcon", "./assets/characters/Catsudon/CatsudonIcon.png");
     this.load.image("topSprite", "./assets/characters/Catsudon/CatsudonTop.png");
     this.load.image("bottomSprite", "./assets/characters/Catsudon/CatsudonBot.png");
     this.load.spritesheet("animationTank1", "./assets/characters/Catsudon/CatsudonBotAnim.png", {
@@ -156,7 +158,6 @@ class Loader extends Phaser.Scene {
     this.load.image("RightLife4", "./assets/IU/RightLife4.png");
     this.load.image("RightLife5", "./assets/IU/RightLife5.png");
     this.load.image("RightLife6", "./assets/IU/RightLife6.png");
-    this.load.image("PlayerIcon", "./assets/IU/PlayerIcon.png");
     this.load.image("Fade", "./assets/Fade.png");
     this.load.image("jugador1", "./assets/text/jugador1.png");
     this.load.image("jugador2", "./assets/text/jugador2.png");
@@ -237,6 +238,7 @@ class Loader extends Phaser.Scene {
       progressBox.destroy();
       loadingText.destroy();
       percentText.destroy();
+      console.log("Complete");
     });
   }
 
