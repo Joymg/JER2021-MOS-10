@@ -11,6 +11,11 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
@@ -22,7 +27,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1610972235435</id>
+			<id>1609010697766</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

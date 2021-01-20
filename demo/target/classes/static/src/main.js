@@ -26,3 +26,4 @@ var activePlayerID;
 var ready = false
 var serverNotRespond = 0;
 var activePlayers;
+let serverOnline = true;
