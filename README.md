@@ -222,7 +222,7 @@ Esta es la pantalla de configuración, desde aquí se puede "mutear" el juego o 
 
 #### 3
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura3.PNG?raw=true)
-Esta es la pantalla de créditos, donde aparecen los nombres y fotos de los desarrolladores del videojuego. 
+Esta es la pantalla de créditos, donde aparecen los nombres, fotos de los desarrolladores del videojuego y los créditos de la música sin copyright utilizada. 
 
 #### 4
 ![alt text](https://github.com/Joymg/JER2021-MOS-10/blob/main/capturas/Captura4.PNG?raw=true)
