@@ -1,40 +1,45 @@
 package es.tankats.demo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import es.tankats.demo.controller.PlayerController;
-import es.tankats.demo.model.Player;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+
 
 @SpringBootApplication
-public class DemoApplication {
+@EnableWebSocket
+public class DemoApplication implements WebSocketConfigurer {
 
+
+	@Override
+	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+		registry.addHandler(playerHandler(), "/player").setAllowedOrigins("*");
+	}
+
+	@Bean
+	public WebSocketPlayerHandler playerHandler() {
+		return new WebSocketPlayerHandler();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 
-		/* Player p = new Player(0,"","",0,0);
-		/* JSONObject jsonObject = fileToJSONObject(new File("C:/Users/Josem/Desktop/mytextfile.json"));
-		System.out.println(jsonObject);
-		long id = (long) jsonObject.get("id");
-		String nickName = (String) jsonObject.get("nickName");
-		String password = (String) jsonObject.get("password");
-		int wonGames = (int) jsonObject.get("wonGames");
-		int lostGames = (int) jsonObject.get("lostGames");
-
-		Player p = new Player(id, nickName, password, wonGames, lostGames); 
-		pc.addPlayertoMap(p); */
+		/*
+		 * Player p = new Player(0,"","",0,0); /* JSONObject jsonObject =
+		 * fileToJSONObject(new File("C:/Users/Josem/Desktop/mytextfile.json"));
+		 * System.out.println(jsonObject); long id = (long) jsonObject.get("id"); String
+		 * nickName = (String) jsonObject.get("nickName"); String password = (String)
+		 * jsonObject.get("password"); int wonGames = (int) jsonObject.get("wonGames");
+		 * int lostGames = (int) jsonObject.get("lostGames");
+		 * 
+		 * Player p = new Player(id, nickName, password, wonGames, lostGames);
+		 * pc.addPlayertoMap(p);
+		 */
 
 	}
+
 
 	/* public static JSONObject fileToJSONObject(File file) {
 		JSONParser parser = new JSONParser();
