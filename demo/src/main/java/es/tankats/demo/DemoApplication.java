@@ -23,6 +23,7 @@ public class DemoApplication implements WebSocketConfigurer {
 	public WebSocketPlayerHandler playerHandler() {
 		return new WebSocketPlayerHandler();
 	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 

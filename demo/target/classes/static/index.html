@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tankats</title>
-    <link rel="icon" href="../assets/Icon.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="./assets/Icon.png" type="image/png" sizes="16x16" />
     <script src="./src/vendor/phaser.min.js"></script>
     <script src="./src/vendor/jquery-3.5.1.min.js"></script>
+    <script src="./src/Websocket.js"></script>
     <script src="./src/form.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -32,6 +33,7 @@
   <script src="./src/components/GameManager.js"></script>
   <script src="./src/components/Direction.js"></script>
   <script src="./src/components/ItemSpawner.js"></script>
+
   <script src="./src/objects/BulletsGroup.js"></script>
   <script src="./src/objects/Bullet.js"></script>
   <script src="./src/objects/BulletPlayer2.js"></script>
@@ -64,6 +66,7 @@
       <button id="sendMessage" onclick="postMessage()"> Enviar </button>
     </div>
   </div>
+
  <div id="controles">
     <div id="TutJug1">
       <img src="./assets/TutJug2.png" />

@@ -55,11 +55,9 @@ class GameplayScene extends Phaser.Scene {
   }
 
   create() {
-    
     if (!this.sound.get("BattleMusic").isPlaying) {
       this.sound.get("BattleMusic").play();
     }
-
 
     this.customBounds = new Phaser.Geom.Rectangle(
       0,
@@ -88,7 +86,6 @@ class GameplayScene extends Phaser.Scene {
         loop: true,
       });
     }
-    
   }
 
   update() {
@@ -102,10 +99,13 @@ class GameplayScene extends Phaser.Scene {
     }
 
     this.generatePowerUps();
-    this.handleInputs();
+    if (game.config.localMode) {
+      this.handleInputLocal();
+    } else {
+      this.handleInputOnline();
+    }
     this.updateUI();
     this.checkGameOver();
-
   }
 
   //* Funciones de creado
@@ -178,7 +178,7 @@ class GameplayScene extends Phaser.Scene {
       .sprite(posXplayer1, posYplayer1, "topSprite")
       .setScale(0.036)
       .setOrigin(0.3, 0.5);
-  
+
     //top.setTint(this.tint1);
     //console.log("top1", top.tintTopLeft);
     //console.log("bot1", bot.tintTopLeft);
@@ -271,15 +271,15 @@ class GameplayScene extends Phaser.Scene {
     var bot2 = this.physics.add
       .sprite(posXplayer2, posYplayer2, "bottomSprite2")
       .setScale(0.036)
-      .setRotation(90)
-      //.setTint(this.tint2);
+      .setRotation(90);
+    //.setTint(this.tint2);
 
     bot2.body.setBoundsRectangle(this.customBounds);
     var top2 = this.physics.add
       .sprite(posXplayer2, posYplayer2, "topSprite2")
       .setScale(0.036)
-      .setOrigin(0.3, 0.5)
-      //.setTint(this.tint2);
+      .setOrigin(0.3, 0.5);
+    //.setTint(this.tint2);
 
     //console.log(2, top2.tintTopLeft);
     //bot2.anims.play("tank1_animation");
@@ -485,8 +485,8 @@ class GameplayScene extends Phaser.Scene {
         "CatsudonIcon"
       )
       .setDepth(1000)
-      .setScale(0.1)
-      //.setTint(this.tint1);
+      .setScale(0.1);
+    //.setTint(this.tint1);
 
     var p2Name = this.add
       .image(
@@ -502,8 +502,8 @@ class GameplayScene extends Phaser.Scene {
         "AricatoIcon"
       )
       .setDepth(1000)
-      .setScale(0.1)
-      //.setTint(this.tint2);
+      .setScale(0.1);
+    //.setTint(this.tint2);
 
     textUI = this.add
       .image(
@@ -602,8 +602,8 @@ class GameplayScene extends Phaser.Scene {
       .setScale(0.6);
   }
 
-  createInputs(localMode) {
-    if (localMode) {
+  createInputs() {
+    if (game.config.localMode) {
       this.cursors = this.input.keyboard.addKeys({
         up: Phaser.Input.Keyboard.KeyCodes.UP,
         down: Phaser.Input.Keyboard.KeyCodes.DOWN,
@@ -744,34 +744,58 @@ class GameplayScene extends Phaser.Scene {
     powerUp.spawnItem();
   }
 
-  handleInputs() {
-    /* var alpha = Phaser.Math.Angle.Between(
-      this.character.bottomSprite.x,
-      this.character.bottomSprite.y,
-      this.input.mousePointer.x,
-      this.input.mousePointer.y
-    );
-    var beta = Phaser.Math.Angle.Between(
-      this.char2.bottomSprite.x,
-      this.char2.bottomSprite.y,
-      this.input.mousePointer.x,
-      this.input.mousePointer.y
-    );
-
-    alpha = Phaser.Math.RadToDeg(alpha);
-
-    this.tweens.add({
-      targets: this.character.topSprite,
-      angle: alpha,
-      duration: 0,
-    });
-    this.tweens.add({
-      targets: this.char2.topSprite,
-      rotation: beta,
-      duration: 0,
-    }); */
-
+  /*handleInputs() {
     //* Character 1
+
+    if (game.config.localMode) {
+      //Rotacion player1
+      if (this.cursors.aimLeft.isDown) {
+        GameManager.character.aimLeft();
+      }
+      if (this.cursors.aimRight.isDown) {
+        GameManager.character.aimRight();
+      }
+
+      //* Character 2
+
+      if (this.cursors2.left.isDown) {
+        GameManager.character2.moveLeft();
+        this.sound.play("tankMovement");
+      } else if (this.cursors2.right.isDown) {
+        GameManager.character2.moveRight();
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character2.stopX();
+      }
+      if (this.cursors2.up.isDown) {
+        GameManager.character2.moveUp();
+        this.sound.play("tankMovement");
+      } else if (this.cursors2.down.isDown) {
+        GameManager.character2.moveDown();
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character2.stopY();
+      }
+      GameManager.character2.updateTopSide();
+
+      if (this.cursors2.aimLeft.isDown) {
+        GameManager.character2.aimLeft();
+      }
+      if (this.cursors2.aimRight.isDown) {
+        GameManager.character2.aimRight();
+      }
+      if (this.cursors2.shoot.isDown) {
+        GameManager.character2.shoot();
+      }
+    } else {
+      //Player 1 Online
+      //Player 2 online
+    }
+  } */
+
+  handleInputLocal() {
+
+    //*Player 1
     if (this.cursors.left.isDown) {
       GameManager.character.moveLeft();
       this.sound.play("tankMovement");
@@ -802,7 +826,7 @@ class GameplayScene extends Phaser.Scene {
       GameManager.character.shoot();
     }
 
-    //* Character 2
+    //* Player 2
     if (this.cursors2.left.isDown) {
       GameManager.character2.moveLeft();
       this.sound.play("tankMovement");
@@ -831,6 +855,164 @@ class GameplayScene extends Phaser.Scene {
     }
     if (this.cursors2.shoot.isDown) {
       GameManager.character2.shoot();
+    }
+  }
+
+
+  handleInputOnline() {
+    if (clientIdInGame == 1) {
+      //*Player Local
+      let inputsJSON = '{"id": 1, "gameId":'+ clientGame +',"inputs":[';
+      if (this.cursors.left.isDown) {
+        GameManager.character.moveLeft();
+        inputsJSON += '"A",';
+        this.sound.play("tankMovement");
+      } else if (this.cursors.right.isDown) {
+        GameManager.character.moveRight();
+        inputsJSON += '"D",';
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character.stopX();
+      }
+      if (this.cursors.up.isDown) {
+        GameManager.character.moveUp();
+        inputsJSON += '"W",';
+        this.sound.play("tankMovement");
+      } else if (this.cursors.down.isDown) {
+        GameManager.character.moveDown();
+        inputsJSON += '"S",';
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character.stopY();
+      }
+      GameManager.character.updateTopSide();
+
+      if (this.cursors.shoot.isDown) {
+        GameManager.character.shoot();
+        inputsJSON += '"shoot",';
+      }
+
+      var alpha = Phaser.Math.Angle.Between(
+        GameManager.character.bottomSprite.x,
+        GameManager.character.bottomSprite.y,
+        this.input.mousePointer.x,
+        this.input.mousePointer.y
+      );
+      alpha = Phaser.Math.RadToDeg(alpha);
+
+      GameManager.character.aimMouse(alpha);
+
+      if (inputsJSON.charAt(inputsJSON.length - 1) == ",") {
+        inputsJSON = inputsJSON.slice(0, inputsJSON.length - 1);
+      }
+      inputsJSON += '],"alpha":' + alpha + "}";
+
+      connection.send(inputsJSON);
+
+      //*Player Online
+      if (oponentInputs.inputs.indexOf("A") != -1) {
+        GameManager.character2.moveLeft();
+        this.sound.play("tankMovement");
+      } else if (oponentInputs.inputs.indexOf("D") != -1) {
+        GameManager.character2.moveRight();
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character2.stopX();
+      }
+      if (oponentInputs.inputs.indexOf("W") != -1) {
+        GameManager.character2.moveUp();
+        this.sound.play("tankMovement");
+      } else if (oponentInputs.inputs.indexOf("S") != -1) {
+        GameManager.character2.moveDown();
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character2.stopY();
+      }
+      GameManager.character2.updateTopSide();
+
+      if (oponentInputs.inputs.indexOf("shoot") != -1) {
+        GameManager.character2.shoot();
+      }
+
+      var betta = oponentInputs.alpha;
+      GameManager.character2.aimMouse(betta);
+    } else {
+
+      //*Player Local
+      let inputsJSON = '{"id": 1, "gameId":'+ clientGame +',"inputs":[';
+      if (this.cursors.left.isDown) {
+        GameManager.character2.moveLeft();
+        inputsJSON += '"A",';
+        this.sound.play("tankMovement");
+      } else if (this.cursors.right.isDown) {
+        GameManager.character2.moveRight();
+        inputsJSON += '"D",';
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character2.stopX();
+      }
+      if (this.cursors.up.isDown) {
+        GameManager.character2.moveUp();
+        inputsJSON += '"W",';
+        this.sound.play("tankMovement");
+      } else if (this.cursors.down.isDown) {
+        GameManager.character2.moveDown();
+        inputsJSON += '"S",';
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character2.stopY();
+      }
+      GameManager.character2.updateTopSide();
+
+      if (this.cursors.shoot.isDown) {
+        GameManager.character2.shoot();
+        inputsJSON += '"shoot",';
+      }
+
+      var alpha = Phaser.Math.Angle.Between(
+        GameManager.character2.bottomSprite.x,
+        GameManager.character2.bottomSprite.y,
+        this.input.mousePointer.x,
+        this.input.mousePointer.y
+      );
+      alpha = Phaser.Math.RadToDeg(alpha);
+
+      GameManager.character2.aimMouse(alpha);
+
+      if (inputsJSON.charAt(inputsJSON.length - 1) == ",") {
+        inputsJSON = inputsJSON.slice(0, inputsJSON.length - 1);
+      }
+      inputsJSON += '],"alpha":' + alpha + "}";
+
+      connection.send(inputsJSON);
+
+      //*Player Online
+      if (oponentInputs.inputs.indexOf("A") != -1) {
+        GameManager.character.moveLeft();
+        this.sound.play("tankMovement");
+      } else if (oponentInputs.inputs.indexOf("D") != -1) {
+        GameManager.character.moveRight();
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character.stopX();
+      }
+      if (oponentInputs.inputs.indexOf("W") != -1) {
+        GameManager.character.moveUp();
+        this.sound.play("tankMovement");
+      } else if (oponentInputs.inputs.indexOf("S") != -1) {
+        GameManager.character.moveDown();
+        this.sound.play("tankMovement");
+      } else {
+        GameManager.character.stopY();
+      }
+      GameManager.character.updateTopSide();
+
+      if (oponentInputs.inputs.indexOf("shoot") != -1) {
+        GameManager.character.shoot();
+      }
+
+      var betta = oponentInputs.alpha;
+      GameManager.character.aimMouse(betta);
     }
   }
 
@@ -909,7 +1091,7 @@ class GameplayScene extends Phaser.Scene {
     }
   }
 
-  checkGameOver(localMode) {
+  checkGameOver() {
     if (GameManager.character.healthPoints <= 0) {
       var winner = GameManager.character2;
       this.scene.pause();

@@ -307,7 +307,7 @@ class CharacterSelection extends Phaser.Scene {
           }
         }
       } else {
-        //Todo: modo en linea. al elegir un solo jugador carga la partida
+        this.scene.start("GameplayScene");
       }
     });
 

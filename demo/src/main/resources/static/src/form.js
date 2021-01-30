@@ -203,3 +203,24 @@ function messageListener() {
   auxName = displayName;
   auxMessage = $("#message").val();
 }
+
+function help() {
+  let request = {
+    nickName: "aaa"
+  };
+  $.ajax({
+    method: "POST",
+    url: url + "/players",
+    data: JSON.stringify(request),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8", // Indica el contenido
+    },
+    processdata: false,
+  })
+    .done((data) => {
+      console.log(data)
+    })
+    .fail((jqXHR, Status, errorThrown) => {
+      console.log(errorThrown);
+    });
+}

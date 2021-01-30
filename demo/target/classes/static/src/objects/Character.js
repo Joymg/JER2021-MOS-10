@@ -132,6 +132,14 @@ class Character {
     this.aim = this.topSprite.angle + 1.5;
     this.topSprite.setAngle(this.aim);
   }
+  aimMouse(alpha){
+    this.aim = alpha;
+    this.scene.tweens.add({
+      targets: this.topSprite,
+      angle : this.aim,
+      duration: 0
+    })
+  }
 
   shoot() {
     if (game.getTime() >= this.lastShot + this.fireRate) {

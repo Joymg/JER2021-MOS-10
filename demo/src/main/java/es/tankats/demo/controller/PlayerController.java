@@ -62,7 +62,7 @@ public class PlayerController {
 		 * Date(System.currentTimeMillis()); GameController.addGame(new Game(id,
 		 * player1,player2,d)); }
 		 */
-		savePersistentData();
+		//savePersistentData();
 		return player;
 	}
 
@@ -131,7 +131,7 @@ public class PlayerController {
 		}
 	}
 
-	@Scheduled(fixedDelay = 500)
+	//@Scheduled(fixedDelay = 500)
 	public void checkPlayerOnline() {
 		for (Player player : players.values()) {
 

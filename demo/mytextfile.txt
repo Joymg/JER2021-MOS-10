@@ -1,1 +1,2 @@
-{"wonGames":0,"nickName":"dasd","id":0,"lostGames":0}
+{"wonGames":0,"nickName":"s","id":0,"lostGames":0}
+{"wonGames":0,"nickName":"c","id":1,"lostGames":0}

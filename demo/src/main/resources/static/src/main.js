@@ -19,7 +19,7 @@ var config = {
   };
 
   var game = new Phaser.Game(config);
-  game.config.localMode = true; 
+  game.config.localMode = false; 
   game.config.language = "spanish";
 
 var activePlayerID;
@@ -27,3 +27,8 @@ var ready = false
 var serverNotRespond = 0;
 var activePlayers;
 let serverOnline = true;
+
+let oponentInputs = {inputs:[],alpha:0};
+let clientGame = 0;
+let clientIdInGame = 0 ;
+
