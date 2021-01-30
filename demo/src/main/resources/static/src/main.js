@@ -11,7 +11,7 @@ var config = {
       },
     },
     //el qeu va primero es el qeu se ve al iniciar, bueno para testeat
-    scene: [Loader,PruebasScene,MainMenu,CreditsScene,GameplayScene,SettingsMenu,CharacterSelection,PauseMenu,VictoryScene,CountDownScene,ProfileMenu],
+    scene: [Loader,PruebasScene,MainMenu,CreditsScene,GameplayScene,SettingsMenu,CharacterSelection,PauseMenu,VictoryScene,CountDownScene,ProfileMenu,GameFinder],
 
     localMode: true,
     language: "spanish"

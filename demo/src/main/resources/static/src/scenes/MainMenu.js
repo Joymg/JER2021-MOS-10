@@ -65,7 +65,7 @@ class MainMenu extends Phaser.Scene {
     findGameButton.on("pointerdown", () => {
       var player2Turn = false;
       var p1Char = null;
-      this.scene.start("CharacterSelection", { player2Turn, p1Char });
+      this.scene.start("GameFinder", { player2Turn, p1Char });
     });
 
     //Boton de ver creditos
