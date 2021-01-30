@@ -29,6 +29,5 @@ var activePlayers;
 let serverOnline = true;
 
 let oponentInputs = {inputs:[],alpha:0};
-let clientGame = 0;
-let clientIdInGame = 0 ;
+
 
