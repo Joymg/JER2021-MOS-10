@@ -1,19 +1,23 @@
-let wsUrl = "127.0.0.1:8080";
+//let wsUrl = "127.0.0.1:8080";
+let wsUrl = origin.split("/")[2];
+
+let clientGame = 0;
+let clientIdInGame = 0 ;
  let connection = new WebSocket("ws://" + wsUrl + "/player");
 
 connection.onerror = function (e) {
   console.log("WS error: " + e);
 };
 connection.onmessage = function (msg) {
-  console.log("WS message: " + msg.data);
+  //console.log("WS message: " + msg.data);
   let serverMsg = JSON.parse(msg.data);
-  console.log("🚀 ~ file: WebSocket.js ~ line 10 ~ serverMsg", serverMsg)
+  //console.log("🚀 ~ file: WebSocket.js ~ line 10 ~ serverMsg", serverMsg)
   switch (serverMsg.id) {
     case 0:
       clientGame = serverMsg.gameId;
-      console.log("🚀 ~ file: WebSocket.js ~ line 14 ~ clientGame", clientGame)
+      //console.log("🚀 ~ file: WebSocket.js ~ line 14 ~ clientGame", clientGame)
       clientIdInGame = serverMsg.character;
-      console.log("🚀 ~ file: WebSocket.js ~ line 16 ~ clientIdInGame", clientIdInGame)
+      //console.log("🚀 ~ file: WebSocket.js ~ line 16 ~ clientIdInGame", clientIdInGame)
       break;
     case 1:
       oponentInputs = serverMsg;
