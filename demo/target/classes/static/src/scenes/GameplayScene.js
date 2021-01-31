@@ -92,6 +92,11 @@ class GameplayScene extends Phaser.Scene {
     // this.countdown(touched);
     // this.countdown2(touched2);
     //this.spawnItem(itemDestroyed);
+
+    if (disconnected) {
+      this.scene.start("DisconnectScene");
+      this.scene.stop();
+    }
     if (this.paused.isDown) {
       this.scene.launch("PauseMenu");
       this.paused.isDown = false;
@@ -907,7 +912,9 @@ class GameplayScene extends Phaser.Scene {
       }
       inputsJSON += '],"alpha":' + alpha + "}";
 
-      connection.send(inputsJSON);
+      if (!disconnected) {
+        connection.send(inputsJSON); 
+      }
 
       //*Player Online
       if (oponentInputs.inputs.indexOf("A") != -1) {

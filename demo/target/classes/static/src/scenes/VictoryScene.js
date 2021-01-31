@@ -10,97 +10,51 @@ class VictoryScene extends Phaser.Scene {
 
   create() {
     this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "MarcoPausa");
-    //Si se ha elegido el modo local
-    if (game.config.localMode) {
-      //añade el jugador que ha ganado
-      var confeti1;
-      var confeti2;
-      var confeti3;
-      if (this.winner == 1) {
-        //Confeti
-        confeti1 = this.add.particles("confeti1");
-        confeti2 = this.add.particles("confeti2");
-        confeti3 = this.add.particles("confeti3");
-        var emitter1 = confeti1.createEmitter({
-          x: 200,
-          y: -200,
-          gravityY: 30,
-          rotate: { min: 30, max: 240 },
-          speed: 200,
-          lifespan: { min: 5000, max: 10000 },
-          scale: { min: 0.1, max: 0.5 },
-          blendMode: "ADD",
-        });
-        var emitter2 = confeti2.createEmitter({
-          x: 500,
-          y: -200,
-          gravityY: 30,
-          rotate: { min: 30, max: 240 },
-          speed: 200,
-          lifespan: { min: 5000, max: 10000 },
-          scale: { min: 0.1, max: 0.5 },
-          blendMode: "ADD",
-        });
-        var emitter3 = confeti3.createEmitter({
-          x: 800,
-          y: -200,
-          gravityY: 30,
-          rotate: { min: 30, max: 240 },
-          speed: 200,
-          lifespan: { min: 5000, max: 10000 },
-          scale: { min: 0.1, max: 0.5 },
-          blendMode: "ADD",
-        });
 
-        var victory = this.add
-          .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ1")
-          .setScale(0);
-      } else if (this.winner == 2) {
-        //Confeti
-        confeti1 = this.add.particles("confeti1");
-        confeti2 = this.add.particles("confeti2");
-        confeti3 = this.add.particles("confeti3");
-        var emitter1 = confeti1.createEmitter({
-          x: 200,
-          y: -200,
-          gravityY: 30,
-          rotate: { min: 30, max: 240 },
-          speed: 200,
-          lifespan: { min: 5000, max: 10000 },
-          scale: { min: 0.1, max: 0.5 },
-          blendMode: "ADD",
-        });
-        var emitter2 = confeti2.createEmitter({
-          x: 500,
-          y: -200,
-          gravityY: 30,
-          rotate: { min: 30, max: 240 },
-          speed: 200,
-          lifespan: { min: 5000, max: 10000 },
-          scale: { min: 0.1, max: 0.5 },
-          blendMode: "ADD",
-        });
-        var emitter3 = confeti3.createEmitter({
-          x: 800,
-          y: -200,
-          gravityY: 30,
-          rotate: { min: 30, max: 240 },
-          speed: 200,
-          lifespan: { min: 5000, max: 10000 },
-          scale: { min: 0.1, max: 0.5 },
-          blendMode: "ADD",
-        });
-
-        var victory = this.add
-          .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ2")
-          .setScale(0);
-      }
-      /* var playerText = this.add.text(100, 100, "Player " + this.winner, { font: "75px" });
-      playerText.setScale(0.01); */
+    //añade el jugador que ha ganado
+    if (this.winner == 1) {
+      var victory = this.add
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ1")
+        .setScale(0);
+    } else if (this.winner == 2) {
+      var victory = this.add
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ2")
+        .setScale(0);
     }
-    //texto de victoria
-    /* var victoryText = this.add.text(60, 150, "Victory!!", { font: "150px" });
-    victoryText.setScale(0.01); */
+    //Confeti
+    var confeti1 = this.add.particles("confeti1");
+    var confeti2 = this.add.particles("confeti2");
+    var confeti3 = this.add.particles("confeti3");
+    var emitter1 = confeti1.createEmitter({
+      x: 200,
+      y: -200,
+      gravityY: 30,
+      rotate: { min: 30, max: 240 },
+      speed: 200,
+      lifespan: { min: 5000, max: 10000 },
+      scale: { min: 0.1, max: 0.5 },
+      blendMode: "ADD",
+    });
+    var emitter2 = confeti2.createEmitter({
+      x: 500,
+      y: -200,
+      gravityY: 30,
+      rotate: { min: 30, max: 240 },
+      speed: 200,
+      lifespan: { min: 5000, max: 10000 },
+      scale: { min: 0.1, max: 0.5 },
+      blendMode: "ADD",
+    });
+    var emitter3 = confeti3.createEmitter({
+      x: 800,
+      y: -200,
+      gravityY: 30,
+      rotate: { min: 30, max: 240 },
+      speed: 200,
+      lifespan: { min: 5000, max: 10000 },
+      scale: { min: 0.1, max: 0.5 },
+      blendMode: "ADD",
+    });
 
     //boton de rematch
     let rematchButton = this.add
@@ -154,6 +108,7 @@ class VictoryScene extends Phaser.Scene {
     });
     //al pulsar el boton te lleva al menu principal
     mainMenuButton.on("pointerdown", () => {
+      connection.close();
       this.scene.stop("GameplayScene");
       this.scene.start("MainMenu");
     });
@@ -178,7 +133,7 @@ class VictoryScene extends Phaser.Scene {
         this.sound.play("victorySound");
         //animacion de entrada
         this.tweens.add({
-          targets: [rematchButton, rematchText, mainMenuButton, mainMenuText],
+          targets: [victory, rematchButton, rematchText, mainMenuButton, mainMenuText],
           scale: 0.2,
           ease: "elastic",
           duration: 100,

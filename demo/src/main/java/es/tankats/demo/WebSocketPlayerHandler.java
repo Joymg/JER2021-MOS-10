@@ -1,6 +1,7 @@
 package es.tankats.demo;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -45,7 +46,31 @@ public class WebSocketPlayerHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println("Session closed: " + session.getId());
-		sessions.remove(session.getId());
+
+		long iter =0 ;
+
+		for (WebSocketSession[] participants : games.values()) {
+			if (participants[1] != null &&  participants[1].getId().equals(session.getId())) {
+				if (participants[0] != null) {
+					participants[0].sendMessage(new TextMessage("{\"id\":2}"));
+					sessions.remove(participants[1].getId());
+					participants[1]= null;
+				} else
+					sessions.remove(participants[1].getId());
+					games.remove(iter);
+				break;
+			} else if (participants[0] != null && participants[0].getId().equals(session.getId())) {
+				if (participants[1] != null) {
+					participants[1].sendMessage(new TextMessage("{\"id\":2}"));
+					sessions.remove(participants[0].getId());
+					participants[0] = null;
+				} else
+					sessions.remove(participants[0].getId());
+					games.remove(iter);
+				break;
+			}
+			iter ++;
+		}
 	}
 
 	@Override
@@ -54,30 +79,21 @@ public class WebSocketPlayerHandler extends TextWebSocketHandler {
 		System.out.println("Message received: " + message.getPayload());
 		JsonNode node = mapper.readTree(message.getPayload());
 
-		//sendToOtherPlayerInGame(session,node);
+		// sendToOtherPlayerInGame(session,node);
 
 		sendOtherParticipants(session, node);
 	}
 
-	private void sendToOtherPlayerInGame(WebSocketSession session, JsonNode node) throws IOException {
-
-		long groupId = node.get("gameId").asLong();
-		var sessionArray = games.get(groupId);
-		if (!sessionArray[0].getId().equals(session.getId())) {
-			sessionArray[0].sendMessage(new TextMessage(node.toString()));
-		}
-		else{
-			sessionArray[1].sendMessage(new TextMessage(node.toString()));
-		}
-	}
 
 	private void sendOtherParticipants(WebSocketSession session, JsonNode node) throws IOException {
 
 		long groupId = node.get("gameId").asLong();
 
-		for (WebSocketSession participant : games.get(groupId)) {
-			if (!participant.getId().equals(session.getId())) {
-				participant.sendMessage(new TextMessage(node.toString()));
+		if (!games.isEmpty()) {
+			for (WebSocketSession participant : games.get(groupId)) {
+				if (participant != null && !participant.getId().equals(session.getId())) {
+					participant.sendMessage(new TextMessage(node.toString()));
+				}
 			}
 		}
 	}
