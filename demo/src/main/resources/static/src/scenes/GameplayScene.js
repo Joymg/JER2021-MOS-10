@@ -991,7 +991,9 @@ class GameplayScene extends Phaser.Scene {
       }
       inputsJSON += '],"alpha":' + alpha + "}";
 
-      connection.send(inputsJSON);
+      if(!disconnected){
+        connection.send(inputsJSON);
+      }
 
       //*Player Online
       if (oponentInputs.inputs.indexOf("A") != -1) {

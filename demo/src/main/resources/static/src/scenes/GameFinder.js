@@ -9,12 +9,15 @@ class GameFinder extends Phaser.Scene {
   }
 
   create() {
+    this.imReady = false;
+    this.onlineIsReady = false;
     disconnected = false;
     connection = new WebSocket("ws://" + wsUrl + "/player");
 
     connection.onerror = function (e) {
       console.log("WS error: " + e);
     };
+
     connection.onmessage = function (msg) {
       let serverMsg = JSON.parse(msg.data);
       switch (serverMsg.id) {
@@ -23,7 +26,7 @@ class GameFinder extends Phaser.Scene {
           clientIdInGame = serverMsg.character;
           disconnected = false;
           break;
-        case 1: // inpurts
+        case 1: // inputs
           oponentInputs = serverMsg;
           break;
         case 2: // desconexion

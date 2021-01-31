@@ -56,34 +56,43 @@ class VictoryScene extends Phaser.Scene {
       blendMode: "ADD",
     });
 
-    //boton de rematch
-    let rematchButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "Purple_TextBox")
-      .setScale(0)
-      .setActive(false)
-      .setVisible(false);
+    if (game.config.localMode) {
+      //boton de rematch
+      let rematchButton = this.add
+        .image(
+          this.game.renderer.width / 2,
+          (this.game.renderer.height * 2.9) / 5,
+          "Purple_TextBox"
+        )
+        .setScale(0)
+        .setActive(false)
+        .setVisible(false);
 
-    rematchButton.setInteractive();
+      rematchButton.setInteractive();
 
-    let rematchText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "VolverAJugar")
-      .setScale(0)
-      .setActive(false)
-      .setVisible(false);
+      let rematchText = this.add
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "VolverAJugar")
+        .setScale(0)
+        .setActive(false)
+        .setVisible(false);
 
-    //efectos al pasar el raton por encima
-    rematchButton.on("pointerover", () => {
-      rematchButton.setTint(0x909090);
-    });
-    rematchButton.on("pointerout", () => {
-      rematchButton.setTint();
-    });
+      //efectos al pasar el raton por encima
+      rematchButton.on("pointerover", () => {
+        rematchButton.setTint(0x909090);
+      });
+      rematchButton.on("pointerout", () => {
+        rematchButton.setTint();
+      });
 
-    //Al pulsar el boton recarga la escena de gameplay
-    rematchButton.on("pointerdown", () => {
-      this.scene.stop();
-      this.scene.start("GameplayScene");
-    });
+      //Al pulsar el boton recarga la escena de gameplay
+      rematchButton.on("pointerdown", () => {
+        this.scene.stop();
+        this.scene.start("GameplayScene");
+      });
+
+      rematchButton.setActive(false);
+      rematchButton.setVisible(false);
+    }
 
     //boton de vuleta la menu principal
     let mainMenuButton = this.add
@@ -113,8 +122,6 @@ class VictoryScene extends Phaser.Scene {
       this.scene.start("MainMenu");
     });
 
-    rematchButton.setActive(false);
-    rematchButton.setVisible(false);
     mainMenuButton.setActive(false);
     mainMenuButton.setVisible(false);
 
@@ -124,16 +131,23 @@ class VictoryScene extends Phaser.Scene {
       delay: 1000,
       callback: () => {
         //al pasar 1 segundo aparecen los botones
-        rematchButton.setActive(true);
-        mainMenuButton.setActive(true);
-        rematchButton.setVisible(true);
+        if (game.config.localMode) {
+          rematchButton.setVisible(true);
+          rematchText.setVisible(true);
+
+          this.tweens.add({
+            targets: [rematchButton, rematchText],
+            scale: 0.2,
+            ease: "elastic",
+            duration: 100,
+          });
+        }
         mainMenuButton.setVisible(true);
-        rematchText.setVisible(true);
         mainMenuText.setVisible(true);
         this.sound.play("victorySound");
         //animacion de entrada
         this.tweens.add({
-          targets: [victory, rematchButton, rematchText, mainMenuButton, mainMenuText],
+          targets: [mainMenuButton, mainMenuText],
           scale: 0.2,
           ease: "elastic",
           duration: 100,

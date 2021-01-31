@@ -56,34 +56,36 @@ class VictoryScene extends Phaser.Scene {
       blendMode: "ADD",
     });
 
-    //boton de rematch
+    if(game.config.localMode){
+      //boton de rematch
     let rematchButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "Purple_TextBox")
-      .setScale(0)
-      .setActive(false)
-      .setVisible(false);
+    .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "Purple_TextBox")
+    .setScale(0)
+    .setActive(false)
+    .setVisible(false);
 
-    rematchButton.setInteractive();
+  rematchButton.setInteractive();
 
-    let rematchText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "VolverAJugar")
-      .setScale(0)
-      .setActive(false)
-      .setVisible(false);
+  let rematchText = this.add
+    .image(this.game.renderer.width / 2, (this.game.renderer.height * 2.9) / 5, "VolverAJugar")
+    .setScale(0)
+    .setActive(false)
+    .setVisible(false);
 
-    //efectos al pasar el raton por encima
-    rematchButton.on("pointerover", () => {
-      rematchButton.setTint(0x909090);
-    });
-    rematchButton.on("pointerout", () => {
-      rematchButton.setTint();
-    });
+  //efectos al pasar el raton por encima
+  rematchButton.on("pointerover", () => {
+    rematchButton.setTint(0x909090);
+  });
+  rematchButton.on("pointerout", () => {
+    rematchButton.setTint();
+  });
 
-    //Al pulsar el boton recarga la escena de gameplay
-    rematchButton.on("pointerdown", () => {
-      this.scene.stop();
-      this.scene.start("GameplayScene");
-    });
+  //Al pulsar el boton recarga la escena de gameplay
+  rematchButton.on("pointerdown", () => {
+    this.scene.stop();
+    this.scene.start("GameplayScene");
+  });
+    }
 
     //boton de vuleta la menu principal
     let mainMenuButton = this.add
