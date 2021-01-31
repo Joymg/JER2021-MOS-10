@@ -8,14 +8,28 @@ class CharacterSelection extends Phaser.Scene {
     this.player1Character;
     this.player2Character;
 
-	this.p1Index;
-	this.p2Index;
+	this.p1Index = -1;
+	this.p2Index = -1;
   }
 
   init(data) {
     this.player1locked = data.player2Turn;
     this.player1Character = data.p1Char;
   }
+
+
+	update() {
+		if(!game.config.localMode){
+		    if (disconnected) {
+		      this.scene.start("DisconnectScene");
+		    }
+		    if (this.p1Index != -1 && this.p2Index != -1) {
+				var index1 = this.p1Index;
+				var index2 = this.p2Index;
+		        this.scene.start("GameplayScene", {index1, index2});
+		    }
+		}
+	  }
 
   create() {
     var background = this.add.image(
@@ -33,7 +47,6 @@ class CharacterSelection extends Phaser.Scene {
         .image(this.game.renderer.width / 2, (this.game.renderer.height * 1) / 10, "jugador2HD")
         .setScale(.2);
     }
-
     //Carousel
     const graphics = this.add.graphics({
       lineStyle: { width: 2, color: 0x0f0f0f },
@@ -288,13 +301,12 @@ class CharacterSelection extends Phaser.Scene {
       lockCharac.setScale(0.3);
     });
     lockCharac.on("pointerdown", () => {
-      if (!this.player1locked) {
-        this.player1Character = this.getSelectedCharacter(CharacterSprites);
-      } else {
-        this.player2Character = this.getSelectedCharacter(CharacterSprites);
-      }
-
       if (game.config.localMode) {
+	      if (!this.player1locked) {
+	        this.player1Character = this.getSelectedCharacter(CharacterSprites);
+	      } else {
+	        this.player2Character = this.getSelectedCharacter(CharacterSprites);
+	      }
         if (!this.player1locked) {
           var player2Turn = true;
           var p1Char = this.player1Character;
@@ -312,11 +324,8 @@ class CharacterSelection extends Phaser.Scene {
           }
         }
       } else {
-            var tint1 = this.player1Character.tintTopLeft;
-            var tint2 = this.player2Character.tintTopLeft;
-			var index1 = this.p1Index;
-			var index2 = this.p2Index;
-        this.scene.start("GameplayScene", {tint1, tint2, index1, index2});
+		this.player1Character = this.getSelectedCharacter(CharacterSprites);
+		this.player1locked = true;
       }
     });
 
@@ -327,7 +336,7 @@ class CharacterSelection extends Phaser.Scene {
         loop: true,
       });
     }
-  }
+}
 
   transitionOut(progress) {
     this.logo.y = 600 * progress;
@@ -356,6 +365,12 @@ class CharacterSelection extends Phaser.Scene {
 		this.p1Index = counter;
 	}else{
 		this.p2Index = counter;
+	}
+	
+	if(!game.config.localMode){
+		this.p1Index = counter;
+		var characterJSON = '{"id": 4, "gameId":'+ clientGame +',"characterIndex": '+ counter +'}';
+		connection.send(characterJSON);
 	}
     return player;
   }

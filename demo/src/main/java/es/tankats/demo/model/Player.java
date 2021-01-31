@@ -11,6 +11,8 @@ public class Player {
     private int lostGames = 0 ;
     private Date date= new Date();
     
+    private int characterIndex = -1;
+    
 
     public long getId() {
         return id;
@@ -52,6 +54,13 @@ public class Player {
         this.date = date;
     }
     
+    public void setCharacterIndex(int index) {
+    	this.characterIndex = index;
+    }
+    
+    public int getCharacterIndex() {
+    	return this.characterIndex;
+    }
 
     
 }

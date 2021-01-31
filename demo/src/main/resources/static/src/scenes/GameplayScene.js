@@ -53,8 +53,13 @@ class GameplayScene extends Phaser.Scene {
   init(data) {
     this.tint1 = data.tint1;
     this.tint2 = data.tint2;
-	this.p1Index = data.index1;
-	this.p2Index = data.index2;
+	if(game.config.localMode){
+		this.p1Index = data.index1;
+		this.p2Index = data.index2;
+	}else{
+		this.p1Index = 0;
+		this.p2Index = 3;
+	}
     //console.log(this.tint1, data.tint1);
     //console.log(this.tint2, data.tint2);
   }
@@ -97,17 +102,17 @@ class GameplayScene extends Phaser.Scene {
     // this.countdown(touched);
     // this.countdown2(touched2);
     //this.spawnItem(itemDestroyed);
-
-    if (disconnected) {
-      this.scene.start("DisconnectScene");
-      this.scene.stop();
-    }
-    if (this.paused.isDown) {
-      this.scene.launch("PauseMenu");
-      this.paused.isDown = false;
-      this.scene.pause();
-    }
-
+	if(!game.config.localMode){
+	    if (disconnected) {
+	      this.scene.start("DisconnectScene");
+	      this.scene.stop();
+	    }
+	    if (this.paused.isDown) {
+	      this.scene.launch("PauseMenu");
+	      this.paused.isDown = false;
+	      this.scene.pause();
+	    }
+	}
     this.generatePowerUps();
     if (game.config.localMode) {
       this.handleInputLocal();
