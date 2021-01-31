@@ -11,16 +11,11 @@ class VictoryScene extends Phaser.Scene {
   create() {
     this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "MarcoPausa");
 
-    //añade el jugador que ha ganado
-    if (this.winner == 1) {
+    //Imagen victoria
       var victory = this.add
-        .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ1")
+        .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "Victory")
         .setScale(0);
-    } else if (this.winner == 2) {
-      var victory = this.add
-        .image(this.game.renderer.width / 2, (this.game.renderer.height * 2) / 5, "VictoryJ2")
-        .setScale(0);
-    }
+
     //Confeti
     var confeti1 = this.add.particles("confeti1");
     var confeti2 = this.add.particles("confeti2");
