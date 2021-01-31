@@ -89,6 +89,7 @@ class MainMenu extends Phaser.Scene {
     localGameButton.on("pointerdown", () => {
       var player2Turn = false;
       var p1Char = null;
+		game.config.localMode = true;
       this.scene.start("CharacterSelection", { player2Turn, p1Char });
     });
 

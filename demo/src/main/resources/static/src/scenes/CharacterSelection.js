@@ -7,6 +7,9 @@ class CharacterSelection extends Phaser.Scene {
     this.player1locked = false;
     this.player1Character;
     this.player2Character;
+
+	this.p1Index;
+	this.p2Index;
   }
 
   init(data) {
@@ -301,13 +304,19 @@ class CharacterSelection extends Phaser.Scene {
             this.sound.stopByKey("MenuMusic");
             var tint1 = this.player1Character.tintTopLeft;
             var tint2 = this.player2Character.tintTopLeft;
+			var index1 = this.p1Index;
+			var index2 = this.p2Index;
             //console.log(this.player1Character.texture.key, tint1);
             //console.log(this.player2Character.texture.key, tint2);
-            this.scene.start("GameplayScene", { tint1, tint2 });
+            this.scene.start("GameplayScene", { tint1, tint2, index1, index2});
           }
         }
       } else {
-        this.scene.start("GameplayScene");
+            var tint1 = this.player1Character.tintTopLeft;
+            var tint2 = this.player2Character.tintTopLeft;
+			var index1 = this.p1Index;
+			var index2 = this.p2Index;
+        this.scene.start("GameplayScene", {tint1, tint2, index1, index2});
       }
     });
 
@@ -325,15 +334,29 @@ class CharacterSelection extends Phaser.Scene {
   }
 
   getSelectedCharacter(array) {
-    var player;
+    var player = null;
+	var counter = 0;
     array.forEach((element) => {
       if (element.active == true) {
         //console.log(element.texture.key, element.tintTopLeft);
         if (element.y == this.game.renderer.height / 2 + this.game.renderer.height / 23) {
           player = element;
-        }
-      }
+        }else{
+			if(player == null){
+				counter++;			
+			}
+		}
+      }else{
+		if(player == null){
+				counter++;			
+			}
+		}
     });
+	if(!this.player1locked){
+		this.p1Index = counter;
+	}else{
+		this.p2Index = counter;
+	}
     return player;
   }
 }
