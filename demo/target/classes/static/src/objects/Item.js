@@ -19,11 +19,17 @@ class Item extends Phaser.Physics.Arcade.Sprite {
         GameManager.character.setSpeed(SpeedPowerUp.acc)
         this.timer = this.scene.time.addEvent({
           delay: this.duration,
-          callback: GameManager.character.setSpeed(this.target.getBaseSpeed()),
+          callback: GameManager.character.setSpeed,
+          args : [this.target.getBaseSpeed]
         })
         break;
       case 1:
-        
+        GameManager.character.setSpeed(SlowPowerUp.acc)
+        this.timer = this.scene.time.addEvent({
+          delay: this.duration,
+          callback: GameManager.character.setSpeed,
+          args : [this.target.getBaseSpeed]
+        })
         break;
       case 2:
         
@@ -57,6 +63,7 @@ class SlowPowerUp extends Item {
   }
   static id = 1;
   static duration = 8;
+  static acc = 200;
 }
 
 class ShieldPowerUp extends Item {

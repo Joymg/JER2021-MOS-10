@@ -71,6 +71,7 @@ class PauseMenu extends Phaser.Scene {
       backToMenuText.setScale(0.3);
     });
     backToMenuButton.on("pointerdown", () => {
+      connection.close();
       this.scene.stop("GameplayScene");
       this.scene.stop();
       this.sound.get("BattleMusic").stop();

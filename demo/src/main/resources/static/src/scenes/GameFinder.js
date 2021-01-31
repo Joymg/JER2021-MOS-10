@@ -1,21 +1,57 @@
 class GameFinder extends Phaser.Scene {
   constructor() {
     super({
-      key: "GameFinder"
+      key: "GameFinder",
     });
-    this.text;
+    this.imReady = false;
+    this.onlineIsReady = false;
+    disconnected = false;
   }
 
   create() {
+    disconnected = false;
+    connection = new WebSocket("ws://" + wsUrl + "/player");
+
+    connection.onerror = function (e) {
+      console.log("WS error: " + e);
+    };
+    connection.onmessage = function (msg) {
+      let serverMsg = JSON.parse(msg.data);
+      switch (serverMsg.id) {
+        case 0: // organizar partidas
+          clientGame = serverMsg.gameId;
+          clientIdInGame = serverMsg.character;
+          disconnected = false;
+          break;
+        case 1: // inpurts
+          oponentInputs = serverMsg;
+          break;
+        case 2: // desconexion
+          disconnected = true;
+
+          break;
+        case 3: // iniciar game a la vez
+          game.scene.scenes[game.scene.scenes.length - 1].onlineIsReady = true;
+          break;
+      }
+    };
+
+    connection.onclose = function () {
+      console.log("Closing socket")
+    };
+    
     var background = this.add.image(
       this.game.renderer.width / 2,
       this.game.renderer.height / 2,
       "backSelec"
     );
-    
-    //Texto buscando partida
 
-    this.add.text(120, 384, 'Buscando partida, por favor espere...', { fontFamily: 'Arial', fontSize: 50, color: '#ffffff' });
+    //Texto buscando partida
+    this.add.text(120, 384, "Buscando partida, por favor espere...", {
+      fontFamily: "Arial",
+      fontSize: 50,
+      color: "#ffffff",
+    });
 
     //Boton de atras
     let backButton = this.add.image(
@@ -33,15 +69,47 @@ class GameFinder extends Phaser.Scene {
       backButton.setTint();
     });
     backButton.on("pointerdown", () => {
+      connection.close();
       this.scene.start("MainMenu");
     });
 
-	if (ready) {
+    //boton de bloquear
+    let lockCharac = this.add
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 8.5) / 10, "Button_Play")
+      .setScale(0.3);
+    lockCharac.setDepth(1000);
+
+    lockCharac.setInteractive();
+    lockCharac.on("pointerover", () => {
+      lockCharac.setTint(0x909090);
+      lockCharac.setScale(0.32);
+    });
+    lockCharac.on("pointerout", () => {
+      lockCharac.setTint();
+      lockCharac.setScale(0.3);
+    });
+    lockCharac.on("pointerdown", () => {
+      let playerReady = '{"id": 3, "gameId":' + clientGame + "}";
+      this.imReady = true;
+      connection.send(playerReady);
+    });
+
+    if (ready) {
       var timer = this.time.addEvent({
         delay: 500, // ms
         callback: checkServer,
         loop: true,
       });
     }
-  }  
+  }
+
+  update() {
+    if (disconnected) {
+      this.scene.start("DisconnectScene");
+    }
+    if (this.imReady && this.onlineIsReady) {
+      game.scene.start("GameplayScene");
+      game.scene.stop("GameFinder");
+    }
+  }
 }

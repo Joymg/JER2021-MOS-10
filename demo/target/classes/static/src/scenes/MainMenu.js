@@ -65,12 +65,36 @@ class MainMenu extends Phaser.Scene {
     findGameButton.on("pointerdown", () => {
       var player2Turn = false;
       var p1Char = null;
+      this.scene.start("GameFinder", { player2Turn, p1Char });
+    });
+
+
+    let localGameButton = this.add
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.7) / 5, "Play")
+      .setScale(0.28);
+
+      localGameButton.setInteractive();
+
+    //efectos al pasar el raton por encima
+    localGameButton.on("pointerover", () => {
+      localGameButton.setTint(0x909090);
+      localGameButton.setScale(0.25);
+    });
+    localGameButton.on("pointerout", () => {
+      localGameButton.setTint();
+      localGameButton.setScale(0.28);
+    });
+
+    //al pulsar el boton carga la escena de seleccion de personaje
+    localGameButton.on("pointerdown", () => {
+      var player2Turn = false;
+      var p1Char = null;
       this.scene.start("CharacterSelection", { player2Turn, p1Char });
     });
 
     //Boton de ver creditos
     let credits = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.6) / 5, "Creditos")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 4.2) / 5, "Creditos")
       .setScale(0.3);
 
     credits.setInteractive();
@@ -113,30 +137,6 @@ class MainMenu extends Phaser.Scene {
     });
     //}
 
-    //Boton de perfil
-  /*  let profileButton = this.add.image(
-      (this.game.renderer.width * 9.2) / 10,
-      (this.game.renderer.height * 9) / 10,
-      "Profile"
-    );
-    profileButton.setScale(0.3);
-
-    profileButton.setInteractive();
-    //efectos al pasar el raton por encima
-    profileButton.on("pointerover", () => {
-      profileButton.setTint(0x909090);
-      profileButton.setScale(0.32);
-    });
-    profileButton.on("pointerout", () => {
-      profileButton.setTint();
-      profileButton.setScale(0.3);
-    });
-
-    //al pulsar el boton carga escena ProfileMenu
-    profileButton.on("pointerdown", () => {
-      this.scene.start("PerfilMenu");
-    });
-*/
     if (ready) {
       var timer = this.time.addEvent({
         delay: 500, // ms
@@ -146,3 +146,4 @@ class MainMenu extends Phaser.Scene {
     }
   }
 }
+

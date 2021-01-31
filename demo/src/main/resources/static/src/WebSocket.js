@@ -1,9 +1,9 @@
-//let wsUrl = "127.0.0.1:8080";
+/* let connection;
 let wsUrl = origin.split("/")[2];
 
-let clientGame = 0;
-let clientIdInGame = 0 ;
- let connection = new WebSocket("ws://" + wsUrl + "/player");
+function startConection(){
+  connection = new WebSocket("ws://" + wsUrl + "/player");
+}
 
 connection.onerror = function (e) {
   console.log("WS error: " + e);
@@ -21,11 +21,17 @@ connection.onmessage = function (msg) {
       break;
     case 1:
       oponentInputs = serverMsg;
-      break
+      break;
+    case 2:
+      this.scene.launch("DisconnectScene");
+      break;
+    case 3:
+      this.scene.start("GameplayScene");
+      break;
   }
 };
 
 connection.onclose = function () {
   console.log("Closing socket");
 };
-
+ */
