@@ -31,11 +31,21 @@ class GameFinder extends Phaser.Scene {
           break;
         case 2: // desconexion
           disconnected = true;
-
           break;
         case 3: // iniciar game a la vez
+		  console.log(game.scene.scenes[game.scene.scenes.length - 1].onlineIsReady);
           game.scene.scenes[game.scene.scenes.length - 1].onlineIsReady = true;
+		    if (this.imReady && this.onlineIsReady) {
+		      game.scene.start("CharacterSelection");
+		      game.scene.stop("GameFinder");
+		    }
           break;
+		case 4:			
+	      switch (serverMsg.id) {
+			case 4:
+				this.p2Index = serverMsg.characterIndex;
+				break;
+		   };
       }
     };
 
@@ -110,9 +120,15 @@ class GameFinder extends Phaser.Scene {
     if (disconnected) {
       this.scene.start("DisconnectScene");
     }
-    if (this.imReady && this.onlineIsReady) {
-      game.scene.start("GameplayScene");
-      game.scene.stop("GameFinder");
+    if (this.imReady && this.onlineIsReady) { 
+			var tint1;
+            var tint2;
+			var index1 = 0;
+			var index2 = 3;
+            //console.log(this.player1Character.texture.key, tint1);
+            //console.log(this.player2Character.texture.key, tint2);
+            this.scene.start("GameplayScene", { tint1, tint2, index1, index2});
+     		game.scene.stop("GameFinder");
     }
   }
 }

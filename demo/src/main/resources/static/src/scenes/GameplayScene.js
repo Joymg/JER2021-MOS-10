@@ -45,11 +45,21 @@ class GameplayScene extends Phaser.Scene {
 
     this.tint1;
     this.tint2;
+
+	this.p1Index;
+	this.p2Index;
   }
 
   init(data) {
     this.tint1 = data.tint1;
     this.tint2 = data.tint2;
+	if(game.config.localMode){
+		this.p1Index = data.index1;
+		this.p2Index = data.index2;
+	}else{
+		this.p1Index = 0;
+		this.p2Index = 3;
+	}
     //console.log(this.tint1, data.tint1);
     //console.log(this.tint2, data.tint2);
   }
@@ -92,17 +102,17 @@ class GameplayScene extends Phaser.Scene {
     // this.countdown(touched);
     // this.countdown2(touched2);
     //this.spawnItem(itemDestroyed);
-
-    if (disconnected) {
-      this.scene.start("DisconnectScene");
-      this.scene.stop();
-    }
-    if (this.paused.isDown) {
-      this.scene.launch("PauseMenu");
-      this.paused.isDown = false;
-      this.scene.pause();
-    }
-
+	if(!game.config.localMode){
+	    if (disconnected) {
+	      this.scene.start("DisconnectScene");
+	      this.scene.stop();
+	    }
+	    if (this.paused.isDown) {
+	      this.scene.launch("PauseMenu");
+	      this.paused.isDown = false;
+	      this.scene.pause();
+	    }
+	}
     this.generatePowerUps();
     if (game.config.localMode) {
       this.handleInputLocal();
@@ -173,14 +183,33 @@ class GameplayScene extends Phaser.Scene {
         max: 0.2,
       },
     });
-
+	var topPlayer1;
+	var botPlayer1;
+	switch(this.p1Index){
+		case 0:
+			topPlayer1 = "topSprite2";
+			botPlayer1 = "animationTank2";		
+			break;
+		case 1:
+			topPlayer1 = "topSprite";
+			botPlayer1 = "animationTank1";
+			break;
+		case 2:
+			break;
+		case 3:
+			topPlayer1 = "topSprite3";
+			botPlayer1 = "animationTank3";	
+			break;
+		case 4:
+			break;
+	}
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
-    var bot = this.physics.add.sprite(posXplayer1, posYplayer1, "animationTank1").setScale(0.036);
+    var bot = this.physics.add.sprite(posXplayer1, posYplayer1, botPlayer1).setScale(0.036);
     bot.body.setBoundsRectangle(this.customBounds);
 
     //bot.setTint(this.tint1);
     var top = this.physics.add
-      .sprite(posXplayer1, posYplayer1, "topSprite")
+      .sprite(posXplayer1, posYplayer1, topPlayer1)
       .setScale(0.036)
       .setOrigin(0.3, 0.5);
 
@@ -190,7 +219,7 @@ class GameplayScene extends Phaser.Scene {
     //Animación tanque 1
     this.anims.create({
       key: "tank1_animation",
-      frames: this.anims.generateFrameNumbers("animationTank1", {
+      frames: this.anims.generateFrameNumbers(botPlayer1, {
         start: 0,
         end: 5,
       }),
@@ -272,20 +301,50 @@ class GameplayScene extends Phaser.Scene {
         max: 0.2,
       },
     });
-
+	var topPlayer2;
+	var botPlayer2;
+	switch(this.p2Index){
+			case 0:
+				topPlayer2 = "topSprite2";
+				botPlayer2 = "animationTank2";		
+				break;
+			case 1:
+				topPlayer2 = "topSprite";
+				botPlayer2 = "animationTank1";
+				break;
+			case 2:
+				break;
+			case 3:
+				topPlayer2 = "topSprite3";
+				botPlayer2 = "animationTank3";	
+				break;
+			case 4:
+				break;
+	}
     var bot2 = this.physics.add
-      .sprite(posXplayer2, posYplayer2, "bottomSprite2")
+      .sprite(posXplayer2, posYplayer2, botPlayer2)
       .setScale(0.036)
       .setRotation(90);
     //.setTint(this.tint2);
 
     bot2.body.setBoundsRectangle(this.customBounds);
     var top2 = this.physics.add
-      .sprite(posXplayer2, posYplayer2, "topSprite2")
+      .sprite(posXplayer2, posYplayer2, topPlayer2)
       .setScale(0.036)
       .setOrigin(0.3, 0.5);
     //.setTint(this.tint2);
 
+	this.anims.create({
+	      key: "tank2_animation",
+	      frames: this.anims.generateFrameNumbers(botPlayer2, {
+	        start: 0,
+	        end: 5,
+	      }),
+	      repeat: -1,
+	      frameRate: 10,
+	    });
+	
+	 bot2.anims.play("tank2_animation");
     //console.log(2, top2.tintTopLeft);
     //bot2.anims.play("tank1_animation");
     bot2.setCollideWorldBounds(true);
@@ -483,11 +542,28 @@ class GameplayScene extends Phaser.Scene {
         "jugador1"
       )
       .setScale(0.6);
+	var p1IconName;
+	
+	switch(this.p1Index){
+		case 0:
+			p1IconName = "AricatoIcon";	
+			break;
+		case 1:
+			p1IconName = "CatsudonIcon";
+			break;
+		case 2:
+			break;
+		case 3:
+			p1IconName = "CatigulaIcon";
+			break;
+		case 4:
+			break;
+	}
     var p1Icon = this.add
       .image(
         (this.game.renderer.width * 0.8) / 10,
         (this.game.renderer.height * 0.8) / 10,
-        "CatsudonIcon"
+        p1IconName
       )
       .setDepth(1000)
       .setScale(0.1);
@@ -500,11 +576,29 @@ class GameplayScene extends Phaser.Scene {
         "jugador2"
       )
       .setScale(0.6);
+
+	var p2IconName;
+	
+	switch(this.p2Index){
+		case 0:
+			p2IconName = "AricatoIcon";	
+			break;
+		case 1:
+			p2IconName = "CatsudonIcon";
+			break;
+		case 2:
+			break;
+		case 3:
+			p2IconName = "CatigulaIcon";
+			break;
+		case 4:
+			break;
+	}
     var p2Icon = this.add
       .image(
         (this.game.renderer.width * 9.2) / 10,
         (this.game.renderer.height * 0.8) / 10,
-        "AricatoIcon"
+        p2IconName
       )
       .setDepth(1000)
       .setScale(0.1);

@@ -88,13 +88,24 @@ class Loader extends Phaser.Scene {
     //TODO darles nombres diferentes dependiendo del personaje
     this.load.image("topSprite2", "./assets/characters/Aricato/AricatoTop.png");
     this.load.image("bottomSprite2", "./assets/characters/Aricato/AricatoBot.png");
+    this.load.image("topSprite3", "./assets/characters/Catigula/CatigulaTop.png");
+    this.load.image("bottomSprite3", "./assets/characters/Catigula/CatigulaBot.png");
     this.load.image("AricatoIcon", "./assets/characters/Aricato/AricatoIcon.png");
+    this.load.image("CatigulaIcon", "./assets/characters/Catigula/CatigulaIcon.png");
     this.load.image("CatsudonIcon", "./assets/characters/Catsudon/CatsudonIcon.png");
     this.load.image("topSprite", "./assets/characters/Catsudon/CatsudonTop.png");
     this.load.image("bottomSprite", "./assets/characters/Catsudon/CatsudonBot.png");
     this.load.spritesheet("animationTank1", "./assets/characters/Catsudon/CatsudonBotAnim.png", {
       frameWidth: 1721,
       frameHeight: 1844,
+    })
+    ;this.load.spritesheet("animationTank2", "./assets/characters/Aricato/AricatoBotAnim.png", {
+      frameWidth: 1261,
+      frameHeight: 1836,
+    });
+    this.load.spritesheet("animationTank3", "./assets/characters/Catigula/CatigulaBotAnim.png", {
+      frameWidth: 1641,
+      frameHeight: 1834,
     });
 
     //Balas
@@ -116,7 +127,7 @@ class Loader extends Phaser.Scene {
     this.load.image("Aricato", "./assets/characters/Aricato/Portrait.png");
     this.load.image("Catsudon", "./assets/characters/Catsudon/Portrait.png");
     this.load.image("Tankitty", "./assets/characters/Catsudon/Portrait.png");
-    this.load.image("Catígula", "./assets/characters/Catsudon/Portrait.png");
+    this.load.image("Catígula", "./assets/characters/Catigula/Portrait.png");
     this.load.image("Catótico", "./assets/characters/Catsudon/Portrait.png");
 
     //elementos del gameplay

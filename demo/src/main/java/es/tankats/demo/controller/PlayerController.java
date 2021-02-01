@@ -79,6 +79,7 @@ public class PlayerController {
 			updatedPlayer.setLostGames(p.getLostGames());
 			updatedPlayer.setWonGames(p.getWonGames());
 			updatedPlayer.setDate(new Date());
+			updatedPlayer.setCharacterIndex(p.getCharacterIndex());
 
 			return new ResponseEntity<>(updatedPlayer, HttpStatus.OK);
 		} else {
