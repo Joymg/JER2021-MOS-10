@@ -285,3 +285,19 @@ Para esta entrega no se han añadido nuevas escenas al juego.
 4. Esperar a que se actualice
 5. Click derecho en el proyecto -> Run as... -> Spring Boot App 
 6. Cargar en el navegador el Local Host, puerto 8080
+
+## Fase 4:
+### 7.1 Uso de WebSockets
+
+Al entrar a la pantalla de buscar partida se crea un WebSocket llamado conection y se conecta al servidor. Este WebSocket puede recibir varios tipos de mensajes dependiendo de la id con la que se manden:
+
+0: Se organiza la partida.
+1: Para los inputs de los jugadores. Se actualiza constantemente.
+2: Por si hay una desconexion de uno de los jugadores.
+3: Para iniciar los juegos a la vez.
+
+En la escena de GameFinder, si hay dos jugadores conectados esperando y pulsan "Miau", se inicia la partida. Dentro de la partida los inputs de los jugadores se guardan en strings y se mandan mediante WebSockets al servidor y luego unicamente al otro jugador que está en la partida con él, haciendo que se actualice el movimiento y el disparo del contrincante. 
+Para cerrar la sesión, se comprueba si en el juego hay alguien más, si eres el primero en desconectarse se cierra el WebSocket y se manda un mensaje al otro jugador para que cierre el juego, si eres el segundo se cierra el juego directamente. Basicamente, el primero que se desconecta fuerza al otro a desconectarse.
+
+### 7.2 Diagrama de clases
+El diagrama de clases está actualizado en el apartado 6.2

@@ -82,8 +82,8 @@ class CreditsScene extends Phaser.Scene {
     });
 
      //Creditos musica
-     this.add.text(10, 740, 'Música menú principal: Jincheng Zhang - Dark I Love You', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
-     this.add.text(770, 740, 'Música combate: datsflaze - Haste', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+     this.add.text(10, 740, 'Música menú principal: Jincheng Zhang - Dark I Love You', { fontFamily: "Arial", fontSize: 16, color: "#ffffff" });
+     this.add.text(770, 740, 'Música combate: datsflaze - Haste', { fontFamily: "Arial", fontSize: 16, color: "#ffffff" });
 
 	if (ready) {
       var timer = this.time.addEvent({

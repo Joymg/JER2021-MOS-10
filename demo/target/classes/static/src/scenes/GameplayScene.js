@@ -991,7 +991,7 @@ class GameplayScene extends Phaser.Scene {
       }
       inputsJSON += '],"alpha":' + alpha + "}";
 
-      if(disconnected){
+      if(!disconnected){
         connection.send(inputsJSON);
       }
 
