@@ -67,7 +67,8 @@ class Loader extends Phaser.Scene {
 
     this.load.image("Pink_TextBox", "./assets/text/Pink_Text.png");
     this.load.image("Button_Play", "./assets/text/Miau.png");
-    this.load.image("Play", "./assets/text/Play.png");
+    this.load.image("Local", "./assets/Local.png");
+    this.load.image("Multi", "./assets/Multi.png");
     this.load.image("Purple_TextBox", "./assets/text/Purple_Text.png");
 
     //Textos

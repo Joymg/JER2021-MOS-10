@@ -97,10 +97,15 @@ class VictoryScene extends Phaser.Scene {
       .setVisible(false);
 
     let mainMenuText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 3.7) / 5, "IrAlTitulo")
-      .setScale(0)
-      .setActive(false)
+      .text(this.game.renderer.width / 2.4, (this.game.renderer.height * 3.6) / 5, "Ir al título", {
+      fontFamily: "Arial",
+      fontSize: 200,
+      color: "#000000",
+    })
+	  .setActive(false)
       .setVisible(false);
+      
+      
 
     mainMenuButton.setInteractive();
     //efectos al pasar el raton por encima
@@ -112,9 +117,14 @@ class VictoryScene extends Phaser.Scene {
     });
     //al pulsar el boton te lleva al menu principal
     mainMenuButton.on("pointerdown", () => {
-      connection.close();
+	if (game.config.localMode){
+		this.scene.stop("GameplayScene");
+      	this.scene.start("MainMenu");
+	}else{
+	  connection.close();
       this.scene.stop("GameplayScene");
       this.scene.start("MainMenu");
+	}
     });
 
     mainMenuButton.setActive(false);
@@ -126,7 +136,7 @@ class VictoryScene extends Phaser.Scene {
       delay: 1000,
       callback: () => {
         //al pasar 1 segundo aparecen los botones
-        if (game.config.localMode) {
+      /* if (game.config.localMode) {
           rematchButton.setVisible(true);
           rematchText.setVisible(true);
 
@@ -136,7 +146,7 @@ class VictoryScene extends Phaser.Scene {
             ease: "elastic",
             duration: 100,
           });
-        }
+        }*/
         mainMenuButton.setVisible(true);
         mainMenuText.setVisible(true);
         this.sound.play("victorySound");
