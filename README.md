@@ -297,7 +297,7 @@ Al entrar a la pantalla de buscar partida se crea un WebSocket llamado conection
 3: Para iniciar los juegos a la vez.
 
 En la escena de GameFinder, si hay dos jugadores conectados esperando y pulsan "Miau", se inicia la partida. Dentro de la partida los inputs de los jugadores se guardan en strings y se mandan mediante WebSockets al servidor y luego unicamente al otro jugador que está en la partida con él, haciendo que se actualice el movimiento y el disparo del contrincante. 
-Para cerrar la sesión, se comprueba si en el juego hay alguien más, si eres el primero en desconectarse se cierra el WebSocket y se manda un mensaje al otro jugador para que cierre el juego, si eres el segundo se cierra el juego directamente. Basicamente, el primero que se desconecta fuerza al otro a desconectarse.
+Para cerrar la sesión, se comprueba si en el juego hay alguien más, si eres el primero en desconectarse se cierra el WebSocket y se manda un mensaje al otro jugador para que se desconecte, para que cierre su socket, si eres el segundo se desconecta del juego directamente. Basicamente, el primero que se desconecta fuerza al otro a desconectarse.
 
 ### 7.2 Diagrama de clases
 El diagrama de clases está actualizado en el apartado 6.2
