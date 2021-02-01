@@ -60,7 +60,7 @@ class GameFinder extends Phaser.Scene {
     );
 
     //Texto buscando partida
-    var introText = this.add.text(155, 384, "Pulse '¡MIAU!' para buscar partida.", {
+    var introText = this.add.text(360, 384, "Pulse '¡MIAU!'", {
       fontFamily: "Arial",
       fontSize: 50,
       color: "#ffffff",

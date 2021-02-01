@@ -56,10 +56,10 @@ class PauseMenu extends Phaser.Scene {
       .image(this.game.renderer.width / 2, (this.game.renderer.height * 7) / 10, "Pink_TextBox")
       .setScale(0.3);
     let backToMenuText = this.add
-      .text(this.game.renderer.width / 2.5, (this.game.renderer.height * 3.3) / 5, "Ir al título", {
+      .text(this.game.renderer.width / 3, (this.game.renderer.height * 3.3) / 5, "IR AL TÍTULO", {
       fontFamily: "Arial",
       fontSize: 200,
-      color: "#000000",
+      color: "#ffffff",
     })
 	.setScale(0.3);
 	

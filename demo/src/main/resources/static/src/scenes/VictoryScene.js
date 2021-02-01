@@ -97,10 +97,10 @@ class VictoryScene extends Phaser.Scene {
       .setVisible(false);
 
     let mainMenuText = this.add
-      .text(this.game.renderer.width / 2.4, (this.game.renderer.height * 3.6) / 5, "Ir al título", {
+      .text(this.game.renderer.width / 2.6, (this.game.renderer.height * 3.6) / 5, "IR AL TÍTULO", {
       fontFamily: "Arial",
       fontSize: 200,
-      color: "#000000",
+      color: "#ffffff",
     })
 	  .setActive(false)
       .setVisible(false);
