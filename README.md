@@ -301,3 +301,8 @@ Para cerrar la sesión, se comprueba si en el juego hay alguien más, si eres el
 
 ### 7.2 Diagrama de clases
 El diagrama de clases está actualizado en el apartado 6.2
+
+## Fase 5:
+### 8.1 Mejoras finales incluidas:
+Se ha añadido arte adicional, como skins nuevas para los jugadores y animaciones para el tanque (Ahora los tanques apuntan el cuerpo hacia la dirección del movimiento). Se han cambiado las fuentes y se ha cambiado la forma de cargar los mapas (Ahora se usa la herramienta "tiled"). 
+También se han corregido algunos bugs (Por ejemplo el de que los tanques pasaran por encima de la barra de vida).
