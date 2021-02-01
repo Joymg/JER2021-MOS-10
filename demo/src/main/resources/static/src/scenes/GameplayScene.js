@@ -560,11 +560,13 @@ class GameplayScene extends Phaser.Scene {
 			p1IconName = "CatsudonIcon";
 			break;
 		case 2:
+			p1IconName = "CatsudonIcon";
 			break;
 		case 3:
 			p1IconName = "CatigulaIcon";
 			break;
 		case 4:
+			p1IconName = "CatsudonIcon";
 			break;
 	}
     var p1Icon = this.add
@@ -595,11 +597,13 @@ class GameplayScene extends Phaser.Scene {
 			p2IconName = "CatsudonIcon";
 			break;
 		case 2:
+			p2IconName = "CatsudonIcon";
 			break;
 		case 3:
 			p2IconName = "CatigulaIcon";
 			break;
 		case 4:
+			p2IconName = "CatsudonIcon";
 			break;
 	}
     var p2Icon = this.add
