@@ -6,8 +6,8 @@ class DisconnectScene extends Phaser.Scene {
   create() {
     this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "MarcoPausa");
     let text = this.add.text(
-      120,
-      384,
+      160,
+      310,
       "El oponente se ha deconectado.\nSerás enviado al menú principal.",
       { fontFamily: "Arial", fontSize: 50, color: "#ffffff" }
     );

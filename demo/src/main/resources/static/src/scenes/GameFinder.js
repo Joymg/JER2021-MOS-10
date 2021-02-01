@@ -60,12 +60,19 @@ class GameFinder extends Phaser.Scene {
     );
 
     //Texto buscando partida
-    this.add.text(120, 384, "Buscando partida, por favor espere...", {
+    var introText = this.add.text(155, 384, "Pulse '¡MIAU!' para buscar partida.", {
       fontFamily: "Arial",
       fontSize: 50,
       color: "#ffffff",
     });
 
+	var searchText = this.add.text(110, 384, "Buscando partida, por favor, espere...", {
+      fontFamily: "Arial",
+      fontSize: 50,
+      color: "#ffffff",
+    }).setVisible(false);
+
+	
     //Boton de atras
     let backButton = this.add.image(
       (this.game.renderer.width * 9) / 10,
@@ -105,6 +112,8 @@ class GameFinder extends Phaser.Scene {
       let playerReady = '{"id": 3, "gameId":' + clientGame + "}";
       this.imReady = true;
       connection.send(playerReady);
+	  introText.setVisible(false);
+	  searchText.setVisible(true);
     });
 
     if (ready) {

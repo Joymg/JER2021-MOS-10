@@ -53,29 +53,41 @@ class PauseMenu extends Phaser.Scene {
       .setScale(0.3);
 
     let backToMenuButton = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 8) / 10, "Pink_TextBox")
+      .image(this.game.renderer.width / 2, (this.game.renderer.height * 7) / 10, "Pink_TextBox")
       .setScale(0.3);
     let backToMenuText = this.add
-      .image(this.game.renderer.width / 2, (this.game.renderer.height * 8) / 10, "IrAlTitulo")
-      .setScale(0.3);
-
+      .text(this.game.renderer.width / 2.5, (this.game.renderer.height * 3.3) / 5, "Ir al título", {
+      fontFamily: "Arial",
+      fontSize: 200,
+      color: "#000000",
+    })
+	.setScale(0.3);
+	
     backToMenuButton.setInteractive();
     backToMenuButton.on("pointerover", () => {
       backToMenuButton.setTint(0x909090);
       backToMenuButton.setScale(0.32);
-      backToMenuText.setScale(0.32);
+	  backToMenuText.setScale(0.32);
     });
     backToMenuButton.on("pointerout", () => {
       backToMenuButton.setTint();
       backToMenuButton.setScale(0.3);
-      backToMenuText.setScale(0.3);
+	  backToMenuText.setScale(0.3);
     });
     backToMenuButton.on("pointerdown", () => {
-      connection.close();
-      this.scene.stop("GameplayScene");
+	if (game.config.localMode){
+	  this.scene.stop("GameplayScene");
       this.scene.stop();
       this.sound.get("BattleMusic").stop();
       this.scene.start("MainMenu");
+	}else{
+	  connection.close();
+      this.scene.stop("GameplayScene");
+      this.scene.stop();
+      this.sound.get("BattleMusic").stop();
+      this.scene.start("MainMenu");		
+	}
+
     });
 
     let backButton = this.add.image(
