@@ -195,12 +195,16 @@ class GameplayScene extends Phaser.Scene {
 			botPlayer1 = "animationTank1";
 			break;
 		case 2:
+			topPlayer1 = "topSprite";
+			botPlayer1 = "animationTank1";
 			break;
 		case 3:
 			topPlayer1 = "topSprite3";
 			botPlayer1 = "animationTank3";	
 			break;
 		case 4:
+			topPlayer1 = "topSprite";
+			botPlayer1 = "animationTank1";
 			break;
 	}
     //var bot = this.physics.add.sprite(600, 300, "bottomSprite").setScale(0.05);
@@ -313,12 +317,16 @@ class GameplayScene extends Phaser.Scene {
 				botPlayer2 = "animationTank1";
 				break;
 			case 2:
+				topPlayer2 = "topSprite";
+				botPlayer2 = "animationTank1";
 				break;
 			case 3:
 				topPlayer2 = "topSprite3";
 				botPlayer2 = "animationTank3";	
 				break;
 			case 4:
+				topPlayer2 = "topSprite";
+				botPlayer2 = "animationTank1";
 				break;
 	}
     var bot2 = this.physics.add
