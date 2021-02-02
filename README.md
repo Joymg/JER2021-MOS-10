@@ -9,6 +9,8 @@ Documento de Diseño
 
 Repositorio en Github: https://github.com/Joymg/JER2021-MOS-10
 
+Video presentación: https://youtu.be/IqPf5rCDHwg
+
 ## Introducción:
 Este es el documento de diseño de Tankats. Este juego estará desarrollado para la asignatura de Juegos en Red del grado de Diseño y Desarrollo de Videojuegos de la Universidad Rey Juan Carlos, por el Grupo 10 de la misma. 
 
